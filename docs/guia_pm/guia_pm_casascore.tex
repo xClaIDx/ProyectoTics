@@ -1,0 +1,753 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% GUÍA DE GESTIÓN DEL PROJECT MANAGER
+% Proyecto: CasaScore (AlquilaPuno)
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{amssymb}
+% --- RECURSOS VISUALES: GRÁFICOS Y CÓDIGO DE COLORES ---
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\definecolor{GrisFila}{RGB}{246, 248, 251}
+\definecolor{CuadCerca}{RGB}{150, 30, 30}
+\definecolor{CuadSatisf}{RGB}{180, 130, 20}
+\definecolor{CuadInfo}{RGB}{10, 45, 90}
+\definecolor{CuadMonit}{RGB}{110, 115, 125}
+\newcommand{\etiqueta}[2]{{\setlength{\fboxsep}{2pt}\colorbox{#1}{\textcolor{white}{\scriptsize\bfseries #2}}}}
+\newcommand{\cerca}{\etiqueta{CuadCerca}{Gestionar de cerca}}
+\newcommand{\satisf}{\etiqueta{CuadSatisf}{Mantener satisfecho}}
+\newcommand{\informado}{\etiqueta{CuadInfo}{Mantener informado}}
+\newcommand{\monit}{\etiqueta{CuadMonit}{Monitorear}}
+\usepackage{needspace}
+\usepackage{longtable}
+\definecolor{Rama1}{RGB}{10, 45, 90}
+\definecolor{Rama2}{RGB}{40, 95, 150}
+\definecolor{Rama3}{RGB}{180, 130, 20}
+\definecolor{Rama4}{RGB}{30, 110, 60}
+\definecolor{Rama5}{RGB}{110, 60, 140}
+\definecolor{RaciR}{RGB}{150, 30, 30}
+\definecolor{RaciA}{RGB}{10, 45, 90}
+\definecolor{RaciC}{RGB}{180, 130, 20}
+\definecolor{RaciI}{RGB}{140, 145, 155}
+\definecolor{NivAlto}{RGB}{30, 110, 60}
+\definecolor{NivMedio}{RGB}{180, 130, 20}
+\definecolor{NivBajo}{RGB}{150, 30, 30}
+\usetikzlibrary{patterns}
+\definecolor{SevBaja}{RGB}{30, 110, 60}
+\definecolor{SevMedia}{RGB}{180, 130, 20}
+\definecolor{SevAlta}{RGB}{150, 30, 30}
+\usetikzlibrary{arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\scriptsize, frame=single, rulecolor=\color{AzulUNA!40}, backgroundcolor=\color{GrisFila}, columns=fullflexible, keepspaces=true, breaklines=true, xleftmargin=4pt, xrightmargin=4pt, literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1}
+
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../assets/img/}{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Guía De Gestión Del Project Manager -- CasaScore (AlquilaPuno)},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{GUÍA DE GESTIÓN DEL PROJECT MANAGER}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore (AlquilaPuno)}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\shorthandoff{<>}
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{GUÍA DE GESTIÓN DEL PROJECT MANAGER}}}\\[3pt]
+    {\normalsize \textbf{CasaScore (AlquilaPuno) -- Semanas 11 a 17: ejecución, control y cierre}}\\[4pt]
+    \footnotesize \textbf{Fecha:} jueves 05/11/2026 (semana 11) \quad \textbar\quad \textbf{Versión:} 1.1 \quad \textbar\quad \textbf{Responsable:} Clyde Neil Paricahua Pari
+\end{center}
+
+\vspace{0.1cm}
+
+\section{Propósito}
+Esta guía ordena lo que el Project Manager debe encargar, revisar y aprobar desde hoy hasta el cierre, para que cada documento del expediente quede respaldado por un hecho real: una tarea terminada en el tablero, un acta, una prueba, una encuesta o un comprobante. También explica cómo montar en GitHub Projects el modelo híbrido Scrum y Kanban que el equipo acordó en sus políticas, con todos sus artefactos, cómo incorporar a los integrantes invitados y cómo debe trabajar cada uno.
+
+\vspace{0.1cm}
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.0cm} L@{}}
+\toprule
+\textbf{Periodo:} & Semana 11 (02/11) a semana 17 (18/12/2026) \\
+\textbf{Equipo:} & Clyde N. Paricahua Pari (PM), Ruth K. Apaza Solis (Planificación), Eliseo Tarqui Ajahuana (Técnico) y Viviana M. Quisbert Quispe (Comunicación y riesgos) \\
+\textbf{Dedicación:} & 8 horas semanales por integrante (32 horas del equipo por semana) \\
+\textbf{Herramientas:} & GitHub (repositorio, Issues, Pull Requests y Projects), WhatsApp, Google Meet y la carpeta \texttt{docs/} del repositorio \\
+\bottomrule
+\end{tabularx}
+
+\section{Punto de Partida al 05/11/2026}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L C{2.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Frente} & \textbf{Situación} & \textbf{Estado} \\
+\midrule
+Gestión & Inicio y planificación completos, Plan de Dirección sustentado el 30/10; Horus Sentinel excluido y archivado. & \etiqueta{Rama4}{Al día} \\
+Producto & Prototipo de la Unidad I entregado el 09/10. Registro con Supabase al 40\,\% y punto de referencia al 20\,\%. & \etiqueta{SevAlta}{Atrasado} \\
+Campo & 10 cuartos reales registrados de los 15 previstos. & \etiqueta{SevMedia}{En riesgo} \\
+Documentos 21 a 28 & Redactados con sus fechas previstas; cada uno debe respaldarse con lo que ocurra realmente en su semana. & \etiqueta{SevMedia}{Por respaldar} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Regla del PM:} ningún documento se da por terminado si su evidencia no está enlazada en el Issue del entregable. Si la realidad no coincide con lo redactado, se corrige el documento con una nueva versión; no se ajusta la evidencia al documento.
+
+\Needspace{18\baselineskip}
+\section{Modelo Híbrido Scrum y Kanban}
+El proyecto ya tiene líneas base de alcance, cronograma y costo. Dentro de ellas, el trabajo diario se organiza con dos flujos que conviven en un solo tablero:
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.6cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+& \textbf{Parte Scrum} & \textbf{Parte Kanban} \\
+\midrule
+Para qué trabajo & Software: funciones de la app, pruebas y correcciones. & Gestión, documentos, campo, riesgos y cambios. \\
+Ritmo & Sprint de una semana (lunes a viernes) con un objetivo fijo. & Flujo continuo: se jala la siguiente tarjeta cuando hay capacidad. \\
+Compromiso & El objetivo del sprint no cambia; lo nuevo va al backlog. & Límite de trabajo en curso (WIP) por columna. \\
+Eventos & Planificación (lunes), control (martes), revisión y retrospectiva (viernes). & Revisión del flujo en el control del martes: tarjetas bloqueadas y envejecidas. \\
+Medición & Puntos de horas comprometidas y terminadas por sprint (burnup). & Tiempo de ciclo de cada tarjeta y tarjetas por columna. \\
+Roles & PM como facilitador (Scrum Master); el equipo como sponsor y dueño del producto; Eliseo lidera el desarrollo. & Cada tarjeta tiene un solo responsable y un integrante de apoyo. \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{14\baselineskip}
+\subsection{Semana tipo}
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize, dia/.style={draw=#1, fill=#1!10, rounded corners=3pt, text width=2.55cm, minimum height=2.05cm, align=center, line width=0.7pt}, >=Stealth]
+\node[dia=AzulUNA] (lu) at (0,0) {\textbf{\textcolor{AzulUNA}{Lunes}}\\[2pt] Planificación del sprint por WhatsApp o Meet (20 min): objetivo y tarjetas del sprint};
+\node[dia=RaciR] (ma) at (2.95,0) {\textbf{\textcolor{RaciR}{Martes 20:00}}\\[2pt] Control: horas, valor ganado, semáforo, riesgos y cambios};
+\node[dia=Rama2] (mi) at (5.9,0) {\textbf{\textcolor{Rama2}{Miércoles y jueves}}\\[2pt] Trabajo y seguimiento diario en el tablero};
+\node[dia=Rama4] (vi) at (8.85,0) {\textbf{\textcolor{Rama4}{Viernes 20:00}}\\[2pt] Revisión del sprint, retrospectiva y acta en 24 horas};
+\node[dia=DoradoFIEI] (sa) at (11.8,0) {\textbf{\textcolor{DoradoFIEI}{Sábado}}\\[2pt] Trabajo de campo: cuartos, propietarios y piloto};
+\foreach \a/\b in {lu/ma,ma/mi,mi/vi,vi/sa} {\draw[->, thick, GrisOscuro] (\a) -- (\b);}
+\end{tikzpicture}
+\end{center}
+
+\Needspace{30\baselineskip}
+\section{Instrucciones para Montar el Tablero en GitHub Projects}
+Lo hace la Analista de Planificación, que administra el tablero según las políticas del equipo; el PM revisa el resultado. Tiempo estimado: una hora.
+
+\subsection{Paso 1. Crear el proyecto}
+\begin{enumerate}[leftmargin=*]
+    \item En la organización o cuenta del repositorio, abrir \textbf{Projects} $\rightarrow$ \textbf{New project} $\rightarrow$ plantilla \textbf{Board}. Nombre: \texttt{CasaScore -- Tablero híbrido}.
+    \item En \textbf{Settings} del proyecto, vincular el repositorio y dar acceso de escritura a los cuatro integrantes.
+    \item En el campo \textbf{Status}, dejar las opciones en este orden: \texttt{Backlog}, \texttt{Por hacer}, \texttt{En progreso}, \texttt{En revisión} y \texttt{Hecho}.
+\end{enumerate}
+
+\subsection{Paso 2. Crear los campos personalizados}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} P{2.5cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Campo} & \textbf{Tipo} & \textbf{Opciones o uso} \\
+\midrule
+Sprint & Iteration & Duración de 1 semana, inicio el lunes 02/11. Sprints 7 (semana 11) a 12 (semana 16). \\
+Tipo & Single select & Software, Documento, Gestión, Campo, Defecto. Solo las tarjetas de Software y Defecto entran en un sprint. \\
+Paquete EDT & Single select & 1.5, 3.4, 3.5, 3.6, 4.2, 4.3, 4.4, 5.1, 5.2, 5.3. \\
+Entregable & Single select & 21 a 28, o ``Producto'' para el software. \\
+Estimación (h) & Number & Horas previstas al planificar la tarjeta. \\
+Horas reales & Number & Horas registradas cada día (acción correctiva de registro de horas). \\
+Prioridad & Single select & Alta, Media, Baja. \\
+Fecha límite & Date & Fecha comprometida; alimenta la vista de hoja de ruta. \\
+Apoyo & Text & Integrante que puede continuar la tarea si el responsable falta. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent Los campos de texto, número, fecha y selección también se pueden crear desde la terminal; el de iteración se crea en la web.
+
+\begin{lstlisting}
+gh project create --owner xClaIDx --title "CasaScore -- Tablero hibrido"
+gh project field-create <N> --owner xClaIDx --name "Tipo" --data-type SINGLE_SELECT --single-select-options "Software,Documento,Gestion,Campo,Defecto"
+gh project field-create <N> --owner xClaIDx --name "Estimacion (h)" --data-type NUMBER
+gh project field-create <N> --owner xClaIDx --name "Horas reales" --data-type NUMBER
+gh project field-create <N> --owner xClaIDx --name "Fecha limite" --data-type DATE
+\end{lstlisting}
+
+\Needspace{12\baselineskip}
+\subsection{Paso 3. Etiquetas, hitos y plantillas en el repositorio}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Etiquetas:} \texttt{casascore}, \texttt{comun}, \texttt{horus-archivo-2026}, \texttt{entregable}, \texttt{defecto}, \texttt{riesgo}, \texttt{cambio}, \texttt{bloqueado}.
+    \item \textbf{Hitos (Milestones):} H5 Registro con Supabase (18/11), G3 Piloto (27/11), G4 MVP final aceptado (04/12), H8 Informe final y exposición (14/12), G5 Acta de cierre (18/12).
+    \item \textbf{Plantillas de Issue} en \texttt{.github/ISSUE\_TEMPLATE/}: \texttt{tarea.md} (qué, criterio de aceptación, responsable, apoyo, estimación), \texttt{defecto.md} (pasos, resultado esperado y obtenido, severidad), \texttt{solicitud\_cambio.md} (qué, por qué, quién, impacto en alcance, cronograma, costo, calidad y riesgos) y \texttt{riesgo.md} (descripción, probabilidad, impacto, disparador y respuesta).
+\end{enumerate}
+
+\begin{lstlisting}
+gh label create entregable --color 0A2D5A
+gh label create defecto --color 961E1E
+gh label create cambio --color B48214
+gh label create riesgo --color 6E3C8C
+gh label create bloqueado --color 000000
+gh api repos/xClaIDx/CasaScoreHorus/milestones -f title="G4 MVP final aceptado" -f due_on="2026-12-04T23:59:00Z"
+\end{lstlisting}
+
+\Needspace{14\baselineskip}
+\subsection{Paso 4. Vistas, límites y automatizaciones}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} P{2.2cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Vista} & \textbf{Diseño} & \textbf{Configuración} \\
+\midrule
+Tablero & Board & Columnas por Status. Límite de columna: En progreso 4 y En revisión 3. \\
+Sprint actual & Table & Filtro \texttt{sprint:@current tipo:Software,Defecto}; suma de Estimación y Horas reales. \\
+Por responsable & Table & Agrupar por Assignees; muestra la carga de cada integrante. \\
+Hoja de ruta & Roadmap & Fecha límite como fecha de fin; marcadores de los hitos. \\
+Control semanal & Table & Agrupar por Paquete EDT; suma de Horas reales para el valor ganado del martes. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Automatizaciones} (\textbf{Workflows} del proyecto): un ítem agregado pasa a \texttt{Backlog}; un Pull Request enlazado y fusionado pasa la tarjeta a \texttt{Hecho}; un Issue cerrado pasa a \texttt{Hecho}; un Issue reabierto vuelve a \texttt{En progreso}; los Issues nuevos del repositorio con la etiqueta \texttt{casascore} se agregan solos al proyecto.
+
+\vspace{0.1cm}
+\noindent\textbf{Gráficos (Insights):} burnup del sprint (suma de Estimación por Status y por Sprint) y tarjetas por responsable.
+
+\Needspace{24\baselineskip}
+\section{Incorporación de los Integrantes}
+El repositorio \texttt{xClaIDx/CasaScoreHorus} y el tablero pertenecen a la cuenta del Project Manager. Ruth, Eliseo y Viviana trabajan en ellos como colaboradores invitados.
+
+\subsection{Lo que hace el Project Manager}
+\begin{enumerate}[leftmargin=*]
+    \item Pedir a cada integrante su usuario de GitHub por el grupo de WhatsApp.
+    \item En el repositorio: \textbf{Settings} $\rightarrow$ \textbf{Collaborators} $\rightarrow$ \textbf{Add people}, buscar cada usuario y enviar la invitación. En un repositorio de cuenta personal, los colaboradores reciben permiso de escritura.
+    \item En el tablero: \textbf{Settings} del proyecto $\rightarrow$ \textbf{Manage access} $\rightarrow$ \textbf{Invite collaborators}, agregar a los tres con rol \textbf{Write}. A Ruth se le asigna \textbf{Admin}, porque administra el tablero.
+    \item Proteger la rama \texttt{main}: \textbf{Settings} $\rightarrow$ \textbf{Branches} $\rightarrow$ \textbf{Add branch ruleset}, con Pull Request obligatorio y una aprobación. En un repositorio privado con cuenta gratuita esta opción no está disponible; la regla se cumple entonces por acuerdo del equipo.
+    \item Verificar el viernes en la revisión del sprint que los tres aparecen como colaboradores y pueden mover una tarjeta.
+\end{enumerate}
+
+\begin{lstlisting}
+gh api -X PUT repos/xClaIDx/CasaScoreHorus/collaborators/<usuario-del-integrante>
+gh api repos/xClaIDx/CasaScoreHorus/invitations --jq '.[].invitee.login'
+\end{lstlisting}
+
+\Needspace{16\baselineskip}
+\subsection{Lo que hace cada integrante invitado (una sola vez)}
+\begin{enumerate}[leftmargin=*]
+    \item Aceptar la invitación desde el correo de GitHub o en la página de invitaciones del repositorio (\texttt{github.com/xClaIDx/} \texttt{CasaScoreHorus/invitations}), y la del tablero desde las notificaciones.
+    \item Instalar Git y, si lo desea, GitHub Desktop o la terminal de GitHub (\texttt{gh}). Configurar su nombre y correo para que sus commits queden a su nombre.
+    \item Clonar el repositorio y comprobar que abre las carpetas \texttt{docs/} y \texttt{src/}.
+    \item Abrir el tablero \texttt{CasaScore -- Tablero híbrido}, activar las notificaciones del repositorio (\textbf{Watch} $\rightarrow$ \textbf{All activity}) y revisar las tarjetas a su nombre.
+    \item Si va a trabajar en la app, copiar \texttt{src/web/.env.example} como \texttt{.env} y pedir las claves al Especialista Técnico por mensaje privado. Las claves nunca se suben al repositorio.
+\end{enumerate}
+
+\begin{lstlisting}
+git config --global user.name "Nombre Apellido"
+git config --global user.email "correo@ejemplo.com"
+git clone https://github.com/xClaIDx/CasaScoreHorus.git
+cd CasaScoreHorus
+\end{lstlisting}
+
+\Needspace{36\baselineskip}
+\section{Boceto del Tablero}
+Vista \textbf{Tablero} con las tarjetas de ejemplo del sprint 7 (semana 11).
+
+\vspace{0.15cm}
+\newcommand{\tarjeta}[9]{%
+  \draw[gray!50, fill=white, rounded corners=2pt] (#1+0.08,#2) rectangle (#1+3.02,#2-1.05);
+  \node[anchor=north west, inner sep=0pt, font=\fontsize{4.5}{5}\selectfont, text=GrisOscuro] at (#1+0.18,#2-0.1) {\##3};
+  \node[anchor=north west, inner sep=0pt, text width=2.4cm, font=\fontsize{5.5}{6.2}\selectfont\bfseries] at (#1+0.18,#2-0.3) {#4};
+  \node[anchor=west, fill=#5, text=white, rounded corners=1pt, inner sep=1.3pt, font=\fontsize{4.5}{5}\selectfont\bfseries] (tt) at (#1+0.18,#2-0.88) {#6};
+  \node[anchor=west, fill=gray!55, text=white, rounded corners=1pt, inner sep=1.3pt, font=\fontsize{4.5}{5}\selectfont\bfseries] at ([xshift=2pt]tt.east) {EDT #7};
+  \node[anchor=east, inner sep=0pt, font=\fontsize{4.5}{5}\selectfont, text=GrisOscuro] at (#1+2.62,#2-0.2) {#9};
+  \fill[AzulUNA!85] (#1+2.82,#2-0.2) circle (0.13);
+  \node[text=white, inner sep=0pt, font=\fontsize{4.2}{5}\selectfont\bfseries] at (#1+2.82,#2-0.2) {#8};}
+
+\begin{center}
+\begin{tikzpicture}[font=\tiny]
+\draw[gray!60, fill=GrisFila, rounded corners=4pt] (-0.15,0.95) rectangle (16.15,-9.7);
+\fill[AzulUNA, rounded corners=4pt] (-0.15,0.95) rectangle (16.15,0.35);
+\node[anchor=west, text=white, font=\scriptsize\bfseries] at (0.05,0.65) {CasaScore -- Tablero híbrido};
+\node[anchor=east, text=white, font=\tiny] at (15.95,0.65) {Sprint 7 \textbar\ 02/11 -- 06/11 \textbar\ Objetivo: registro con Supabase y punto de referencia};
+\foreach \x/\t/\c in {0.05/Tablero/AzulUNA, 1.4/Sprint actual/GrisOscuro, 3.4/Por responsable/GrisOscuro, 5.7/Hoja de ruta/GrisOscuro, 7.7/Control semanal/GrisOscuro} {
+  \node[anchor=west, text=\c, font=\tiny\bfseries] at (\x,0.08) {\t};}
+\draw[AzulUNA, line width=1.2pt] (0.08,-0.1) -- (1.05,-0.1);
+\foreach \i/\t/\n/\col in {0/Backlog/3/RaciI, 1/Por hacer/2/Rama2, 2/En progreso/3 de 4/DoradoFIEI, 3/En revisión/1 de 3/Rama5, 4/Hecho/2/Rama4} {
+  \pgfmathsetmacro{\x}{\i*3.24}
+  \draw[gray!40, fill=white!92!gray, rounded corners=3pt] (\x,-0.3) rectangle (\x+3.1,-4.5);
+  \fill[\col] (\x+0.15,-0.55) circle (2pt);
+  \node[anchor=west, font=\fontsize{6.5}{7}\selectfont\bfseries] at (\x+0.25,-0.55) {\t};
+  \node[anchor=east, font=\tiny, text=GrisOscuro] at (\x+3.0,-0.55) {\n};
+}
+\tarjeta{0}{-0.8}{52}{Perfil y mis cuartos}{Rama2}{Software}{3.6}{ET}{6 h}
+\tarjeta{0}{-2.0}{55}{Convocatoria al piloto}{DoradoFIEI}{Campo}{4.3}{VQ}{5 h}
+\tarjeta{0}{-3.2}{57}{Manual de usuario}{Rama5}{Documento}{5.1}{ET}{6 h}
+\tarjeta{3.24}{-0.8}{49}{Punto de referencia en el mapa}{Rama2}{Software}{3.5}{ET}{8 h}
+\tarjeta{3.24}{-2.0}{50}{Levantamiento del sábado 07/11}{DoradoFIEI}{Campo}{4.2}{CP}{4 h}
+\tarjeta{6.48}{-0.8}{46}{Registro e inicio de sesión}{Rama2}{Software}{3.4}{ET}{10 h}
+\tarjeta{6.48}{-2.0}{47}{Seguridad por fila (RLS)}{Rama2}{Software}{3.4}{RA}{4 h}
+\tarjeta{6.48}{-3.2}{48}{Corte de valor ganado sem. 11}{RaciA}{Gestión}{1.5}{RA}{3 h}
+\tarjeta{9.72}{-0.8}{45}{Riesgos v1.1: R02 activado}{Rama5}{Documento}{1.5}{VQ}{2 h}
+\tarjeta{12.96}{-0.8}{44}{Plan de Dirección v1.1}{Rama5}{Documento}{1.5}{CP}{3 h}
+\tarjeta{12.96}{-2.0}{43}{Resumen para la sustentación}{Rama5}{Documento}{1.5}{CP}{2 h}
+\node[anchor=west, fill=black, text=white, rounded corners=1pt, inner sep=1.3pt, font=\fontsize{4.5}{5}\selectfont\bfseries] at (7.3,-2.11) {bloqueado};
+\node[anchor=north west, font=\tiny, text=GrisOscuro, text width=15.6cm] at (0.05,-4.65) {%
+\textbf{Lectura del boceto.} Las columnas siguen el flujo de las políticas del equipo con un Backlog previo. El contador ``3 de 4'' es el límite de trabajo en curso: si una columna llega a su límite, nadie jala una tarjeta nueva y el equipo ayuda a terminar las que están en curso. Cada tarjeta muestra su número de Issue, el título, el tipo, el paquete de la EDT, las horas estimadas y las iniciales del responsable. La tarjeta 47 está bloqueada hasta que funcione la seguridad por fila.};
+\node[anchor=west, font=\scriptsize\bfseries, text=AzulUNA] at (0.1,-6.15) {Vista Sprint actual};
+\foreach \y/\a/\b/\c/\d/\e in {-6.55/\textbf{N.\textsuperscript{o}}/\textbf{Tarea}/\textbf{Responsable}/\textbf{Estimación (h)}/\textbf{Horas reales}, -6.9/46/Registro e inicio de sesión/Eliseo/10/7, -7.25/47/Seguridad por fila (RLS)/Ruth/4/3, -7.6/49/Punto de referencia en el mapa/Eliseo/8/0, -7.95/52/Perfil y mis cuartos/Eliseo/6/0} {
+  \node[anchor=west] at (0.2,\y) {\a}; \node[anchor=west] at (1.0,\y) {\b}; \node[anchor=west] at (4.9,\y) {\c}; \node[anchor=east] at (9.0,\y) {\d}; \node[anchor=east] at (10.7,\y) {\e};
+  \draw[gray!30] (0.1,\y-0.17) -- (10.8,\y-0.17);}
+\node[anchor=west, font=\tiny\bfseries] at (1.0,-8.3) {Total del sprint}; \node[anchor=east, font=\tiny\bfseries] at (9.0,-8.3) {28}; \node[anchor=east, font=\tiny\bfseries] at (10.7,-8.3) {10};
+\node[anchor=west, font=\scriptsize\bfseries, text=AzulUNA] at (11.6,-6.15) {Burnup del sprint (horas)};
+\begin{scope}[shift={(11.9,-9.15)}, x=0.72cm, y=0.075cm]
+\draw[gray!50] (0,0) -- (5,0); \draw[gray!50] (0,0) -- (0,32);
+\foreach \d/\l in {0/L,1/M,2/Mi,3/J,4/V} {\node[below, font=\fontsize{4.5}{5}\selectfont] at (\d+0.5,0) {\l};}
+\draw[RaciI, dashed] (0,28) -- (5,28); \node[anchor=west, font=\fontsize{4.5}{5}\selectfont] at (5,28) {28};
+\draw[AzulUNA!45, dashed] (0,0) -- (5,28);
+\draw[Rama4, thick] (0,0) -- (1,3) -- (2,6) -- (3,10); \node[anchor=west, font=\fontsize{4.5}{5}\selectfont, text=Rama4] at (3,10) {10};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\Needspace{24\baselineskip}
+\section{Ciclo de Vida de una Tarjeta}
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize, est/.style={draw=#1, fill=#1!10, rounded corners=3pt, text width=2.5cm, minimum height=0.8cm, align=center, line width=0.8pt}, reg/.style={text width=2.6cm, align=center, font=\tiny, text=GrisOscuro}, >=Stealth]
+\node[est=RaciI] (b) at (0,0) {\textbf{Backlog}};
+\node[est=Rama2] (p) at (3.25,0) {\textbf{Por hacer}};
+\node[est=DoradoFIEI] (e) at (6.5,0) {\textbf{En progreso}};
+\node[est=Rama5] (r) at (9.75,0) {\textbf{En revisión}};
+\node[est=Rama4] (h) at (13.0,0) {\textbf{Hecho}};
+\draw[->, thick] (b) -- (p); \draw[->, thick] (p) -- (e); \draw[->, thick] (e) -- (r); \draw[->, thick] (r) -- (h);
+\draw[->, thick, RaciR] (r.south) to[bend left=25] node[below, font=\tiny, text=RaciR] {observaciones} (e.south);
+\node[reg, below=0.75cm of b] {Issue con plantilla, tipo, paquete de la EDT y entregable.};
+\node[reg, below=0.75cm of p] {\textbf{Lista para empezar:} criterio de aceptación, responsable, apoyo, estimación y fecha límite.};
+\node[reg, below=0.75cm of e] {Rama según las políticas, horas reales cada día y etiqueta \texttt{bloqueado} si se detiene.};
+\node[reg, below=0.75cm of r] {Pull Request revisado por otro integrante o documento revisado por otro integrante.};
+\node[reg, below=0.75cm of h] {\textbf{Terminada:} criterio cumplido, evidencia enlazada y horas registradas.};
+\end{tikzpicture}
+\end{center}
+
+\Needspace{16\baselineskip}
+\subsection{Definición de terminado}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Software:} cumple su criterio de aceptación, pasa las pruebas del motor, tiene Pull Request aprobado por otro integrante, está fusionado en \texttt{main} y se probó en el celular de pruebas.
+    \item \textbf{Documento:} sigue la plantilla del equipo, sus cifras coinciden con los demás documentos, fue revisado por otro integrante, compila sin errores y su PDF está en su carpeta de \texttt{docs/latex/}.
+    \item \textbf{Campo:} tiene evidencia (fotos, formulario, lista de asistencia o encuesta) y los comprobantes de gasto subidos al Issue.
+    \item \textbf{Gestión:} el acta o el informe está publicado en el repositorio dentro de las 24 horas siguientes a la reunión.
+\end{itemize}
+
+\Needspace{16\baselineskip}
+\section{Artefactos del Modelo y Dónde Viven}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.2cm} L P{3.1cm} P{2.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Artefacto} & \textbf{Qué es} & \textbf{Dónde vive} & \textbf{Responsable} \\
+\midrule
+Backlog del producto & Requisitos RF-01 a RF-09 pendientes, defectos y mejoras, ordenados por prioridad. & Columna Backlog & Clyde \\
+Backlog del sprint & Tarjetas de Software y Defecto comprometidas para la semana. & Vista Sprint actual & Eliseo \\
+Objetivo del sprint & Una frase con lo que el sprint debe lograr. & Descripción de la iteración & Clyde \\
+Incremento & Versión de la app que funciona al final del sprint. & Rama \texttt{main} y etiqueta de versión & Eliseo \\
+Tablero Kanban & Flujo de todas las tarjetas con sus límites de trabajo en curso. & Vista Tablero & Ruth \\
+Burnup del sprint & Horas terminadas frente a horas comprometidas. & Insights del proyecto & Ruth \\
+Registro de horas & Horas reales por tarjeta y por paquete de la EDT. & Campo Horas reales & Todos \\
+Valor ganado semanal & PV, EV, AC, SPI y CPI del martes. & Hoja de control en \texttt{docs/} & Ruth \\
+Registro de riesgos & Riesgos con disparador y respuesta. & Issues con etiqueta \texttt{riesgo} & Viviana \\
+Registro de cambios & Solicitudes de cambio y su decisión. & Issues con etiqueta \texttt{cambio} & Clyde \\
+Actas de sprint & Avance, desviaciones, acuerdos y compromisos. & \texttt{docs/} y enlace en el Issue & Viviana \\
+Definición de terminado & Condiciones para mover una tarjeta a Hecho. & Esta guía y \texttt{README} & Clyde \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{24\baselineskip}
+\section{Forma de Trabajo de los Integrantes}
+Todos siguen los mismos pasos para cada tarjeta, sea código o documento.
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.6cm} P{3.1cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Paso} & \textbf{Qué hacer} & \textbf{Cómo} \\
+\midrule
+1 & Revisar el tablero & Cada lunes y antes de empezar a trabajar: tarjetas a su nombre en \textit{Por hacer} y en \textit{En progreso}. \\
+2 & Jalar una tarjeta & Si la columna \textit{En progreso} no llegó a su límite, mover la tarjeta y asignarse como responsable. No tener más de dos tarjetas en curso a la vez. \\
+3 & Crear su rama & Desde \texttt{main} actualizado, con el nombre de las políticas: \texttt{feature/casascore-...}, \texttt{fix/casascore-...} o \texttt{docs/casascore-...}. \\
+4 & Trabajar y confirmar cambios & Commits pequeños con el formato \texttt{tipo(casascore-módulo): descripción}. \\
+5 & Registrar horas & Al terminar cada sesión, sumar las horas en el campo \textit{Horas reales} de la tarjeta. \\
+6 & Abrir el Pull Request & Título claro y en la descripción \texttt{Closes \#N} con el número del Issue. Pedir revisión a otro integrante y mover la tarjeta a \textit{En revisión}. \\
+7 & Revisar el trabajo de otros & Responder las revisiones pedidas en menos de 24 horas: aprobar o dejar observaciones concretas. \\
+8 & Fusionar y cerrar & Con la aprobación, fusionar en \texttt{main}; la tarjeta pasa sola a \textit{Hecho}. Enlazar la evidencia en el Issue. \\
+9 & Avisar si se bloquea & Poner la etiqueta \texttt{bloqueado}, escribir el motivo en el Issue y avisar por WhatsApp al Project Manager el mismo día. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Comandos de cada tarjeta}
+\begin{lstlisting}
+git checkout main && git pull
+git checkout -b docs/casascore-informe-desempeno
+git add docs/latex/casascore/21_informe_desempeno/
+git commit -m "docs(casascore-desempeno): corte de valor ganado semana 11"
+git push -u origin docs/casascore-informe-desempeno
+gh pr create --title "Informe de desempeno semana 11" --body "Closes #48" --reviewer <usuario-revisor>
+\end{lstlisting}
+
+\Needspace{12\baselineskip}
+\subsection{Reglas de convivencia en el tablero}
+\begin{itemize}[leftmargin=*]
+    \item Nadie mueve ni edita la tarjeta de otro integrante sin avisarle.
+    \item Una tarjeta sin movimiento por más de una semana se revisa en el control del martes.
+    \item Las tareas nuevas se crean como Issue con su plantilla y entran al \textit{Backlog}; el Project Manager las prioriza.
+    \item Los acuerdos de WhatsApp que cambian una tarea se copian como comentario en su Issue.
+    \item Los documentos se editan solo en su archivo \texttt{.tex}; el PDF se compila y se sube en el mismo Pull Request.
+\end{itemize}
+
+\Needspace{20\baselineskip}
+\section{Plan Semana por Semana}
+Cada semana lista lo que el Project Manager encarga, a quién y para cuándo. Las fechas son las de los documentos ya redactados; si algo se atrasa, se registra en el control del martes y se ajusta el documento afectado.
+
+\subsection{Semana 11 (02 -- 06/11): poner el control al día}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{2.7cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Encargo del PM} & \textbf{Responsable} & \textbf{Fecha} \\
+\midrule
+Montar el tablero híbrido con los pasos de esta guía y pasar todas las tareas abiertas a tarjetas. & Ruth & Jue 05/11 \\
+Terminar el registro e inicio de sesión con Supabase y la seguridad por fila. & Eliseo con apoyo de Ruth & Mié 18/11 \\
+Avanzar el punto de referencia en el mapa (paquete 3.5). & Eliseo & Vie 13/11 \\
+Registrar las horas reales de cada tarjeta todos los días. & Todos & Diario \\
+Corte de valor ganado al viernes y redacción del informe de desempeño. & Ruth & Vie 06/11 \\
+Actualizar el registro de riesgos: R02 activado por el atraso de Supabase. & Viviana & Vie 06/11 \\
+Levantamiento de cuartos del sábado. & Clyde & Sáb 07/11 \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Evidencia de cierre de semana:} tablero activo con todas las tarjetas, informe de desempeño con su hoja de cálculo, riesgo R02 actualizado y acta del sprint 7.
+
+\Needspace{18\baselineskip}
+\subsection{Semana 12 (09 -- 13/11): adaptar el plan}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{2.7cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Encargo del PM} & \textbf{Responsable} & \textbf{Fecha} \\
+\midrule
+Presentar la solicitud de cambio para mover el piloto a la semana 14, con su análisis de impacto. & Ruth & Mar 10/11 \\
+Decidir la solicitud en la reunión de control y registrar la votación. & Equipo & Mar 10/11 \\
+Presentar la solicitud para levantar 12 cuartos en lugar de 15. & Clyde & Vie 13/11 \\
+Registrar los cambios, las acciones correctivas y los planes que suben de versión. & Clyde & Vie 13/11 \\
+Redactar el plan de cierre y la plantilla de lecciones aprendidas. & Viviana & Vie 13/11 \\
+Lanzar la convocatoria al piloto: grupos de WhatsApp de estudiantes y afiches. & Viviana & Mié 11/11 \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Evidencia:} dos Issues de cambio con su decisión, cronograma y EDT en versión 1.1, registro de adaptación, plan de cierre y lista de inscritos al piloto. El disparador del riesgo R07 se revisa el viernes: si hay menos de 10 arrendatarios inscritos, se aplica su respuesta.
+
+\Needspace{18\baselineskip}
+\subsection{Semana 13 (16 -- 20/11): preparar el piloto}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{2.7cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Encargo del PM} & \textbf{Responsable} & \textbf{Fecha} \\
+\midrule
+Cerrar el registro con Supabase (hito H5) y publicar la versión de prueba en el celular. & Eliseo & Mié 18/11 \\
+Construir perfil y mis cuartos (paquete 3.6). & Eliseo & Vie 20/11 \\
+Completar los 12 cuartos reales con sus 4 fotos. & Clyde & Sáb 21/11 \\
+Preparar la encuesta del piloto (escala de 1 a 5) y el guion de la prueba. & Eliseo y Viviana & Vie 20/11 \\
+Confirmar a 10 arrendatarios y 5 propietarios con fecha y hora. & Viviana & Vie 20/11 \\
+Hacer una prueba interna completa antes del piloto. & Todos & Vie 20/11 \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{18\baselineskip}
+\subsection{Semana 14 (23 -- 27/11): piloto con clientes}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{2.7cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Encargo del PM} & \textbf{Responsable} & \textbf{Fecha} \\
+\midrule
+Ejecutar el piloto: 10 arrendatarios usan el ranking y 5 propietarios publican un cuarto con cronómetro. & Todos & 23 -- 27/11 \\
+Registrar cada observación como Issue con etiqueta \texttt{defecto} o mejora. & Eliseo & Diario \\
+Tabular las encuestas y medir los objetivos O3 y O4. & Viviana & Vie 27/11 \\
+Redactar el informe de auditoría y calidad con los resultados reales. & Eliseo & Vie 27/11 \\
+Redactar el informe de integración de procesos. & Clyde & Vie 27/11 \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Evidencia:} listas de asistencia, encuestas firmadas o en formulario, tiempos de publicación y fotos del piloto, todas enlazadas en el Issue del paquete 4.3.
+
+\Needspace{18\baselineskip}
+\subsection{Semana 15 (30/11 -- 04/12): aceptación del MVP}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{2.7cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Encargo del PM} & \textbf{Responsable} & \textbf{Fecha} \\
+\midrule
+Corregir los defectos críticos del piloto (meta: 0 errores críticos). & Eliseo & Mié 02/12 \\
+Ejecutar los 14 casos de prueba y registrar su resultado. & Eliseo y Ruth & Jue 03/12 \\
+Aprobar el MVP final en la revisión del sprint (gate G4) y crear la versión \texttt{casascore-v1.0-mvp}. & Equipo & Vie 04/12 \\
+Redactar el manual de usuario y el manual técnico con capturas de la versión final. & Eliseo & Vie 04/12 \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{18\baselineskip}
+\subsection{Semanas 16 y 17 (07 -- 18/12): entrega y cierre}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{2.7cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Encargo del PM} & \textbf{Responsable} & \textbf{Fecha} \\
+\midrule
+Último corte de valor ganado y costo final. & Ruth & Vie 11/12 \\
+Consolidar el informe final, las diapositivas y la demostración. & Clyde & Vie 11/12 \\
+Ensayar la exposición con tiempo y preguntas probables. & Todos & Sáb 12/12 \\
+Entregar el informe final y exponer. & Clyde & Lun 14/12 \\
+Taller de lecciones aprendidas y autoevaluación del equipo. & Viviana & Mié 16/12 \\
+Firmar el acta de cierre con el visto bueno del asesor, cerrar el tablero y archivar. & Clyde & Vie 18/12 \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{20\baselineskip}
+\section{Evidencia que Respalda Cada Documento Pendiente}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.7cm} P{3.4cm} C{1.4cm} L P{1.4cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{N.\textsuperscript{o}} & \textbf{Documento} & \textbf{Fecha} & \textbf{Evidencia real necesaria} & \textbf{Resp.} \\
+\midrule
+21 & Informe de desempeño & 06/11 & Horas reales del tablero, comprobantes y hoja de valor ganado. & Ruth \\
+22 & Registro de adaptación & 13/11 & Issues de cambio con su decisión y actas de las reuniones. & Clyde \\
+23 & Plan de cierre y lecciones aprendidas & 13/11 & Plantilla de lecciones y registro de lecciones de cada retrospectiva. & Viviana \\
+24 & Informe de auditoría y calidad & 27/11 & Resultados de los 14 casos de prueba, encuestas y tiempos del piloto. & Eliseo \\
+25 & Informe de integración de procesos & 27/11 & Enlaces a la evidencia de cada fase en el repositorio. & Clyde \\
+26 & Manuales & 04/12 & Capturas de la versión \texttt{casascore-v1.0-mvp}. & Eliseo \\
+27 & Informe final y exposición & 14/12 & Costo final, resultados del piloto, diapositivas y video de la demostración. & Clyde \\
+28 & Acta de cierre & 18/12 & Firmas del equipo, visto bueno del asesor y tablero cerrado. & Clyde \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{16\baselineskip}
+\section{Lista de Verificación del Control del Martes}
+\begin{enumerate}[leftmargin=*]
+    \item Todas las tarjetas en curso tienen horas reales registradas hasta el lunes.
+    \item La Analista de Planificación calcula PV, EV, AC, SPI y CPI con la vista Control semanal.
+    \item Se aplica el semáforo: verde con 0.95 o más, ámbar de 0.90 a 0.94 y rojo con menos de 0.90.
+    \item Se revisan las tarjetas con la etiqueta \texttt{bloqueado} y las que llevan más de una semana en la misma columna.
+    \item Se revisan los disparadores de los riesgos; un disparador cumplido activa su respuesta y se anota en su Issue.
+    \item Se deciden las solicitudes de cambio abiertas (menor: PM; mayor: equipo por unanimidad).
+    \item Se registran los acuerdos en el acta y se publica en 24 horas.
+\end{enumerate}
+
+\clearpage
+\section{Hojas por Rol}
+Cada integrante invitado tiene una hoja con lo que le corresponde. El Project Manager la revisa con cada uno en la planificación del lunes.
+
+\subsection{Ruth Karina Apaza Solis -- Analista de Planificación}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L@{}}
+\toprule
+\textbf{Responsabilidad:} & Administrar el tablero, mantener las líneas base de alcance, tiempo y costo, y medir el avance. \\
+\textbf{Mantiene:} & Tablero y sus vistas, campo \textit{Horas reales}, hoja de valor ganado, registro de gastos con comprobante y cronograma. \\
+\textbf{Revisa el trabajo de:} & Eliseo en la seguridad por fila y Viviana en los documentos de riesgos. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.4cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Día} & \textbf{Rutina semanal} \\
+\midrule
+Lunes & Abrir la iteración del sprint y verificar que cada tarjeta tenga estimación, responsable y fecha límite. \\
+Martes & Antes de las 20:00, calcular PV, EV, AC, SPI y CPI con la vista Control semanal y presentar el semáforo en el control. \\
+Miércoles a jueves & Revisar tarjetas sin horas registradas y avisar al responsable. \\
+Viernes & Actualizar el burnup, cerrar la iteración y mover lo no terminado al siguiente sprint. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Encargos de las semanas 11 a 17:} montar el tablero (05/11); corte e informe de desempeño (06/11); apoyo en la seguridad por fila de Supabase hasta el 18/11; solicitud de cambio del piloto con su análisis de impacto (10/11); ejecución de los casos de prueba con Eliseo (03/12); último corte de valor ganado y costo final (11/12).
+
+\Needspace{24\baselineskip}
+\subsection{Eliseo Tarqui Ajahuana -- Especialista Técnico}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L@{}}
+\toprule
+\textbf{Responsabilidad:} & Construir y probar la app, cuidar la arquitectura y la calidad del código. \\
+\textbf{Mantiene:} & Backlog del sprint, rama \texttt{main}, versiones de la app, claves de Supabase fuera del repositorio, casos de prueba y registro de defectos. \\
+\textbf{Revisa el trabajo de:} & Todo Pull Request de código y los documentos técnicos de Ruth. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.4cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Día} & \textbf{Rutina semanal} \\
+\midrule
+Lunes & Proponer las tarjetas de Software del sprint con su estimación. \\
+Martes & Informar en el control el avance técnico y los bloqueos. \\
+Miércoles a jueves & Desarrollar, ejecutar las pruebas del motor y revisar Pull Requests en menos de 24 horas. \\
+Viernes & Mostrar el incremento funcionando en el celular de pruebas en la revisión del sprint. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Encargos de las semanas 11 a 17:} registro e inicio de sesión con Supabase (18/11); punto de referencia en el mapa (13/11); perfil y mis cuartos (20/11); encuesta y guion del piloto con Viviana (20/11); registro de defectos del piloto (23 al 27/11); informe de auditoría y calidad (27/11); corrección de defectos críticos (02/12); casos de prueba (03/12); versión \texttt{casascore-v1.0-mvp} y manuales (04/12).
+
+\Needspace{24\baselineskip}
+\subsection{Viviana Mary Quisbert Quispe -- Gestora de Comunicación, Riesgos y Documentación}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L@{}}
+\toprule
+\textbf{Responsabilidad:} & Mantener informados al equipo y a los interesados, vigilar los riesgos y ordenar la documentación. \\
+\textbf{Mantiene:} & Actas de sprint, registro de riesgos (Issues con etiqueta \texttt{riesgo}), lista de participantes del piloto, encuestas y lecciones aprendidas. \\
+\textbf{Revisa el trabajo de:} & Los documentos de Clyde y la redacción de los manuales de Eliseo. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.4cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Día} & \textbf{Rutina semanal} \\
+\midrule
+Lunes & Revisar los disparadores de los riesgos y preparar la agenda del control. \\
+Martes & Tomar el acta del control y publicarla en menos de 24 horas. \\
+Miércoles a jueves & Contactar a los participantes del piloto y actualizar los Issues de riesgo. \\
+Viernes & Tomar el acta de la revisión del sprint y registrar las lecciones de la retrospectiva. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Encargos de las semanas 11 a 17:} riesgos en versión 1.1 con R02 activado (06/11); convocatoria al piloto (11/11); plan de cierre y plantilla de lecciones (13/11); confirmación de 10 arrendatarios y 5 propietarios (20/11); tabulación de encuestas (27/11); taller de lecciones aprendidas (16/12).
+
+
+\end{document}

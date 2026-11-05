@@ -1,0 +1,331 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% GUÍA DE TRABAJO DEL INTEGRANTE
+% Proyecto: CasaScore (AlquilaPuno)
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{amssymb}
+% --- RECURSOS VISUALES: GRÁFICOS Y CÓDIGO DE COLORES ---
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\definecolor{GrisFila}{RGB}{246, 248, 251}
+\definecolor{CuadCerca}{RGB}{150, 30, 30}
+\definecolor{CuadSatisf}{RGB}{180, 130, 20}
+\definecolor{CuadInfo}{RGB}{10, 45, 90}
+\definecolor{CuadMonit}{RGB}{110, 115, 125}
+\newcommand{\etiqueta}[2]{{\setlength{\fboxsep}{2pt}\colorbox{#1}{\textcolor{white}{\scriptsize\bfseries #2}}}}
+\newcommand{\cerca}{\etiqueta{CuadCerca}{Gestionar de cerca}}
+\newcommand{\satisf}{\etiqueta{CuadSatisf}{Mantener satisfecho}}
+\newcommand{\informado}{\etiqueta{CuadInfo}{Mantener informado}}
+\newcommand{\monit}{\etiqueta{CuadMonit}{Monitorear}}
+\usepackage{needspace}
+\usepackage{longtable}
+\definecolor{Rama1}{RGB}{10, 45, 90}
+\definecolor{Rama2}{RGB}{40, 95, 150}
+\definecolor{Rama3}{RGB}{180, 130, 20}
+\definecolor{Rama4}{RGB}{30, 110, 60}
+\definecolor{Rama5}{RGB}{110, 60, 140}
+\definecolor{RaciR}{RGB}{150, 30, 30}
+\definecolor{RaciA}{RGB}{10, 45, 90}
+\definecolor{RaciC}{RGB}{180, 130, 20}
+\definecolor{RaciI}{RGB}{140, 145, 155}
+\definecolor{NivAlto}{RGB}{30, 110, 60}
+\definecolor{NivMedio}{RGB}{180, 130, 20}
+\definecolor{NivBajo}{RGB}{150, 30, 30}
+\usetikzlibrary{patterns}
+\definecolor{SevBaja}{RGB}{30, 110, 60}
+\definecolor{SevMedia}{RGB}{180, 130, 20}
+\definecolor{SevAlta}{RGB}{150, 30, 30}
+\usetikzlibrary{arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\scriptsize, frame=single, rulecolor=\color{AzulUNA!40}, backgroundcolor=\color{GrisFila}, columns=fullflexible, keepspaces=true, breaklines=true, xleftmargin=4pt, xrightmargin=4pt, literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1}
+
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../assets/img/}{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Guía De Trabajo Del Integrante -- CasaScore (AlquilaPuno)},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{GUÍA DE TRABAJO DEL INTEGRANTE}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore (AlquilaPuno)}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\shorthandoff{<>}
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{GUÍA DE TRABAJO DEL INTEGRANTE}}}\\[3pt]
+    {\normalsize \textbf{Ruth Karina Apaza Solis -- Analista de Planificación}}\\[4pt]
+    \footnotesize \textbf{Fecha:} jueves 05/11/2026 (semana 11) \quad \textbar\quad \textbf{Repositorio:} \nolinkurl{xClaIDx/ProyectoTics} \quad \textbar\quad \textbf{Encarga:} Clyde Neil Paricahua Pari
+\end{center}
+
+\vspace{0.1cm}
+
+\section{Propósito}
+El equipo trabaja desde ahora en el repositorio \texttt{ProyectoTics}. Esta guía indica cómo subir a ese repositorio los documentos que elaboraste, uno por uno y con su Pull Request, y cómo llevar tus tarjetas en el tablero \textit{CasaScore -- Tablero híbrido}.
+
+\vspace{0.1cm}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.6cm} L@{}}
+\toprule
+\textbf{Repositorio:} & \nolinkurl{https://github.com/xClaIDx/ProyectoTics} \\
+\textbf{Tablero:} & \nolinkurl{https://github.com/users/xClaIDx/projects/1} \\
+\textbf{Tu usuario:} & \texttt{R-Karina-A-Solis} \\
+\textbf{Revisor:} & Clyde (\texttt{xClaIDx}) revisa y aprueba cada Pull Request \\
+\textbf{Plazo:} & PR 1 a 7 hasta el viernes 06/11; PR 8 el mismo viernes, después del corte de valor ganado \\
+\bottomrule
+\end{tabularx}
+
+\section{Lo que Recibes}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{El archivo \texttt{paquete\_ruth.zip}}, que Clyde te envía por WhatsApp. Al descomprimirlo verás la carpeta \nolinkurl{paquete_ruth/docs/latex/} con tus 14 documentos (\texttt{.tex} y \texttt{.pdf}) ordenados en las mismas carpetas que tienen en el repositorio.
+    \item \textbf{La invitación al repositorio} \texttt{ProyectoTics}, que llega a tu correo de GitHub.
+    \item \textbf{Tus tarjetas en el tablero}, ya asignadas a tu usuario.
+\end{enumerate}
+
+\Needspace{12\baselineskip}
+\section{Antes de Empezar (una sola vez)}
+\begin{enumerate}[leftmargin=*]
+    \item Acepta la invitación desde el correo (\textbf{View invitation} $\rightarrow$ \textbf{Accept invitation}) o en \nolinkurl{github.com/xClaIDx/ProyectoTics/invitations}.
+    \item Abre el repositorio y comprueba que ya existen las carpetas \nolinkurl{docs/latex/casascore/}, \nolinkurl{docs/latex/horus_sentinel/} y \nolinkurl{docs/latex/00_comun/}. Las sube Clyde antes que tú; si no las ves, avísale.
+    \item Descomprime \texttt{paquete\_ruth.zip} en tu escritorio.
+    \item Abre el tablero, filtra con \texttt{assignee:R-Karina-A-Solis} y revisa tus tarjetas.
+\end{enumerate}
+
+\Needspace{12\baselineskip}
+\section{Cómo se Simula el Historial}
+Cada documento conserva la fecha que tiene escrita; no se modifica ningún archivo. GitHub registrará el día real en que lo subes. Para que se sepa cuándo debió entregarse, el mensaje del commit y el título del Pull Request terminan con la fecha prevista, por ejemplo:
+
+\begin{lstlisting}
+docs(casascore-viabilidad): viabilidad y business case [fecha prevista 10/09/2026]
+\end{lstlisting}
+
+\Needspace{24\baselineskip}
+\section{Tus Ocho Pull Requests}
+Súbelos en este orden. En cada uno, las carpetas se toman de \nolinkurl{paquete_ruth/docs/latex/} y se suben a la misma ruta dentro de \nolinkurl{docs/latex/} del repositorio.
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.6cm} P{4.05cm} L C{1.8cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{PR} & \textbf{Rama} & \textbf{Carpetas que subes} & \textbf{Fecha prevista} \\
+\midrule
+1 & \nolinkurl{docs/casascore-viabilidad} & \nolinkurl{casascore/03_viabilidad_business_case} y \nolinkurl{horus_sentinel/03_viabilidad_business_case} & 10/09/2026 \\
+2 & \nolinkurl{docs/casascore-edt} & \nolinkurl{casascore/06_edt} y \nolinkurl{horus_sentinel/06_edt} & 18/09/2026 \\
+3 & \nolinkurl{docs/casascore-plan-equipo} & \nolinkurl{casascore/07_plan_equipo} y \nolinkurl{horus_sentinel/07_plan_equipo} & 18/09/2026 \\
+4 & \nolinkurl{docs/casascore-cronograma} & \nolinkurl{casascore/08_cronograma} y \nolinkurl{horus_sentinel/08_cronograma} & 18/09/2026 \\
+5 & \nolinkurl{docs/casascore-presupuesto} & \nolinkurl{casascore/09_presupuesto} y \nolinkurl{horus_sentinel/09_presupuesto} & 18/09/2026 \\
+6 & \nolinkurl{docs/horus-control} & \nolinkurl{horus_sentinel/16_control_proyecto} y \nolinkurl{00_comun/C7_comparacion_financiera} & 21/09/2026 \\
+7 & \nolinkurl{docs/casascore-control} & \nolinkurl{casascore/16_control_proyecto} & 02/10/2026 \\
+8 & \nolinkurl{docs/casascore-desempeno} & \nolinkurl{casascore/21_informe_desempeno} & 06/11/2026 \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Mensajes de commit:}
+
+\begin{lstlisting}
+PR 1  docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]
+PR 2  docs(casascore-edt): EDT y diccionario de ambos proyectos [fecha prevista 18/09/2026]
+PR 3  docs(casascore-equipo): plan del equipo de ambos proyectos [fecha prevista 18/09/2026]
+PR 4  docs(casascore-cronograma): cronograma de ambos proyectos [fecha prevista 18/09/2026]
+PR 5  docs(casascore-presupuesto): presupuesto de ambos proyectos [fecha prevista 18/09/2026]
+PR 6  docs(horus-control): control al corte de la semana 4 y comparacion financiera [fecha prevista 21/09/2026]
+PR 7  docs(casascore-control): control del proyecto al corte de la semana 6 [fecha prevista 02/10/2026]
+PR 8  docs(casascore-desempeno): informe de desempeno al corte de la semana 11 [fecha prevista 06/11/2026]
+\end{lstlisting}
+
+\Needspace{30\baselineskip}
+\section{Paso a Paso desde el Navegador}
+Es la forma más sencilla: no necesitas instalar nada. El ejemplo es el PR 1; los demás se hacen igual cambiando la rama, las carpetas y el mensaje.
+
+\subsection{Crear la rama}
+\begin{enumerate}[leftmargin=*]
+    \item Entra a \nolinkurl{github.com/xClaIDx/ProyectoTics}.
+    \item Haz clic en el botón de la rama, que dice \textbf{main}, arriba a la izquierda de la lista de archivos.
+    \item Escribe \nolinkurl{docs/casascore-viabilidad} y elige \textbf{Create branch docs/casascore-viabilidad from main}. El botón ahora muestra el nombre de tu rama.
+\end{enumerate}
+
+\subsection{Subir las carpetas}
+\begin{enumerate}[leftmargin=*]
+    \item Con tu rama seleccionada, entra a \texttt{docs} $\rightarrow$ \texttt{latex} $\rightarrow$ \texttt{casascore}.
+    \item Pulsa \textbf{Add file} $\rightarrow$ \textbf{Upload files}.
+    \item Desde tu escritorio, arrastra la carpeta completa \nolinkurl{paquete_ruth/docs/latex/casascore/03_viabilidad_business_case} al recuadro. GitHub conserva la carpeta con sus dos archivos.
+    \item Abajo, en \textbf{Commit changes}, escribe el mensaje del PR 1. Deja marcada la opción \textbf{Commit directly to the docs/casascore-viabilidad branch} y pulsa \textbf{Commit changes}.
+    \item Vuelve a \nolinkurl{docs/latex/}, entra a \texttt{horus\_sentinel} (sin cambiar de rama) y repite con la carpeta \nolinkurl{horus_sentinel/03_viabilidad_business_case}. En el mensaje agrega al final ``(Horus Sentinel)''.
+\end{enumerate}
+
+\subsection{Abrir el Pull Request}
+\begin{enumerate}[leftmargin=*]
+    \item Aparecerá un aviso amarillo con el botón \textbf{Compare \& pull request}; púlsalo. Si no aparece, entra a la pestaña \textbf{Pull requests} $\rightarrow$ \textbf{New pull request} y elige tu rama.
+    \item Verifica arriba: \textbf{base: main} $\leftarrow$ \textbf{compare: docs/casascore-viabilidad}.
+    \item Título: el mismo del mensaje de commit. En la descripción copia esta plantilla:
+\end{enumerate}
+
+\begin{lstlisting}
+Fecha prevista: 10/09/2026 (semana 3)
+Que incluye: Viabilidad y Business Case de CasaScore y de Horus Sentinel (.tex y .pdf)
+Tarjeta del tablero: "Subir mis documentos a ProyectoTics (8 PR)" - PR 1
+Horas: 0.5
+\end{lstlisting}
+
+\begin{enumerate}[leftmargin=*, resume]
+    \item A la derecha, en \textbf{Reviewers}, elige \texttt{xClaIDx}.
+    \item Pulsa \textbf{Create pull request}. No lo fusiones tú: Clyde lo revisa, lo aprueba y pulsa \textbf{Merge pull request}.
+\end{enumerate}
+
+\Needspace{14\baselineskip}
+\subsection{Después de cada Pull Request}
+\begin{enumerate}[leftmargin=*]
+    \item En el tablero abre la tarjeta \textit{Subir mis documentos a ProyectoTics (8 PR)}, marca la casilla del PR y suma las horas en \textit{Horas reales}.
+    \item Si Clyde deja observaciones, entra al Pull Request, corrige en la misma rama (\textbf{Add file} $\rightarrow$ \textbf{Upload files} reemplaza el archivo) y responde el comentario.
+    \item Cuando Clyde fusione el Pull Request, la rama se puede borrar con el botón \textbf{Delete branch}.
+    \item Para el siguiente Pull Request, crea la nueva rama siempre desde \textbf{main}.
+\end{enumerate}
+
+\Needspace{20\baselineskip}
+\section{Tus Tarjetas en el Tablero}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.4cm} C{1.9cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Tarjeta} & \textbf{Estado} & \textbf{Qué haces} \\
+\midrule
+Subir mis documentos a ProyectoTics (8 PR) & Por hacer & Muévela a \textit{En Progreso} al empezar. Marca cada PR al abrirlo y pásala a \textit{Hecho} cuando Clyde fusione el PR 8. \\
+Montar el tablero híbrido & En Progreso & En la vista \textit{Tablero}, abre el menú de la columna \textit{En Progreso} $\rightarrow$ \textbf{Set limit} y pon 4; en \textit{En Revision} pon 3. Luego pásala a \textit{Hecho}. \\
+Corte de valor ganado semana 11 & En Progreso & El viernes 06/11 calcula PV, EV, AC, SPI y CPI con la vista \textit{Control semanal}; ese corte es el que sube el PR 8. \\
+Seguridad por fila (RLS) & En Progreso & Apoya a Eliseo con la seguridad por fila de Supabase hasta el 18/11. \\
+Viabilidad y Acta de Constitución; Cronograma y presupuesto de Horus; Control de Horus y comparación financiera; Planificación base & Hecho & Ya están cerradas. Cuando fusionen tu PR, pega el enlace del Pull Request como comentario en la tarjeta que le corresponde. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Horas:} anota en \textit{Horas reales} el tiempo de cada sesión el mismo día, en decimales (media hora $=$ 0.5).
+
+\Needspace{20\baselineskip}
+\section{Alternativa desde la Terminal}
+Si prefieres Git, haz lo mismo con estos comandos. El ejemplo es el PR 1; la carpeta \texttt{paquete\_ruth} debe estar en tu escritorio.
+
+\begin{lstlisting}
+git clone https://github.com/xClaIDx/ProyectoTics.git
+cd ProyectoTics
+git checkout main && git pull
+git checkout -b docs/casascore-viabilidad
+cp -r ~/Desktop/paquete_ruth/docs/latex/casascore/03_viabilidad_business_case docs/latex/casascore/
+cp -r ~/Desktop/paquete_ruth/docs/latex/horus_sentinel/03_viabilidad_business_case docs/latex/horus_sentinel/
+git add docs/latex/casascore/03_viabilidad_business_case docs/latex/horus_sentinel/03_viabilidad_business_case
+git commit -m "docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]"
+git push -u origin docs/casascore-viabilidad
+\end{lstlisting}
+
+\noindent Después abre el Pull Request en GitHub como se indica en la sección anterior.
+
+\Needspace{16\baselineskip}
+\section{Si Algo Sale Mal}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{5.0cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Situación} & \textbf{Solución} \\
+\midrule
+No aparece \textbf{Add file} o dice que no tienes permiso & Aún no aceptaste la invitación al repositorio; acéptala y recarga la página. \\
+Subiste los archivos a \texttt{main} sin querer & No hagas nada más y avisa a Clyde; él lo corrige. \\
+Subiste a una carpeta equivocada & En la misma rama abre el archivo, menú \textbf{\ldots} $\rightarrow$ \textbf{Delete file}, y vuelve a subirlo en la carpeta correcta. \\
+El Pull Request dice \textit{This branch has conflicts} & Avisa a Clyde por WhatsApp con el enlace del Pull Request. \\
+No encuentras tu tarjeta en el tablero & Quita los filtros y escribe \texttt{assignee:R-Karina-A-Solis} en la barra de filtro. \\
+\bottomrule
+\end{tabularx}
+}
+
+\end{document}
