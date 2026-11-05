@@ -1,0 +1,23 @@
+# Dependencias y compilados de la app
+node_modules/
+dist/
+build/
+.expo/
+*.tsbuildinfo
+
+# Variables de entorno y claves (nunca se suben)
+.env
+.env.local
+
+# Archivos auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Sistema y editores
+.DS_Store
+.claude/
