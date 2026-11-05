@@ -1,0 +1,230 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% ACTA DE EVALUACIÓN DE CARTERA
+% Documento común a los proyectos CasaScore y Horus Sentinel
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Acta de Evaluación de Cartera},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{ACTA DE EVALUACIÓN DE CARTERA}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore \textperiodcentered\ Horus Sentinel}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+% =========================================================================
+% CABECERA DEL DOCUMENTO
+% =========================================================================
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{ACTA DE EVALUACIÓN DE CARTERA}}}\\[3pt]
+    {\normalsize \textbf{Evaluación de las propuestas CasaScore y Horus Sentinel y decisión de continuidad}}\\[4pt]
+    \footnotesize \textbf{Fecha:} martes 08/09/2026 (semana 3) \quad \textbar\quad \textbf{Hora:} 20:00 -- 21:00 \quad \textbar\quad \textbf{Decisión:} aprobada por unanimidad
+\end{center}
+
+\vspace{0.1cm}
+
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.8cm} L@{}}
+\toprule
+\textbf{Curso:} & Gestión de Proyectos TICS (EST315) -- Semestre 2026-II \\
+\textbf{Docente:} & Ing. Renzo Apaza Cutipa \\
+\textbf{Equipo:} & Team Sobrevivientes (los cuatro integrantes presentes) \\
+\textbf{Insumos evaluados:} & Fichas técnicas de ambas propuestas y especificación de requerimientos (04/09/2026). \\
+\bottomrule
+\end{tabularx}
+
+% =========================================================================
+\section{Antecedentes}
+% =========================================================================
+El equipo formuló dos propuestas de proyecto TIC:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{CasaScore (AlquilaPuno):} recomendación multicriterio de cuartos en alquiler para estudiantes de la UNA Puno, con puntaje explicado de 0 a 100.
+    \item \textbf{Horus Sentinel:} mapa de calor de riesgo delictivo por zona y horario, con sugerencia de rutas seguras.
+\end{itemize}
+Con ambas fichas y sus requerimientos, el equipo evaluó la viabilidad de cada propuesta frente al plazo del semestre (semanas 2 a 17), la disponibilidad de datos, la complejidad técnica y el costo.
+
+% =========================================================================
+\section{Matriz de Evaluación Ponderada}
+% =========================================================================
+Puntaje de 1 (muy bajo) a 5 (muy alto). Para costo y complejidad, 5 significa más favorable.
+
+\vspace{0.1cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}L C{1.1cm} C{1.55cm} C{1.85cm} C{1.55cm} C{1.85cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+& & \multicolumn{2}{c}{\textbf{CasaScore}} & \multicolumn{2}{c}{\textbf{Horus Sentinel}} \\
+\rowcolor{AzulClaro}
+\textbf{Criterio} & \textbf{Peso} & \textbf{Puntaje} & \textbf{Ponderado} & \textbf{Puntaje} & \textbf{Ponderado} \\
+\midrule
+Impacto social & 25\,\% & 4 & 1.00 & 5 & 1.25 \\
+Viabilidad técnica (complejidad) & 20\,\% & 5 & 1.00 & 3 & 0.60 \\
+Disponibilidad de datos & 20\,\% & 5 & 1.00 & 2 & 0.40 \\
+Factibilidad en el semestre & 20\,\% & 5 & 1.00 & 3 & 0.60 \\
+Costo de infraestructura & 15\,\% & 5 & 0.75 & 4 & 0.60 \\
+\midrule
+\textbf{Total} & \textbf{100\,\%} & & \textbf{4.75} & & \textbf{3.45} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Regla de decisión:} 4.0 o más, viable; de 3.0 a 3.9, viable con ajustes de alcance; menos de 3.0, no viable.
+
+% =========================================================================
+\section{Análisis de Cada Propuesta}
+% =========================================================================
+
+\subsection{CasaScore}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Datos:} se obtienen directamente en campo, con propietarios y estudiantes de Puno.
+    \item \textbf{Modelo:} normalización 0--100 y suma ponderada; es controlable y verificable.
+    \item \textbf{Plazo:} un MVP es alcanzable en 5 sprints semanales (semanas 4 a 8).
+    \item \textbf{Costo:} servicios en capa gratuita.
+\end{itemize}
+
+\subsection{Horus Sentinel}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.8cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Dificultad} & \textbf{Riesgo} & \textbf{Ajuste aprobado} \\
+\midrule
+Acceso a datos de criminalidad & Los datos georreferenciados de la Policía son reservados y gestionar un convenio excede el semestre. & Unidad I con datos simulados; MVP final con \textbf{reportes ciudadanos} registrados en la propia aplicación. \\
+\addlinespace[2pt]
+Complejidad del modelo & El modelo espaciotemporal completo requiere meses de calibración. & Mapa de calor por densidad (KDE) por zona y horario; ruta segura con $A^*$ y costo $= \alpha \cdot \text{distancia} + \beta \cdot \text{riesgo}$. El modelo espaciotemporal avanzado queda fuera del alcance. \\
+\addlinespace[2pt]
+Sesgo de los datos & Los reportes pueden concentrarse en ciertas zonas o ser falsos. & Reportes anónimos y moderados, límite de reportes por usuario y auditoría periódica del mapa. \\
+\addlinespace[2pt]
+Cobertura geográfica & Cubrir toda la ciudad eleva el costo de cómputo. & Distrito piloto: \textbf{Puno (cercado)}. \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Resoluciones}
+% =========================================================================
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Continuidad de ambos proyectos:} CasaScore y Horus Sentinel continúan como dos proyectos separados, cada uno con su propio expediente, línea base y registro de riesgos.
+    \item \textbf{Prioridad:} \textbf{CasaScore es el proyecto prioritario} (puntaje 4.75). Cuando ambos compitan por el tiempo del equipo, se atiende primero a CasaScore.
+    \item \textbf{Alcance ajustado de Horus Sentinel} (puntaje 3.45, viable con ajustes):
+    \begin{itemize}
+        \item \textbf{Unidad I (hasta la semana 8):} prototipo funcional con datos simulados del distrito de Puno (cercado).
+        \item \textbf{Cierre del semestre (semana 17):} MVP funcional con mapa de calor y ruta segura alimentados por reportes ciudadanos.
+    \end{itemize}
+    \item \textbf{Dedicación:} cada integrante dedica 8 horas semanales a cada proyecto.
+    \item \textbf{Costo:} ambos proyectos usan servicios en capa gratuita (mapas abiertos y base de datos en la nube).
+    \item \textbf{Registro:} los acuerdos se publican en el repositorio y se crean los Issues de inicio de cada proyecto.
+\end{enumerate}
+
+% =========================================================================
+\section{Firmas}
+% =========================================================================
+\noindent En señal de conformidad con las resoluciones adoptadas, los integrantes del equipo firman la presente acta:
+
+\vspace{1.5cm}
+
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+
+\end{document}

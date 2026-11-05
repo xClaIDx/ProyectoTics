@@ -1,0 +1,377 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% RUTA DE ENTREGABLES DEL SEMESTRE (guía PM4DEV)
+% Proyectos: CasaScore (AlquilaPuno) y Horus Sentinel
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{RojoAlerta}{RGB}{150, 30, 30}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+\definecolor{DoradoClaro}{RGB}{250, 243, 225}
+\definecolor{VerdeOK}{RGB}{30, 110, 60}
+\definecolor{GrisFase}{RGB}{238, 240, 244}
+
+% --- ESTADOS DE LOS ENTREGABLES ---
+\newcommand{\hecho}{\textcolor{VerdeOK}{\textbf{Hecho}}}
+\newcommand{\corregir}{\textcolor{DoradoFIEI}{\textbf{Corregir}}}
+\newcommand{\falta}{\textcolor{RojoAlerta}{\textbf{Falta}}}
+\newcommand{\pendiente}{\textcolor{GrisOscuro}{Pendiente}}
+\newcommand{\copiar}{\textcolor{AzulUNA}{\textbf{Copiar}}}
+\newcommand{\verificar}{\textcolor{DoradoFIEI}{\textbf{Verificar}}}
+\newcommand{\noaplica}{\textcolor{GrisOscuro}{\textit{No aplica}}}
+\newcommand{\caja}{$\square$}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.22}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Ruta de Entregables del Semestre -- CasaScore y Horus Sentinel},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{RUTA DE ENTREGABLES DEL SEMESTRE}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore \textperiodcentered\ Horus Sentinel}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+% =========================================================================
+% CABECERA DEL DOCUMENTO
+% =========================================================================
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{RUTA DE ENTREGABLES DEL SEMESTRE}}}\\[3pt]
+    {\normalsize \textbf{Proyectos CasaScore (AlquilaPuno) y Horus Sentinel -- Guía metodológica PM4DEV}}\\[4pt]
+    \footnotesize \textbf{Corte:} 27/10/2026 (semana 10) \quad \textbar\quad \textbf{Versión:} 2.2 \quad \textbar\quad \textbf{Responsable:} Project Manager
+\end{center}
+
+\vspace{0.1cm}
+
+
+% =========================================================================
+\section{Marco de Trabajo PM4DEV}
+% =========================================================================
+
+\vspace{0.1cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.9cm} C{2.0cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Fase PM4DEV} & \textbf{Semanas} & \textbf{Qué se hace (según el sílabo)} \\
+\midrule
+Inicio & 2 -- 3 & Enfoque, roles, viabilidad, Business Case, objetivos SMART, alcance y Acta de Constitución. \\
+Planificación & 4 -- 6 & EDT, cronograma, presupuesto, equipo, interesados, riesgos, calidad, información y contratos. \\
+Implementación & 4 -- 8 & Sprints de desarrollo y construcción del producto. \\
+Monitoreo & 6 -- 11 & Valor ganado (EVM), tablero de control, informes de desempeño y de variación. \\
+Adaptación & 6 -- 14 & Solicitudes de cambio, acciones correctivas, auditoría y mejora continua. \\
+Cierre & 12 -- 17 & Lecciones aprendidas, manuales, informe final, exposición y acta de cierre. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.15cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.9cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Proceso PM4DEV} & \textbf{Documentos que produce} \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Procesos de restricciones}} \\
+Alcance & Acta de Constitución, especificación de requerimientos, EDT con su diccionario (regla del 100\,\%). \\
+Cronograma & Diagrama de red, ruta crítica, estimación PERT $\frac{O+4M+P}{6}$, Gantt y línea base. \\
+Presupuesto & Estimación de costos por actividad (ascendente), presupuesto con curva S e informe de variación del presupuesto. \\
+Calidad & Plan de calidad, aseguramiento y control de calidad, aceptación de entregables y costos de la calidad. \\
+\multicolumn{2}{@{}l}{\textit{Procesos de soporte}} \\
+Equipo & Tabla de habilidades, organigrama, matriz de asignación del equipo (h/semana), descripción de roles y matriz RACI. \\
+Interesados & Registro de interesados con interés, influencia, prioridad y estrategia de involucramiento. \\
+Información & Plan de información y comunicaciones, actas de sprint e informes de desempeño. \\
+Riesgos & Plan de riesgos y registro de riesgos: probabilidad (1--3) $\times$ impacto (1--3); contingencia $= \sum$ (impacto en S/ $\times$ probabilidad). \\
+Contratos & Plan de adquisiciones: servicios en la nube, licencias, términos de uso y compras. \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Tabla Maestra de Entregables}
+% =========================================================================
+
+\vspace{0.1cm}
+{\small
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}C{0.7cm} >{\raggedright\arraybackslash}p{6.55cm} C{1.0cm} P{2.25cm} P{1.35cm} C{1.7cm} C{1.7cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{N.\textsuperscript{o}} & \textbf{Entregable y contenido} & \textbf{Sem.} & \textbf{Proceso} & \textbf{R} & \textbf{CasaScore} & \textbf{Horus} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{AzulClaro}
+\textbf{N.\textsuperscript{o}} & \textbf{Entregable y contenido} & \textbf{Sem.} & \textbf{Proceso} & \textbf{R} & \textbf{CasaScore} & \textbf{Horus} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{7}{r}{\footnotesize\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+%
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Documentos comunes del equipo (carpeta 00\_comun)}}} \\
+C1 & \textbf{Políticas del Proyecto y Gobernanza}: roles, cartera, reuniones, reglas de GitHub y políticas de producto. & 2 & Equipo & Viviana & \multicolumn{2}{c}{\hecho} \\
+C2 & \textbf{Acta de Conformación del Equipo}: integrantes, disponibilidad y compromisos (plantilla del sílabo). & 2 & Equipo & Viviana & \multicolumn{2}{c}{\hecho} \\
+C3 & \textbf{Acta de Evaluación de Cartera}: comparación de ambas propuestas y decisión sobre cómo continúan. & 3 & Alcance & Clyde & \multicolumn{2}{c}{\hecho} \\
+C4 & \textbf{Ruta de Entregables del Semestre}: este documento. & 10 & Información & Clyde & \multicolumn{2}{c}{\hecho} \\
+C5 & \textbf{Acta de Exclusión de Horus Sentinel}: exclusión del proyecto por falta de tiempo y presupuesto, liberación de las horas de Horus y cierre de su expediente. & 5 & Alcance & Clyde & \multicolumn{2}{c}{\hecho} \\
+C6 & \textbf{Acta de Compromiso del Equipo}: el equipo como sponsor y dueño; horas, entregables, aporte económico, propiedad del producto y permanencia. & 3 & Equipo & Clyde & \multicolumn{2}{c}{\hecho} \\
+%
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Fase de Inicio}}} \\
+01 & \textbf{Ficha técnica de la propuesta}: problema, objetivos, beneficiarios, alcance y valor. & 2 & Alcance & Clyde & \hecho & \hecho \\
+02 & \textbf{Especificación de requerimientos}: requisitos funcionales y no funcionales, reglas de negocio, modelo de datos y límites del sistema. & 2 & Alcance & Eliseo & \hecho & \hecho \\
+03 & \textbf{Viabilidad y Business Case}: viabilidad técnica, económica, operativa, legal y temporal; estimación aproximada ($-25\,\%$ a $+75\,\%$), ROI, VAN y payback. & 3 & Presupuesto & Ruth & \hecho & \hecho \\
+04 & \textbf{Acta de Constitución}: propósito, objetivos SMART, requisitos, riesgos, hitos, presupuesto, interesados, criterios de éxito, PM, supuestos, restricciones y firmas. & 3 & Alcance & Clyde & \hecho & \hecho \\
+%
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Fase de Planificación}}} \\
+05 & \textbf{Registro de interesados}: poder, interés, matriz poder--interés y plan de involucramiento. & 4 & Interesados & Clyde & \hecho & \hecho \\
+06 & \textbf{EDT y diccionario de la EDT}: 5 ramas, paquetes de 3 a 5 días, regla del 100\,\%. & 4 & Alcance & Ruth & \falta & \falta \\
+07 & \textbf{Plan del equipo}: tabla de habilidades, organigrama, matriz de asignación (h/semana), roles y matriz RACI. & 4 & Equipo & Ruth & \falta & \falta \\
+08 & \textbf{Cronograma}: red de actividades, ruta crítica, estimación PERT, Gantt por semanas y línea base. & 4 & Cronograma & Ruth & \falta & \falta \\
+09 & \textbf{Presupuesto}: costos por actividad a precios reales, reservas, curva S y línea base de costos. & 4 & Presupuesto & Ruth & \falta & \falta \\
+10 & \textbf{Plan y registro de riesgos}: escala 1--3, severidad 1--9, respuesta, disparador, responsable y presupuesto de contingencia. & 5 & Riesgos & Viviana & \falta & \noaplica \\
+11 & \textbf{Plan de calidad}: estándares (ISO/IEC 25010), aseguramiento, control, criterios de aceptación y costos de la calidad. & 5 & Calidad & Eliseo & \falta & \noaplica \\
+12 & \textbf{Plan de información y comunicaciones}: qué información, para quién, cuándo, por qué canal y quién la produce. & 5 & Información & Viviana & \falta & \noaplica \\
+13 & \textbf{Plan de contratos y adquisiciones}: servicios en la nube, licencias, términos de uso y compras. & 5 & Contratos & Eliseo & \falta & \noaplica \\
+14 & \textbf{Arquitectura técnica}: modelo entidad-relación, pantallas, algoritmo principal y límites del software. & 5 & Alcance & Eliseo & \falta & \noaplica \\
+%
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Fases de Implementación y Monitoreo (Unidad I)}}} \\
+15 & \textbf{Actas de sprint}: avance real, desviaciones, acuerdos y compromisos de cada semana. & 4 -- 8 & Información & Viviana & \falta & \noaplica \\
+16 & \textbf{Control del proyecto}: EVM (PV, EV, AC, SV, CV, SPI, CPI), tablero, solicitud de cambio con análisis de impacto, registro de cambios e informe de variación del presupuesto. & 6 & Cronograma y Presupuesto & Ruth & \falta & \noaplica \\
+17 & \textbf{Producto e informe de validación}: MVP o prototipo funcional y sus casos de prueba. & 7 & Calidad & Eliseo & \corregir & \noaplica \\
+18 & \textbf{Sustentación de la Unidad I}: diapositivas y defensa oral. & 8 & Información & Clyde & \verificar & \noaplica \\
+%
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Unidad II -- Planificación}}} \\
+19 & \textbf{Guía de marcos de referencia, PMBOK y arquitecturas}. & 9 & Alcance & Clyde & \corregir & \noaplica \\
+20 & \textbf{Plan de Dirección del Proyecto}: líneas base, planes subsidiarios, gestión de cambios y evaluación económica a 3 años. & 10 & Todos & Clyde & \hecho & \noaplica \\
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Unidad II -- Monitoreo y Adaptación}}} \\
+21 & \textbf{Informe de desempeño}: EVM al corte, variación de cronograma y presupuesto, riesgos actualizados. & 11 & Cronograma y Presupuesto & Ruth & \pendiente & \noaplica \\
+22 & \textbf{Registro de adaptación}: solicitudes de cambio aprobadas, acciones correctivas y planes actualizados. & 11 -- 12 & Todos & Clyde & \pendiente & \noaplica \\
+24 & \textbf{Informe de auditoría y calidad}: control de calidad, pruebas con usuarios y aceptación. & 13 & Calidad & Eliseo & \pendiente & \noaplica \\
+25 & \textbf{Informe de integración de procesos}: cómo se aplicaron las 6 fases y los 9 procesos, y nivel de madurez del equipo (modelo DPM3). & 14 & Todos & Clyde & \pendiente & \noaplica \\
+\rowcolor{GrisFase}
+\multicolumn{7}{@{}l}{\textbf{\textcolor{AzulUNA}{Unidad II -- Cierre}}} \\
+23 & \textbf{Plan de cierre y lecciones aprendidas}. & 12 & Información & Viviana & \pendiente & \noaplica \\
+26 & \textbf{Manual de usuario y manual técnico}. & 15 & Calidad & Eliseo & \pendiente & \noaplica \\
+27 & \textbf{Informe final y exposición}: expediente consolidado, diapositivas y demostración. \textbf{Entrega: lunes 14/12/2026.} & 15 -- 17 & Información & Clyde & \pendiente & \noaplica \\
+28 & \textbf{Acta de cierre y reflexión del equipo}: aceptación del docente y autoevaluación. & 17 & Equipo & Clyde & \pendiente & \noaplica \\
+\end{longtable}
+}
+
+
+
+% =========================================================================
+\section{Correcciones a los Documentos Existentes}
+% =========================================================================
+
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.6cm} L L P{2.2cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{N.\textsuperscript{o}} & \textbf{Problema} & \textbf{Corrección} & \textbf{Entregables} \\
+\midrule
+K1 & Dicen \textit{Semestre 2026-I} o \textit{Ciclo 2026}. & Cambiar a \textbf{Semestre 2026-II}. & 17, 19 y estilo compartido \\
+K2 & Se habla de un plazo de \textit{6 semanas} y de semanas 1 a 6. & Usar semanas del semestre (proyecto de la semana 2 a la 17). & 17 \\
+K3 & El informe del MVP dice que la construcción cierra en la semana 6. & MVP entregado en la semana 7 (09/10), antes de lo planificado (semana 8, 16/10). & 17 CasaScore \\
+K4 & Se citan documentos por código y quedan marcas \texttt{[cite: ...]}. & Usar nombres simples y borrar las marcas. & 17 y otros \\
+K5 & El stack dice Next.js, pero el MVP real es Expo + SQLite. & Expo + SQLite = MVP de la Unidad I; Supabase = MVP final (semana 17); versión web en el año 2. & 17 CasaScore \\
+K6 & Los signos de apertura de pregunta salen como \textbf{£} al compilar. & Escribir las preguntas solo con el signo de cierre (?) al final. & 19 \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Plan de Regularización}
+% =========================================================================
+
+\vspace{0.1cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.3cm} L P{2.9cm} C{0.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Día} & \textbf{Entregables} & \textbf{Responsable} & \textbf{OK} \\
+\midrule
+\multicolumn{4}{@{}l}{\textbf{\textcolor{AzulUNA}{Semana 10 -- CasaScore}}} \\
+Mar 27/10 & Aprobar esta ruta. Crear un Issue por cada entregable de ambos proyectos. & Clyde, Ruth & \caja \\
+Mié 28/10 & 05 Interesados (hecho) & Clyde & $\checkmark$ \\
+Jue 29/10 & 06 EDT \textperiodcentered\ 07 Plan del equipo \textperiodcentered\ 10 Riesgos \textperiodcentered\ 14 Arquitectura técnica & Ruth, Viviana, Eliseo & \caja \\
+Vie 30/10 & 08 Cronograma \textperiodcentered\ 09 Presupuesto \textperiodcentered\ 16 Control & Ruth, Clyde & \caja \\
+Sáb 31/10 -- Dom 01/11 & 11 Calidad \textperiodcentered\ 12 Información \textperiodcentered\ 13 Contratos \textperiodcentered\ 15 Actas de sprint \textperiodcentered\ correcciones K1--K6 & Eliseo, Viviana & \caja \\
+\midrule
+\multicolumn{4}{@{}l}{\textbf{\textcolor{AzulUNA}{Semana 11 -- Horus Sentinel (en paralelo con el entregable 21 de CasaScore)}}} \\
+Lun 02/11 -- Mar 03/11 & 06 EDT \textperiodcentered\ 07 Plan del equipo & Ruth & \caja \\
+Mié 04/11 -- Jue 05/11 & 08 Cronograma (19 semanas de trabajo) \textperiodcentered\ 09 Presupuesto (BAC S/ 13,663.57) & Ruth & \caja \\
+\bottomrule
+\end{tabularx}
+}
+
+
+% =========================================================================
+\section{Estructura de Carpetas}
+% =========================================================================
+
+{\small\ttfamily\noindent
+docs/\\
+\hspace*{1.5em}assets/img/ \hfill \textrm{logos compartidos}\\
+\hspace*{1.5em}latex/\\
+\hspace*{3em}shared/ \hfill \textrm{estilo compartido}\\
+\hspace*{3em}00\_comun/ \hfill \textrm{C1 a C6}\\
+\hspace*{4.5em}C1\_politicas/\ \ C2\_acta\_conformacion/\\
+\hspace*{4.5em}C3\_evaluacion\_cartera/\ \ C4\_ruta\_entregables/\\
+\hspace*{4.5em}C5\_exclusion\_horus/\ \ C6\_acta\_compromiso/\\
+\hspace*{3em}casascore/ \hfill \textrm{entregables 01 a 28}\\
+\hspace*{4.5em}01\_ficha\_tecnica/\ \ 02\_requerimientos/\ \ 03\_viabilidad\_business\_case/\ \ ...\\
+\hspace*{4.5em}17\_informe\_mvp/\ \ 19\_marcos\_pmbok/\ \ 20\_plan\_direccion/\ \ ...\ \ 28\_acta\_cierre/\\
+\hspace*{3em}horus\_sentinel/ \hfill \textrm{entregables 01 a 09}\\
+\hspace*{4.5em}01\_ficha\_tecnica/\ \ 02\_requerimientos/\ \ ...\ \ 09\_presupuesto/
+}
+\vspace{0.2cm}
+
+
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Ubicación actual} & \textbf{Nueva ubicación} \\
+\midrule
+\texttt{docs/latex/00\_politicas/} & Se elimina; la reemplaza \texttt{00\_comun/C1\_politicas/} \\
+\texttt{docs/latex/02\_Evaluacion/} & Se elimina; la reemplaza \texttt{00\_comun/C3\_evaluacion\_cartera/} \\
+\texttt{docs/latex/01\_requerimientos/} & \texttt{casascore/02\_requerimientos/} y \texttt{horus\_sentinel/02\_requerimientos/} \\
+\texttt{docs/latex/10\_informe\_mvp\_expo/} & \texttt{casascore/17\_informe\_mvp/} \\
+\texttt{docs/latex/11\_PMBOK/} & \texttt{casascore/19\_marcos\_pmbok/} \\
+\texttt{markdown/ficha\_tecnica\_*.md} & \texttt{casascore/01\_ficha\_tecnica/} y \texttt{horus\_sentinel/01\_ficha\_tecnica/} \\
+\bottomrule
+\end{tabularx}
+}
+
+
+% =========================================================================
+\section{Reglas para Todos los Documentos}
+% =========================================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Formato:} \LaTeX\ con el mismo encabezado institucional y el PDF compilado en la misma carpeta.
+    \item \textbf{Preguntas:} solo con el signo de cierre (?) al final; no se usa el signo de apertura.
+    \item \textbf{Fechas:} siempre con la semana del semestre (ejemplo: \textit{semana 10, 26/10/2026}).
+    \item \textbf{Nombres:} los documentos se citan por su nombre simple, nunca por código.
+    \item \textbf{Cifras únicas:} presupuesto, hitos y objetivos de cada proyecto salen de su Plan de Dirección.
+    \item \textbf{GitHub:} rama \texttt{docs/<proyecto>-<entregable>}, Pull Request revisado por otro integrante y cierre del Issue.
+    \item \textbf{Firmas:} los 4 integrantes en cada acta y plan; el equipo firma como sponsor; el docente asesor da su visto bueno académico solo en el Acta de Constitución y el Acta de Cierre.
+\end{itemize}
+
+% =========================================================================
+\section{Aprobación}
+% =========================================================================
+\noindent En señal de conformidad con esta ruta de entregables, los miembros del equipo firman a continuación:
+
+\vspace{1.5cm}
+
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+
+\end{document}
