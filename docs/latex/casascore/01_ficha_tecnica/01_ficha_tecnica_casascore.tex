@@ -1,0 +1,211 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% FICHA TÉCNICA DE LA PROPUESTA
+% Proyecto: CasaScore (AlquilaPuno)
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Ficha Técnica de la Propuesta -- CasaScore (AlquilaPuno)},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{FICHA TÉCNICA DE LA PROPUESTA}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore (AlquilaPuno)}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{FICHA TÉCNICA DE LA PROPUESTA}}}\\[3pt]
+    {\normalsize \textbf{CasaScore (AlquilaPuno) -- Recomendación inteligente de cuartos y departamentos en alquiler}}\\[4pt]
+    \footnotesize \textbf{Fecha:} miércoles 02/09/2026 (semana 2) \quad \textbar\quad \textbf{Versión:} 1.0 \quad \textbar\quad \textbf{Fase:} Inicio
+\end{center}
+
+\vspace{0.1cm}
+
+\section{Datos Generales}
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.2cm} L@{}}
+\toprule
+\textbf{Nombre del proyecto:} & CasaScore (nombre de la aplicación: AlquilaPuno) \\
+\textbf{Tipo de solución:} & Sistema TIC de recomendación multicriterio (marketplace de alquileres) \\
+\textbf{Enfoque principal:} & Motor de recomendación con pesos definidos por el usuario y puntaje explicado de 0 a 100 \\
+\textbf{Plataforma:} & Aplicación móvil Android \\
+\textbf{Ámbito:} & Ciudad de Puno, entorno de la Universidad Nacional del Altiplano \\
+\textbf{Horizonte del proyecto:} & 3 años: MVP en la semana 16 del semestre 2026-II (11/12/2026); año 1 Puno, año 2 Juliaca y año 3 región sur (Cusco y Arequipa) \\
+\textbf{Complejidad estimada:} & Media: normalización de variables, modelo multicriterio ponderado y geolocalización \\
+\textbf{Enfoque metodológico:} & Cuantitativo y aplicado \\
+\textbf{Equipo:} & Team Sobrevivientes \\
+\bottomrule
+\end{tabularx}
+
+\section{Problema u Oportunidad}
+Los estudiantes que llegan a Puno para estudiar en la UNA deben buscar cuarto revisando y comparando a mano anuncios dispersos: precio, distancia a la universidad, seguridad, servicios y reglas de convivencia. No saben si la información es real, están expuestos a estafas y a condiciones que solo descubren después de alquilar. Además, lo que es ``mejor'' cambia según cada persona.
+
+\section{Objetivo General}
+Desarrollar un sistema TIC de recomendación multicriterio que permita a los estudiantes buscar, comparar y elegir cuartos y departamentos en alquiler según sus preferencias, presupuesto y ubicación, con un puntaje explicado y confiable.
+
+\section{Objetivos Específicos}
+\begin{enumerate}[leftmargin=*]
+    \item Registrar las preferencias, el presupuesto y la ubicación de interés del usuario.
+    \item Analizar las alternativas disponibles según precio, distancia, seguridad, servicios y condiciones de convivencia.
+    \item Generar un ranking personalizado que explique el motivo de cada recomendación.
+\end{enumerate}
+
+\section{Beneficiarios}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.2cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Beneficiario} & \textbf{Beneficio} \\
+\midrule
+Estudiantes (principal) & Encuentran un cuarto adecuado en menos tiempo y con menor riesgo de estafa. \\
+Propietarios & Publican su cuarto de forma ordenada y llegan a inquilinos serios. \\
+Trabajadores y familias & Usan el mismo sistema para comparar opciones de alquiler. \\
+\bottomrule
+\end{tabularx}
+}
+
+\section{Alcance}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Incluye} & \textbf{No incluye} \\
+\midrule
+Publicación de cuartos con fotos y datos obligatorios & Cobro de comisiones por el alquiler o intermediación de pagos \\
+Configuración de pesos y prioridades del usuario & Firma de contratos de alquiler \\
+Cálculo del puntaje CASA SCORE (0 a 100) & Garantía de veracidad absoluta de las publicaciones \\
+Ranking personalizado y comparación de opciones & Reemplazo de la visita física al inmueble \\
+Mapa de inmuebles respecto a la universidad & Garantía de que el usuario encuentre vivienda \\
+\bottomrule
+\end{tabularx}
+}
+
+\section{Justificación}
+Permite encontrar de forma rápida y personalizada el cuarto más adecuado, considerando no solo el precio, sino también la distancia, la seguridad, los servicios y las reglas de convivencia. Usa técnicas de estadística aplicada propias de la formación del equipo (normalización y ponderación multicriterio).
+
+\section{Principal Valor}
+Convierte publicaciones dispersas de alquiler en un ranking personalizado y explicado para cada estudiante.
+
+\section{Modelo de Sostenibilidad}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.2cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Fuente de ingreso} & \textbf{Descripción} \\
+\midrule
+Anuncios recompensados & El usuario elige ver un video corto para desbloquear funciones adicionales. \\
+Anunciantes locales & Negocios cercanos a la UNA pagan un espacio publicitario mensual dentro de la aplicación. \\
+Suscripción por cuarto & El propietario paga S/ 5 al mes por cada cuarto publicado. \\
+Versión Premium & Pago único del estudiante que desbloquea las funciones adicionales sin ver anuncios. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent La descarga y el uso básico de la aplicación son gratuitos para el estudiante. La confianza en cada cuarto se muestra con la calificación promedio en estrellas que dan los estudiantes que lo alquilaron; esta calificación no se vende ni modifica el puntaje.
+
+\section{Firmas}
+\noindent En señal de conformidad con la presente propuesta, los integrantes del equipo firman a continuación:
+
+\vspace{1.5cm}
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+\end{document}
