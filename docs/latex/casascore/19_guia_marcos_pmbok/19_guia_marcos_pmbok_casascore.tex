@@ -1,0 +1,340 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% GUÍA DE MARCOS DE REFERENCIA
+% Proyecto: CasaScore (AlquilaPuno)
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{amssymb}
+% --- RECURSOS VISUALES: GRÁFICOS Y CÓDIGO DE COLORES ---
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\definecolor{GrisFila}{RGB}{246, 248, 251}
+\definecolor{CuadCerca}{RGB}{150, 30, 30}
+\definecolor{CuadSatisf}{RGB}{180, 130, 20}
+\definecolor{CuadInfo}{RGB}{10, 45, 90}
+\definecolor{CuadMonit}{RGB}{110, 115, 125}
+\newcommand{\etiqueta}[2]{{\setlength{\fboxsep}{2pt}\colorbox{#1}{\textcolor{white}{\scriptsize\bfseries #2}}}}
+\newcommand{\cerca}{\etiqueta{CuadCerca}{Gestionar de cerca}}
+\newcommand{\satisf}{\etiqueta{CuadSatisf}{Mantener satisfecho}}
+\newcommand{\informado}{\etiqueta{CuadInfo}{Mantener informado}}
+\newcommand{\monit}{\etiqueta{CuadMonit}{Monitorear}}
+\usepackage{needspace}
+\usepackage{longtable}
+\definecolor{Rama1}{RGB}{10, 45, 90}
+\definecolor{Rama2}{RGB}{40, 95, 150}
+\definecolor{Rama3}{RGB}{180, 130, 20}
+\definecolor{Rama4}{RGB}{30, 110, 60}
+\definecolor{Rama5}{RGB}{110, 60, 140}
+\definecolor{RaciR}{RGB}{150, 30, 30}
+\definecolor{RaciA}{RGB}{10, 45, 90}
+\definecolor{RaciC}{RGB}{180, 130, 20}
+\definecolor{RaciI}{RGB}{140, 145, 155}
+\definecolor{NivAlto}{RGB}{30, 110, 60}
+\definecolor{NivMedio}{RGB}{180, 130, 20}
+\definecolor{NivBajo}{RGB}{150, 30, 30}
+\usetikzlibrary{patterns}
+\definecolor{SevBaja}{RGB}{30, 110, 60}
+\definecolor{SevMedia}{RGB}{180, 130, 20}
+\definecolor{SevAlta}{RGB}{150, 30, 30}
+\usetikzlibrary{arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\scriptsize, frame=single, rulecolor=\color{AzulUNA!40}, backgroundcolor=\color{GrisFila}, columns=fullflexible, keepspaces=true, breaklines=true, xleftmargin=4pt, xrightmargin=4pt, literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1}
+
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Guía de Marcos de Referencia, PMBOK y Arquitecturas -- CasaScore (AlquilaPuno)},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{GUÍA DE MARCOS DE REFERENCIA}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore (AlquilaPuno)}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{GUÍA DE MARCOS DE REFERENCIA, PMBOK Y ARQUITECTURAS}}}\\[3pt]
+    {\normalsize \textbf{CasaScore (AlquilaPuno)}}\\[4pt]
+    \footnotesize \textbf{Fecha:} martes 20/10/2026 (semana 9) \quad \textbar\quad \textbf{Versión:} 1.1 \quad \textbar\quad \textbf{Modalidad:} trabajo grupal y revisión por pares
+\end{center}
+
+\vspace{0.1cm}
+
+\section{Datos del Equipo}
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.6cm} L@{}}
+\toprule
+\textbf{Nombre del equipo:} & Team Sobrevivientes \\
+\textbf{Proyecto TIC que desarrollan:} & CasaScore (aplicación AlquilaPuno) \\
+\textbf{Docente asesor:} & Ing. Renzo Apaza Cutipa \\
+\textbf{Fecha de entrega:} & martes 20/10/2026 \\
+\textbf{Equipo revisor (pares):} & Team Heterosapiens \\
+\bottomrule
+\end{tabularx}
+
+\section{Marcos de Referencia Aplicables al Proyecto}
+Elegimos cinco marcos de referencia. Los dos primeros nos ayudan a gestionar el proyecto y los tres siguientes a construir un buen producto.
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Marco o estándar} & \textbf{Por qué es relevante para nuestro proyecto?} & \textbf{Cómo lo aplicamos} \\
+\midrule
+\textbf{Guía del PMBOK y PM4DEV} & Nos indican qué cuidar para que el proyecto termine a tiempo, dentro del presupuesto y con clientes satisfechos. PM4DEV organiza el trabajo en 6 fases y 9 procesos adecuados a un equipo pequeño. & Acta de constitución, EDT de 512 horas, cronograma con ruta crítica, presupuesto con reservas, planes de riesgos, calidad, comunicaciones y contratos, y control con valor ganado. \\
+\textbf{Guía de Scrum} & Permite construir la app por partes cada semana, probarlas y corregirlas a tiempo. & Sprints de una semana desde la semana 4, tablero en GitHub Projects, control los martes y revisión del sprint los viernes, con un acta por sprint. \\
+\textbf{ISO/IEC 25010:2023 (calidad del software)} & Define qué hace que un software sea de calidad y cómo medirlo. & 7 características con metas medibles: ranking en 250 ms o menos, publicación en 10 minutos o menos, 0 errores críticos y 80\,\% de cobertura de pruebas del motor. \\
+\textbf{TOGAF (arquitectura empresarial)} & Permite ver el proyecto completo: la necesidad que resuelve, los datos, las aplicaciones y la tecnología. & Arquitectura en capas (sección 5), relación con el ecosistema de vivienda de Puno (sección 6) y transición del prototipo local a la nube. \\
+\textbf{Ley N.\textsuperscript{o} 29733 de Protección de Datos Personales} & La app guarda nombres, correos, ubicaciones y fotos, y la ley exige protegerlos y usarlos solo con permiso. & Consentimiento al registrarse, solo datos necesarios, ninguna cesión a terceros y seguridad por fila para que cada usuario vea solo lo suyo. \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{16\baselineskip}
+\section{Principios PMBOK Aplicados}
+De los 12 principios de la Guía del PMBOK, seleccionamos cinco con evidencia en el expediente del proyecto.
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Principio} & \textbf{Por qué es relevante?} & \textbf{Evidencia en nuestro proyecto} \\
+\midrule
+\textbf{1. Enfocarse en el valor} & Con horas limitadas, cada hora debe ir a lo que más valor da al arrendatario. & La evaluación de cartera priorizó CasaScore y el acta de exclusión retiró Horus Sentinel, que necesitaba 19 semanas y S/ 13,663.57. Pagos y contratos quedaron fuera del alcance. \\
+\textbf{2. Optimizar las respuestas a los riesgos} & El tiempo, el presupuesto y la nube podían impedir entregar el MVP. & Registro de 7 riesgos con disparadores y S/ 555.40 de contingencia; respuesta de evitar con la exclusión de Horus; práctica previa con Supabase. \\
+\textbf{3. Incorporar la calidad} & Un ranking sin rigor da recomendaciones engañosas. & Normalización 0--100, desglose visible del puntaje, 7 casos de prueba aprobados y revisión de código en cada Pull Request. \\
+\textbf{4. Adaptar según el contexto} & Un proyecto académico con requisitos cambiantes no se ajusta a un solo método. & Enfoque híbrido: planificación predictiva para alcance, tiempo y costo, y Scrum para el software; prototipo con SQLite antes de la nube. \\
+\textbf{5. Involucrar a los interesados} & Lo mejor depende de cada arrendatario; sin su opinión los pesos serían arbitrarios. & Registro de interesados, pesos configurables, punto de referencia libre y piloto con 10 arrendatarios y 5 propietarios. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent\textbf{Otros principios presentes:} equipo colaborativo (roles y matriz RACI), administración diligente (aporte del equipo y control de gastos), pensamiento sistémico (motor, formulario y datos diseñados como un todo) y adaptabilidad (plan de recuperación ante el atraso de dos semanas).
+
+\Needspace{26\baselineskip}
+\section{Dominios de Desempeño}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.85cm} L P{3.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Dominio} & \textbf{Cómo se expresa en nuestro proyecto} & \textbf{Responsable} \\
+\midrule
+\textbf{Interesados} & Arrendatarios y propietarios se gestionan de cerca; sus necesidades se convirtieron en requisitos (punto de referencia, explicación del puntaje, reglas de convivencia). Indicador: 80\,\% de satisfacción en el piloto. & Clyde N. Paricahua Pari \\
+\textbf{Equipo} & Roles, tabla de habilidades, matriz RACI y acta de compromiso con el equipo como sponsor. Indicador: 90\,\% de horas cumplidas. & Clyde N. Paricahua Pari \\
+\textbf{Enfoque de desarrollo y ciclo de vida} & Ciclo híbrido: inicio y planificación predictivos, y construcción en sprints semanales. & Ruth K. Apaza Solis \\
+\textbf{Planificación} & EDT, cronograma con PERT y ruta crítica, presupuesto con reservas y curva S. & Ruth K. Apaza Solis \\
+\textbf{Trabajo del proyecto} & GitHub con ramas, Pull Requests revisados, Issues por tarea y documentos versionados. & Eliseo Tarqui Ajahuana \\
+\textbf{Entrega} & Prototipo del MVP de la Unidad I entregado el 09/10/2026 con el motor validado; MVP final en la semana 16. & Eliseo Tarqui Ajahuana \\
+\textbf{Medición} & Valor ganado al corte de la semana 6: SPI 0.56 y CPI 0.96 (dos semanas de atraso con costo controlado). & Ruth K. Apaza Solis \\
+\textbf{Incertidumbre} & Matriz de severidad 1--9, disparadores, contingencia y revisión semanal del registro de riesgos. & Viviana M. Quisbert Quispe \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{16\baselineskip}
+\section{Esbozo de Arquitectura de Sistemas de Información}
+Se distingue el prototipo implementado (local) de la arquitectura objetivo del MVP final (en la nube).
+
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.7cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Capa} & \textbf{Prototipo implementado} & \textbf{Arquitectura objetivo} \\
+\midrule
+\textbf{Presentación} & App Android con Expo SDK 57, React Native 0.86 y TypeScript: ranking, perfiles de prioridades, detalle y publicación. & Registro e inicio de sesión, mapa con MapLibre y OpenStreetMap, perfil y mis cuartos. \\
+\textbf{Lógica} & Motor CASA SCORE con 4 criterios, bonificaciones, penalizaciones y explicación. & 5 criterios con el tipo de baño y distancia calculada al punto de referencia del arrendatario. \\
+\textbf{Datos} & SQLite en el celular con 5 cuartos de prueba y fotos locales. & Supabase: PostgreSQL con seguridad por fila y Storage para fotos; SQLite como caché. \\
+\textbf{Infraestructura y seguridad} & GitHub con Pull Requests revisados; operación sin servidor. & Supabase Auth, conexión cifrada, planes gratuitos y distribución en Google Play con prueba cerrada. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize, capa/.style={draw=AzulUNA, fill=AzulClaro, rounded corners=2pt, minimum height=0.9cm, align=center, text width=3.4cm}, obj/.style={draw=DoradoFIEI, fill=DoradoFIEI!10, rounded corners=2pt, minimum height=0.9cm, align=center, text width=3.4cm, dashed}, etq/.style={font=\scriptsize\bfseries, text=AzulUNA, align=right, text width=2.5cm}, >=Stealth]
+\foreach \y/\a/\b/\l in {0/{React Native y Expo SDK 57}/{Mapa MapLibre y registro}/{Presentación}, -1.2/{Motor con 4 criterios}/{Motor con 5 criterios y punto de referencia}/{Lógica}, -2.4/{SQLite en el celular}/{Supabase PostgreSQL y Storage}/{Datos}, -3.6/{GitHub y Expo}/{Supabase Auth, seguridad por fila y Google Play}/{Infraestructura}} {
+  \node[capa] (a\y) at (0,\y) {\a};
+  \node[obj] (b\y) at (6.2,\y) {\b};
+  \node[etq, left] at (-1.9,\y) {\l};
+  \draw[->, thick, GrisOscuro, dashed] (1.75,\y) -- (4.45,\y);
+}
+\node[font=\scriptsize\bfseries, text=AzulUNA] at (0,0.8) {Prototipo (Unidad I)};
+\node[font=\scriptsize\bfseries, text=DoradoFIEI] at (6.2,0.8) {MVP final (semana 16)};
+\end{tikzpicture}
+\end{center}
+
+\Needspace{10\baselineskip}
+\subsection{Núcleo de la lógica: motor CASA SCORE}
+Cada criterio se lleva a la escala de 0 a 100 y se combina con los pesos $w_i$ del arrendatario:
+\[
+\text{CASA SCORE} = \min\Big(100,\ \max\big(0,\ \tfrac{\sum_i w_i N_i}{\sum_i w_i} + B - P\big)\Big)
+\]
+donde $B$ son las bonificaciones (luz natural $+8$, entrada libre $+5$, 16 m$^2$ o más $+4$) y $P$ las penalizaciones (hora de llegada, visitas, cocina y condiciones no declaradas). Ejemplo validado: el cuarto Bellavista tiene el mejor precio, pero baja a 8 puntos por acumular $-65$ de penalizaciones.
+
+\Needspace{16\baselineskip}
+\section{Relación con la Arquitectura Empresarial}
+El contexto es el ecosistema de alquiler de cuartos de la ciudad de Puno: arrendatarios, propietarios, centros de estudio y negocios locales, analizado con los cuatro dominios de TOGAF.
+
+\subsection{Qué capacidades de negocio impacta o habilita el proyecto?}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.0cm} L C{2.1cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Capacidad} & \textbf{Cómo la habilita CasaScore} & \textbf{Estado} \\
+\midrule
+Búsqueda y comparación de cuartos & Ranking personalizado y explicado. & \etiqueta{Rama4}{Prototipo} \\
+Publicación estandarizada & Formulario con 4 fotos obligatorias, servicios y condiciones. & \etiqueta{Rama4}{Prototipo} \\
+Transparencia de la convivencia & Condiciones declaradas con efecto en el puntaje. & \etiqueta{Rama4}{Prototipo} \\
+Cercanía a cualquier lugar & Punto de referencia elegido por el arrendatario. & \etiqueta{DoradoFIEI}{MVP final} \\
+Confianza y reputación & Calificación con estrellas y reportes de publicaciones falsas. & \etiqueta{Rama2}{Año 1} \\
+Ingresos sostenibles & Anuncios, versión Premium y suscripción de S/ 5 por cuarto. & \etiqueta{Rama2}{Año 1} \\
+Datos para decisiones de vivienda & Estadísticas anónimas de precios y zonas. & \etiqueta{GrisOscuro}{Futuro} \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Con qué sistemas existentes debería integrarse?}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Supabase:} identidad, base de datos y almacenamiento de fotos.
+    \item \textbf{OpenStreetMap:} mapa de Puno para ubicar cuartos y puntos de referencia.
+    \item \textbf{Google Play:} distribución de la app y, desde el año 1, cobro de la versión Premium.
+    \item \textbf{Canales de la UNA Puno y de institutos:} difusión a ingresantes y estudiantes que buscan cuarto.
+\end{itemize}
+
+\Needspace{12\baselineskip}
+\subsection{Qué riesgos de arquitectura identificamos?}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.3cm} L C{1.1cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Tipo} & \textbf{Riesgo} & \textbf{P / I} & \textbf{Respuesta} \\
+\midrule
+Integración & La migración de SQLite a Supabase altera los datos o el cálculo. & 2 / 3 & Motor separado y mismos casos de prueba antes y después de migrar. \\
+Datos & Publicaciones falsas o con condiciones ocultas distorsionan el ranking. & 2 / 3 & Fotos obligatorias, penalización de 25 puntos y reportes desde el año 1. \\
+Seguridad & Exposición de datos o de la ubicación de usuarios. & 1 / 3 & Supabase Auth, seguridad por fila y mínimos datos. \\
+Escalabilidad & Los planes gratuitos se quedan cortos. & 2 / 2 & Fotos comprimidas, uso moderado del mapa y revisión mensual. \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Cómo contribuye el proyecto a la estrategia de TI?}
+CasaScore digitaliza un proceso hoy informal y disperso, reduce la falta de información de quien llega a Puno a buscar cuarto, usa tecnologías abiertas y planes gratuitos para operar con bajo costo, y a futuro puede ofrecer datos anónimos de la oferta de cuartos para orientar decisiones de vivienda estudiantil. Además, aplica competencias propias de la FIEI: estadística en la normalización y la ponderación multicriterio.
+
+\section{Síntesis del Equipo}
+Los marcos de referencia definen cómo trabajamos: PMBOK y PM4DEV ordenan la gestión, Scrum el desarrollo, ISO/IEC 25010 la calidad, TOGAF la arquitectura y la Ley N.\textsuperscript{o} 29733 el trato de los datos. Los principios guiaron decisiones reales, como excluir Horus Sentinel para enfocarnos en el valor, y los dominios se convirtieron en responsabilidades de cada integrante. La arquitectura en capas lleva esa gestión al producto: un prototipo local ya validado y una arquitectura objetivo en la nube para el MVP final.
+
+\Needspace{24\baselineskip}
+\section{Firmas}
+\noindent En señal de conformidad con el presente documento, los integrantes del equipo firman a continuación:
+
+\vspace{1.5cm}
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+\end{document}

@@ -1,0 +1,354 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% RESUMEN DEL PLAN DE DIRECCIÓN DEL PROYECTO (para la sustentación)
+% Proyecto: CasaScore (AlquilaPuno)
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.1cm,
+    left=2.0cm,
+    right=2.0cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=12pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{needspace}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric}
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+\definecolor{GrisFila}{RGB}{246, 248, 251}
+\definecolor{Rama2}{RGB}{40, 95, 150}
+\definecolor{Rama3}{RGB}{180, 130, 20}
+\definecolor{Rama4}{RGB}{30, 110, 60}
+\definecolor{Rama5}{RGB}{110, 60, 140}
+\definecolor{RaciR}{RGB}{150, 30, 30}
+\definecolor{SevMedia}{RGB}{180, 130, 20}
+\definecolor{SevBaja}{RGB}{30, 110, 60}
+\definecolor{SevAlta}{RGB}{150, 30, 30}
+\newcommand{\etiqueta}[2]{{\setlength{\fboxsep}{2pt}\colorbox{#1}{\textcolor{white}{\scriptsize\bfseries #2}}}}
+
+\setlist{topsep=2pt, itemsep=1pt, parsep=0pt}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.22}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    pdftitle={Resumen del Plan de Dirección del Proyecto -- CasaScore (AlquilaPuno)},
+    pdfauthor={Team Sobrevivientes}
+}
+
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{RESUMEN DEL PLAN DE DIRECCIÓN}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore (AlquilaPuno)}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{RESUMEN DEL PLAN DE DIRECCIÓN DEL PROYECTO}}}\\[3pt]
+    {\normalsize \textbf{CasaScore (AlquilaPuno)}}\\[4pt]
+    \footnotesize \textbf{Sustentación:} viernes 30/10/2026 (semana 10) \quad \textbar\quad \textbf{Plan resumido:} versión 1.1 del 26/10/2026
+\end{center}
+
+\section{Qué es el Plan y qué integra}
+{\small
+\noindent El Plan de Dirección reúne las líneas base y los planes subsidiarios de CasaScore en una sola referencia para ejecutar, controlar y cerrar el proyecto.
+
+\vspace{0.1cm}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.6cm} L@{}}
+\toprule
+\textbf{Producto:} & App Android que ordena cuartos en alquiler de Puno con un puntaje de 0 a 100 (CASA SCORE) según precio, cercanía, seguridad, servicios y tipo de baño. \\
+\textbf{Sponsor y dueño:} & Team Sobrevivientes. El Ing. Renzo Apaza Cutipa participa como asesor. \\
+\textbf{Project Manager:} & Clyde Neil Paricahua Pari. \\
+\textbf{Integra:} & Acta de Constitución, requerimientos, interesados, EDT, equipo, cronograma, presupuesto, riesgos, calidad, comunicaciones, contratos y arquitectura. \\
+\bottomrule
+\end{tabularx}
+}
+
+\section{Objetivos y Requisitos de Alto Nivel}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.7cm} L L P{2.2cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{N.\textsuperscript{o}} & \textbf{Objetivo} & \textbf{Indicador y meta} & \textbf{Plazo} \\
+\midrule
+O1 & MVP de la Unidad I con el motor y el ranking explicado. & Ranking en 250 ms o menos; 5 cuartos de prueba en el orden esperado. & Sem. 8 (09/10) \\
+O2 & MVP final con registro, punto de referencia y datos en la nube. & RF-01 a RF-09 aceptados; 0 errores críticos. & Semana 16 \\
+O3 & Satisfacción de los arrendatarios. & 80\,\% o más de 10 arrendatarios califica con 4 o 5. & Semana 13 \\
+O4 & Publicación fácil para los propietarios. & 5 propietarios publican en 10 minutos o menos; 80\,\% o más satisfecho. & Semana 13 \\
+O5 & Cumplir el presupuesto. & Efectivo de S/ 2,507.44 o menos; CPI de 0.95 o más. & Semana 17 \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.15cm}
+\noindent\textbf{Requisitos funcionales del MVP}
+
+\vspace{0.05cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{1.1cm} P{3.3cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Código} & \textbf{Requisito} & \textbf{Qué debe hacer la app} \\
+\midrule
+RF-01 & Registro e inicio de sesión & Cuentas de arrendatario y de propietario con correo y contraseña; cada rol ve solo sus opciones. \\
+RF-02 & Publicación de cuartos & Precio, área, tipo de baño, ventana, servicios 24 h, seguridad, convivencia, ubicación en el mapa y 4 fotos obligatorias; sin un dato obligatorio no se publica. \\
+RF-03 & Punto de referencia & El arrendatario marca en el mapa el lugar al que quiere estar cerca; la app calcula la distancia y el tiempo a pie a cada cuarto. \\
+RF-04 & Prioridades & Pesos para precio, cercanía, seguridad, servicios y baño. \\
+RF-05 & Normalización 0--100 & Cada criterio se convierte a una escala de 0 a 100 (por ejemplo, S/ 140 da 100 y S/ 850 da 0). \\
+RF-06 & CASA SCORE y ranking & Promedio ponderado más bonificaciones y menos penalizaciones, limitado de 0 a 100; orden de mayor a menor. \\
+RF-07 & Explicación del puntaje & Cada cuarto muestra el puntaje de los 5 criterios y las bonificaciones y penalizaciones aplicadas. \\
+RF-08 & Perfil y mis cuartos & El arrendatario guarda sus prioridades y su punto; el propietario edita u oculta sus cuartos. \\
+RF-09 & Datos en la nube & Usuarios, cuartos y preferencias en Supabase, con la misma información para todos. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.15cm}
+\noindent\textbf{Requisitos no funcionales}
+
+\vspace{0.05cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{1.3cm} P{2.9cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Código} & \textbf{Atributo} & \textbf{Meta medible} \\
+\midrule
+RNF-01 & Rendimiento & Ranking en menos de 250 ms con hasta 500 cuartos. \\
+RNF-02 & Compatibilidad & Android 10 o superior y conexiones móviles lentas. \\
+RNF-03 & Seguridad & Contraseñas cifradas por Supabase Auth, acceso por fila según el rol y HTTPS. \\
+RNF-04 & Protección de datos & Consentimiento, datos mínimos y ninguna cesión a terceros (Ley N.\textsuperscript{o} 29733). \\
+RNF-05 & Usabilidad & Un propietario publica un cuarto en 10 minutos o menos sin ayuda. \\
+RNF-06 & Transparencia & El 100\,\% de los puntajes se muestra con su desglose. \\
+RNF-07 & Costo & El MVP opera con servicios en capa gratuita. \\
+RNF-08 & Mantenibilidad & TypeScript, motor de puntaje separado de la interfaz y revisión de cada Pull Request. \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{12\baselineskip}
+\section{Enfoque Híbrido y Ciclo de Vida}
+{\small
+\noindent Las fechas del semestre son fijas, por eso el alcance, el cronograma, el costo y los riesgos tienen \textbf{líneas base}. El software, en cambio, se construye en \textbf{sprints de una semana}, porque sus detalles se ajustan con lo que digan los arrendatarios y los propietarios. El control se hace los martes y la revisión del sprint los viernes, de 20:00 a 21:00. El avance pasa por cinco gates (G1 a G5), y cada uno lo aprueba el equipo como sponsor.
+}
+
+\vspace{0.1cm}
+\begin{center}
+\begin{tikzpicture}[x=0.62cm,y=0.48cm,font=\scriptsize]
+\foreach \s [count=\i from 0] in {2,...,18} {\node[font=\tiny\bfseries, text=AzulUNA] at (\i+0.5,0.6) {\s};}
+\foreach \i in {0,...,17} {\draw[gray!30] (\i,0.2) -- (\i,-7.2);}
+\fill[gray!15] (7,0.2) rectangle (8,-7.2);
+\fill[gray!15] (15,0.2) rectangle (16,-7.2);
+\node[anchor=east] at (-0.15,-1.00) {\textbf{F1} Inicio y planificación};
+\fill[AzulUNA] (0.00,-1.30) rectangle (4.10,-0.70);
+\node[anchor=east] at (-0.15,-2.10) {\textbf{F2} MVP de la Unidad I};
+\fill[Rama2] (2.00,-2.40) rectangle (7.00,-1.80);
+\node[anchor=east] at (-0.15,-3.20) {\textbf{F3} Nube y nuevas funciones};
+\fill[Rama3] (7.00,-3.50) rectangle (11.40,-2.90);
+\node[anchor=east] at (-0.15,-4.30) {\textbf{F4} Piloto y aceptación};
+\fill[Rama4] (10.35,-4.60) rectangle (12.45,-4.00);
+\node[anchor=east] at (-0.15,-5.40) {\textbf{F5} Entrega y cierre};
+\fill[Rama5] (12.45,-5.70) rectangle (15.60,-5.10);
+\node[anchor=east] at (-0.15,-6.50) {Gates};
+\foreach \x/\g in {2.00/G1,6.20/G2,11.40/G3,12.45/G4,15.60/G5} {
+  \node[diamond, fill=RaciR, inner sep=1.5pt] at (\x,-6.50) {};
+  \node[above, font=\tiny] at (\x,-6.35) {\g};}
+\draw[RaciR, dashed, thick] (16,0.2) -- (16,-7.2);
+\end{tikzpicture}
+\\[1pt]
+{\scriptsize \tikz{\fill[gray!15] (0,0) rectangle (0.3,0.18);}~Semanas de exámenes (9 y 17): solo gestión y documentación \quad \textcolor{RaciR}{\textbf{- - -}}~Fin de la semana 17}
+\end{center}
+
+\section{Líneas Base en Cifras}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.4cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Línea base} & \textbf{Lo que fija el plan} \\
+\midrule
+\textbf{Alcance} & 5 entregables (E1 expediente, E2 prototipo de la Unidad I, E3 MVP final con RF-01 a RF-09, E4 piloto con 10 arrendatarios y 5 propietarios, E5 cierre). EDT de 5 ramas y 23 paquetes que suman 512 horas (regla del 100\,\%). Siete cláusulas de alcance, entre ellas 4 fotos obligatorias, ranking sin pagos y ninguna comisión. No incluye cobro del alquiler, contratos, inspección de cuartos ni versión iOS. \\
+\textbf{Cronograma} & 16 semanas (31/08 al 18/12/2026). Cada integrante dedica 8 horas por semana: 128 h por persona y 512 h en total. Según el PERT, la ruta crítica termina el 16/12/2026 con 75\,\% de probabilidad de cumplir la semana 17. Hay 9 hitos (H1 a H9). \\
+\textbf{Costos} & Estimación S/ 11,108.07 + contingencia S/ 555.40 = \textbf{línea base (BAC) S/ 11,663.47}. Con la reserva de gestión del 10\,\% (S/ 1,166.35), el \textbf{presupuesto total es S/ 12,829.82}. El gasto en efectivo es S/ 2,507.44, es decir, S/ 626.86 por integrante. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.15cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.8cm} L C{2.9cm} C{3.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Hito} & \textbf{Descripción} & \textbf{Línea base} & \textbf{Estado al 26/10} \\
+\midrule
+H1 & Acta de Constitución aprobada (G1) & 11/09 (sem. 3) & Cumplido \\
+H2 & Acta de exclusión de Horus Sentinel & 22/09 (sem. 5) & Cumplido \\
+H3 & MVP de la Unidad I (G2) & 12/10 (sem. 8) & Entregado el 09/10 \\
+H4 & Plan de Dirección del Proyecto & 26/10 (sem. 10) & En aprobación \\
+H5 & Registro e inicio de sesión con Supabase & 10/11 (sem. 12) & Pendiente \\
+H6 & Piloto con clientes (G3) & 17/11 (sem. 13) & Pendiente \\
+H7 & MVP final aceptado (G4) & 25/11 (sem. 14) & Pendiente \\
+H8 & Informe final y exposición & 14/12 (sem. 17) & Pendiente \\
+H9 & Acta de cierre (G5) & 16/12 (sem. 17) & Pendiente \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{16\baselineskip}
+\section{Planes Subsidiarios y Responsables}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.3cm} L P{3.3cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Plan} & \textbf{Contenido clave} & \textbf{Responsable} \\
+\midrule
+Alcance e interesados & RF-01 a RF-09 y 23 paquetes con criterio de aceptación; arrendatarios y propietarios gestionados de cerca. & Clyde N. Paricahua Pari \\
+Cronograma y costos & Red de actividades, PERT, ruta crítica, Gantt, costo por actividad y curva S. & Ruth K. Apaza Solis \\
+Calidad y contratos & ISO/IEC 25010:2023 con 7 características; 14 casos de prueba; servicios en planes gratuitos y Google Play (S/ 85.90). & Eliseo Tarqui Ajahuana \\
+Riesgos y comunicaciones & 7 riesgos con escala 1--3 y severidad 1--9, contingencia de S/ 555.40; WhatsApp, GitHub y Meet; actas en 24 horas. & Viviana M. Quisbert Quispe \\
+Equipo & 4 roles, 8 h semanales iguales para todos, matriz RACI y evaluación del desempeño. & Clyde N. Paricahua Pari \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{14\baselineskip}
+\section{Riesgos Registrados}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.8cm} L C{0.9cm} L P{3.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{ID} & \textbf{Riesgo} & \textbf{Sev.} & \textbf{Respuesta} & \textbf{Disparador} \\
+\midrule
+R01 & Pocos propietarios aceptan publicar. & \etiqueta{SevAlta}{\,6\,} & Visitas de campo con guía de publicación y apoyo por WhatsApp. & Menos de 8 cuartos al cierre de la semana 6. \\
+R02 & La migración de SQLite a Supabase se retrasa. & \etiqueta{SevAlta}{\,6\,} & Práctica guiada y prueba de conexión aparte; dos jornadas nocturnas si persiste. & Inicio de sesión sin funcionar en la semana 10. \\
+R07 & Pocos arrendatarios se inscriben en el piloto. & \etiqueta{SevAlta}{\,6\,} & Grupos de WhatsApp, afiches en la ciudad universitaria e incentivos. & Menos de 10 inscritos en la semana 12. \\
+R05 & Un integrante enferma o se ausenta. & \etiqueta{SevMedia}{\,4\,} & Tareas documentadas en su Issue con un integrante de apoyo. & Ausencia mayor a una semana. \\
+R06 & Los planes gratuitos limitan el servicio. & \etiqueta{SevMedia}{\,4\,} & Fotos comprimidas, uso moderado de mapas y revisión mensual de límites. & Uso mayor al 70\,\% de un límite. \\
+R03 & Falla o robo de una laptop o del celular de pruebas. & \etiqueta{SevMedia}{\,3\,} & Código y documentos en GitHub cada día; equipo de reemplazo. & Equipo inutilizado más de 2 días. \\
+R04 & Suben los precios de alimentación y transporte. & \etiqueta{SevBaja}{\,2\,} & Se acepta; se cubre con la contingencia de S/ 555.40. & Gasto mensual 10\,\% mayor. \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{12\baselineskip}
+\section{Control, Cambios y Estado Actual}
+{\small
+\noindent\textbf{Umbrales de control (SPI y CPI cada martes):} \etiqueta{Rama4}{VERDE} 0.95 o más, se sigue el plan; \etiqueta{SevMedia}{ÁMBAR} de 0.90 a 0.94, acción correctiva dentro del sprint; \etiqueta{SevAlta}{ROJO} menos de 0.90, plan de recuperación o solicitud de cambio. El Project Manager usa la contingencia cuando ocurre un riesgo registrado; la reserva de gestión se usa solo con un cambio aprobado.
+
+\vspace{0.1cm}
+\noindent\textbf{Gestión de cambios:} el cambio se solicita en un Issue de GitHub y se analiza su impacto en 3 días o menos. Lo aprueba el Project Manager si es menor (hasta 2 días y S/ 50, sin tocar entregables); si es mayor, lo aprueba el equipo por unanimidad. Después se actualizan los documentos con una nueva versión. El objetivo del sprint no cambia una vez iniciado.
+
+\vspace{0.1cm}
+\noindent\textbf{Estado al elaborar el plan:} al corte de la semana 6, el SPI era 0.56 y el CPI 0.96. El atraso de dos semanas está en la gestión (documentación); el software cumple sus hitos, y el prototipo se entregó el 09/10 con 7 pruebas del motor aprobadas. Para recuperar el atraso, el ranking se construye en paralelo con la documentación, los documentos de planificación se revisan en las semanas 9 y 10, y el levantamiento de cuartos se hace los sábados. Se rechazó la solicitud SC-01, que pedía pasar de 8 a 10 horas semanales.
+}
+
+\Needspace{10\baselineskip}
+\section{Fortalezas del Plan frente a los Criterios de Evaluación}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Criterio} & \textbf{Evidencia en el plan} \\
+\midrule
+Completitud & Tiene 5 objetivos, 9 requisitos funcionales y 8 no funcionales, las tres líneas base, nueve planes subsidiarios, 7 riesgos, la gestión de cambios, el estado actual y tres anexos: objetivos del acta, presupuesto valorizado y evaluación a 3 años. \\
+Coherencia & Las mismas cifras se repiten en todos los documentos: 512 h, S/ 11,663.47 de BAC, 23 paquetes y 9 hitos. \\
+Cuantificación & Cada objetivo tiene meta medible (ranking en 250 ms o menos, 80\,\% de satisfacción, CPI de 0.95 o más) y cada riesgo tiene severidad y valor esperado. \\
+Realismo & Las semanas de exámenes no tienen desarrollo, todos dedican las mismas horas y el estado se reporta con su atraso real, sin esconderlo. \\
+Control & Los umbrales de color permiten decidir con datos; cada cambio tiene responsable, plazo de análisis y registro. \\
+Valor del proyecto & VAN económico de S/ +64,059.98, relación beneficio/costo de 6.77 y payback económico de 0.95 años. \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{20\baselineskip}
+\section{Preguntas Probables y Respuestas}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{5.1cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Pregunta} & \textbf{Respuesta del equipo} \\
+\midrule
+Con un SPI de 0.56, cómo dicen que el proyecto está controlado? & El indicador está en rojo y por eso se activó un plan de recuperación. El atraso es de gestión y no de producto: el MVP de la Unidad I se entregó el 09/10, tres días antes de su línea base. La recuperación se hace reordenando el trabajo, sin gastar más; el CPI de 0.96 lo confirma. \\
+Por qué rechazaron pasar de 8 a 10 horas semanales? & Habría subido el costo de personal sobre la línea base, cargado a todos en semanas con otros cursos y aumentado el riesgo de agotamiento. La recuperación se logra en paralelo y sin tocar el presupuesto. \\
+Si solo gastan S/ 2,507.44, por qué el presupuesto es S/ 12,829.82? & El presupuesto valoriza todos los recursos: las 512 horas a precio de mercado con EsSalud (S/ 7,681.40) y la depreciación de equipos (S/ 919.23). El efectivo es la parte que sale del bolsillo del equipo. Así se conoce el costo real del proyecto. \\
+Qué diferencia hay entre la contingencia y la reserva de gestión? & La contingencia (S/ 555.40) es el valor esperado de los 7 riesgos conocidos, está dentro de la BAC y la usa el Project Manager. La reserva (S/ 1,166.35) cubre lo imprevisto, está fuera de la BAC y requiere un cambio aprobado. \\
+El VAN financiero es negativo. Por qué hacer el proyecto? & Es un proyecto de beneficio social. Con S/ 41.64 de ahorro por arrendatario, el VAN económico es de S/ +64,059.98 y la relación beneficio/costo de 6.77. Los ingresos de la app (suscripción de S/ 5, anuncios, Premium) cubren la operación desde 945 cuartos-mes publicados. \\
+Por qué un enfoque híbrido y no solo Scrum? & Las fechas del semestre y los entregables son fijos y necesitan líneas base. Los sprints semanales permiten ajustar el producto con la opinión de los clientes sin mover esas fechas. \\
+Cómo se asegura la calidad del software? & Con 7 características de ISO/IEC 25010:2023 medibles, 14 casos de prueba (7 automatizados y 7 manuales), revisión de cada Pull Request y aceptación del entregable según su criterio. \\
+Qué pasó con Horus Sentinel? & Fue excluido de la cartera el 22/09/2026. CasaScore mantuvo sus líneas base y cada integrante conserva sus 8 horas semanales en este proyecto. \\
+Cómo garantizan que el ranking sea justo? & Ningún pago cambia la posición de un cuarto, el puntaje se muestra siempre desglosado y ocultar las condiciones de convivencia resta 25 puntos. \\
+Qué tan seguro es terminar a tiempo? & El PERT da 75\,\% de probabilidad de cumplir la semana 17. La ruta crítica termina el 16/12, y queda margen hasta el cierre del semestre, el 24/12/2026. \\
+\bottomrule
+\end{tabularx}
+}
+
+\end{document}
