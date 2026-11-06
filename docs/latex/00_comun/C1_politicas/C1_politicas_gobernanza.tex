@@ -1,0 +1,310 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% POLÍTICAS DEL PROYECTO Y GOBERNANZA
+% Documento común a los proyectos CasaScore y Horus Sentinel
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Políticas del Proyecto y Gobernanza},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{POLÍTICAS DEL PROYECTO Y GOBERNANZA}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore \textperiodcentered\ Horus Sentinel}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+% =========================================================================
+% CABECERA DEL DOCUMENTO
+% =========================================================================
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{POLÍTICAS DEL PROYECTO Y GOBERNANZA}}}\\[3pt]
+    {\normalsize \textbf{Normas de trabajo del equipo para los proyectos CasaScore y Horus Sentinel}}\\[4pt]
+    \footnotesize \textbf{Fecha de aprobación:} viernes 04/09/2026 (semana 2) \quad \textbar\quad \textbf{Versión:} 1.0
+\end{center}
+
+\vspace{0.1cm}
+
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.8cm} L@{}}
+\toprule
+\textbf{Curso:} & Gestión de Proyectos TICS (EST315) -- Semestre 2026-II \\
+\textbf{Docente:} & Ing. Renzo Apaza Cutipa \\
+\textbf{Equipo:} & Team Sobrevivientes \\
+\textbf{Proyectos:} & \textbf{CasaScore (AlquilaPuno)}: recomendación multicriterio de cuartos en alquiler para estudiantes de la UNA Puno. \newline
+\textbf{Horus Sentinel}: mapa predictivo de zonas de riesgo delictivo y sugerencia de rutas seguras. \\
+\textbf{Alcance del documento:} & Normas comunes a ambos proyectos y políticas de producto de cada uno. \\
+\bottomrule
+\end{tabularx}
+
+% =========================================================================
+\section{Fundamento Metodológico}
+% =========================================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Principio rector:} \textit{sistematizar antes de automatizar}. Ninguna tarea técnica se inicia sin insumos validados, un responsable asignado y un criterio de aceptación medible (ciclo Insumos $\rightarrow$ Proceso $\rightarrow$ Entregable).
+    \item \textbf{Guía metodológica:} PM4DEV. Cada proyecto recorre las seis fases del ciclo (Inicio, Planificación, Implementación, Monitoreo, Adaptación y Cierre) y aplica los nueve procesos de gestión: alcance, cronograma, presupuesto y calidad como restricciones; equipo, interesados, información, riesgos y contratos como soporte.
+    \item \textbf{Mejora continua:} cada proceso sigue el ciclo Planificar -- Hacer -- Verificar -- Adaptar.
+    \item \textbf{Enfoque de desarrollo:} híbrido. Gestión predictiva para el alcance, el cronograma, el presupuesto y los riesgos; Scrum con sprints semanales para construir el software.
+    \item \textbf{Marco de referencia del curso:} principios y dominios de desempeño del PMBOK.
+\end{itemize}
+
+% =========================================================================
+\section{Gestión de la Cartera de Proyectos}
+% =========================================================================
+
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Aspecto} & \textbf{CasaScore} & \textbf{Horus Sentinel} \\
+\midrule
+Producto al cierre de la Unidad I & MVP móvil Android funcional. & Prototipo funcional con datos simulados. \\
+Producto al cierre del semestre & MVP con registro e inicio de sesión, datos en la nube y mapa de cuartos. Horizonte del proyecto: 3 años. & MVP funcional: mapa de calor de riesgo y sugerencia de ruta segura. \\
+Documentación & Expediente propio (entregables 01 a 28). & Expediente propio (entregables 01 a 28). \\
+Dedicación del equipo & 8 h por semana por integrante. & 8 h por semana por integrante. \\
+\bottomrule
+\end{tabularx}
+
+\begin{itemize}[leftmargin=*]
+    \item Cada proyecto tiene su propia línea base de alcance, cronograma y presupuesto, y su propio registro de riesgos.
+    \item Los documentos de gobernanza del equipo son comunes a ambos proyectos.
+    \item Ningún recurso, entregable o cambio de un proyecto se carga al otro sin una solicitud de cambio aprobada.
+\end{itemize}
+
+% =========================================================================
+\section{Organización del Equipo y Roles}
+% =========================================================================
+Los roles son los mismos en ambos proyectos.
+
+\vspace{0.1cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.9cm} P{3.4cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidades} \\
+\midrule
+\textbf{Paricahua Pari, Clyde Neil} & Project Manager & Dirección de ambos proyectos, control del alcance, aprobación de entregables y cambios menores, relación con el docente, decisión final ante desacuerdos y firma de actas. \\
+\addlinespace[3pt]
+\textbf{Apaza Solis, Ruth Karina} & Analista de Planificación & EDT, cronograma, presupuesto, tablero Kanban, cálculo del valor ganado (EVM) y control de la línea base. \\
+\addlinespace[3pt]
+\textbf{Tarqui Ajahuana, Eliseo} & Especialista Técnico / Arquitectura & Arquitectura, modelo de datos, algoritmos, desarrollo del software, pruebas técnicas y contratos con servicios tecnológicos. \\
+\addlinespace[3pt]
+\textbf{Quisbert Quispe, Viviana Mary} & Gestora de Comunicación, Riesgos y Documentación & Registro de riesgos, plan de información y comunicaciones, actas de reunión, custodia del repositorio documental y compilación en \LaTeX. \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Toma de decisiones}
+\begin{itemize}[leftmargin=*]
+    \item Las decisiones técnicas las propone el Especialista Técnico y las aprueba el Project Manager.
+    \item Los cambios a una línea base siguen el proceso de solicitud de cambio del Plan de Dirección de cada proyecto.
+    \item Los desacuerdos se resuelven primero por deliberación en reunión. Si persisten, decide el Project Manager y, cuando afectan el alcance aprobado, en coordinación con el docente.
+    \item Cada integrante responde por su rol, pero todos colaboran en las tareas del sprint cuando el avance lo requiere.
+\end{itemize}
+
+% =========================================================================
+\section{Protocolo de Reuniones}
+% =========================================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Reuniones ordinarias:} martes y viernes de 20:00 a 21:00. El martes se controla el avance de ambos proyectos; el viernes se hace la revisión del sprint.
+    \item \textbf{Agenda fija:} acuerdos de la reunión anterior, avance frente al tablero, impedimentos, riesgos y asignación de tareas.
+    \item \textbf{Actas:} cada reunión se registra en un acta con avance real, desviaciones, acuerdos y compromisos. La redacta la Gestora de Comunicación y se publica en el repositorio.
+    \item \textbf{Sesiones extraordinarias:} se convocan ante retrasos que afecten la ruta crítica o antes de entregas importantes. Las jornadas nocturnas se limitan a las semanas previas a una entrega, se registran en acta e incluyen retorno seguro de los integrantes.
+    \item \textbf{Asistencia:} la inasistencia se comunica antes de la reunión y el integrante revisa el acta para asumir sus compromisos.
+\end{itemize}
+
+% =========================================================================
+\section{Gestión de la Información y del Repositorio}
+% =========================================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Repositorio único:} todo el código y la documentación de ambos proyectos se guarda en un solo repositorio de GitHub. Se prohíbe intercambiar archivos por canales no auditables.
+    \item \textbf{Carpetas:} \texttt{docs/latex/00\_comun/} para los documentos del equipo, \texttt{docs/latex/casascore/} y \texttt{docs/latex/horus\_sentinel/} para cada proyecto, y \texttt{src/} para el código.
+    \item \textbf{Numeración:} el número del entregable aparece solo en el nombre de la carpeta y del archivo. Dentro del documento, los demás documentos se citan por su nombre.
+    \item \textbf{Formato:} todo documento formal se redacta en \LaTeX\ con el encabezado institucional y se acompaña de su PDF compilado. Los archivos Markdown se usan solo como borradores.
+    \item \textbf{Fechas:} se indican con la semana del semestre (la semana 1 no se cuenta como semana de trabajo).
+\end{itemize}
+
+% =========================================================================
+\section{Control de Versiones en GitHub}
+% =========================================================================
+
+\subsection{Ramas}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Rama \texttt{main} protegida:} no se permiten envíos directos.
+    \item \textbf{Ramas de trabajo con el nombre del proyecto:}
+    \begin{itemize}
+        \item \texttt{feature/<proyecto>-<tarea>}: nuevas funciones.
+        \item \texttt{fix/<proyecto>-<error>}: corrección de defectos.
+        \item \texttt{docs/<proyecto>-<documento>}: documentos (\texttt{comun} para los documentos del equipo).
+    \end{itemize}
+    \item \textbf{Pull Request obligatorio:} toda integración a \texttt{main} requiere la aprobación de al menos otro integrante.
+\end{enumerate}
+
+\subsection{Mensajes de confirmación (commits)}
+Formato \texttt{tipo(proyecto-módulo): descripción}. Ejemplos:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{feat(casascore-ranking): normalizacion min-max del precio}
+    \item \texttt{feat(horus-mapa): mapa de calor con datos simulados}
+    \item \texttt{fix(casascore-auth): validacion de credenciales}
+    \item \texttt{docs(comun-politicas): version 1.0 de las politicas}
+\end{itemize}
+
+\subsection{Seguimiento}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Tablero Kanban} en GitHub Projects con los estados \textit{Por hacer}, \textit{En progreso}, \textit{En revisión} y \textit{Hecho}, y una etiqueta por proyecto (\texttt{casascore}, \texttt{horus}, \texttt{comun}). Lo administra la Analista de Planificación.
+    \item \textbf{Issues:} cada entregable y paquete de trabajo tiene un Issue con un solo responsable, fecha límite y criterio de aceptación.
+    \item \textbf{Versiones:} etiquetas por proyecto, por ejemplo \texttt{casascore-v1.0-mvp} y \texttt{horus-v0.1-prototipo}.
+\end{itemize}
+
+% =========================================================================
+\section{Políticas de Calidad}
+% =========================================================================
+\begin{itemize}[leftmargin=*]
+    \item Todo entregable tiene un criterio de aceptación definido antes de empezar a elaborarlo.
+    \item Todo documento y todo código pasa por la revisión de otro integrante antes de integrarse.
+    \item Los defectos se registran como Issues y se corrigen antes de cerrar el sprint.
+    \item La calidad la juzga el usuario final: cada producto se valida con pruebas de usuarios antes de su aceptación.
+\end{itemize}
+
+% =========================================================================
+\section{Protección de Datos y Confidencialidad}
+% =========================================================================
+\begin{itemize}[leftmargin=*]
+    \item Los datos personales se tratan conforme a la Ley N.\textsuperscript{o} 29733, Ley de Protección de Datos Personales: con consentimiento, solo para la finalidad del proyecto y con medidas de seguridad.
+    \item Se prohíbe vender, ceder o publicar datos de usuarios.
+    \item No se guardan contraseñas, claves de acceso ni datos personales reales dentro del repositorio.
+\end{itemize}
+
+% =========================================================================
+\section{Políticas de Producto}
+% =========================================================================
+
+\subsection{CasaScore (AlquilaPuno)}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{MVP primero:} se priorizan usuarios, publicaciones, búsqueda, filtros y el motor del puntaje. El aprendizaje automático queda fuera del alcance.
+    \item \textbf{Normalización 0--100:} ninguna variable (precio, distancia, seguridad, servicios) entra al motor sin llevarse antes a la escala común de 0 a 100.
+    \item \textbf{Transparencia:} todo puntaje muestra los criterios que lo explican; no hay recomendaciones de caja negra ni posiciones pagadas.
+    \item \textbf{Preferencias del usuario:} los pesos que define el estudiante prevalecen sobre cualquier valor por defecto.
+    \item \textbf{Publicación completa:} un cuarto solo se publica con 4 fotos reales, precio, área, distancia, tiempo a pie y condiciones de convivencia declaradas.
+    \item \textbf{Límites:} el sistema no cobra ni intermedia pagos, no firma contratos y no reemplaza la visita al inmueble.
+    \item \textbf{Accesibilidad:} formularios simples, pensados para el celular y para usuarios sin conocimientos técnicos.
+\end{itemize}
+
+\subsection{Horus Sentinel}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Datos por etapas:} en la Unidad I el prototipo usa solo datos simulados. Para el MVP final se usan datos abiertos o datos autorizados por escrito por la institución que los entrega.
+    \item \textbf{Datos agregados:} el sistema trabaja con incidentes agregados por zona y horario; no identifica personas, no usa cámaras ni reconocimiento facial.
+    \item \textbf{Prevención del sesgo:} el modelo se audita para no sobrerrepresentar zonas históricamente más vigiladas, y se combinan fuentes oficiales con reportes ciudadanos.
+    \item \textbf{Transparencia:} el mapa indica la fuente y la fecha de los datos, y el nivel de riesgo se presenta como una estimación, no como una certeza.
+    \item \textbf{Alcance piloto:} se trabaja en un solo distrito piloto de Puno; no hay cobertura nacional.
+    \item \textbf{Uso:} la herramienta apoya la prevención y la elección de rutas; no reemplaza la labor de la Policía ni del serenazgo.
+\end{itemize}
+
+% =========================================================================
+\section{Suscripción y Conformidad}
+% =========================================================================
+\noindent En señal de conformidad con las presentes políticas, los integrantes del equipo firman a continuación:
+
+\vspace{1.6cm}
+
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+
+\end{document}
