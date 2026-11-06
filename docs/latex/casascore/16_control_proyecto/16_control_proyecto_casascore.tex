@@ -1,0 +1,399 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% CONTROL DEL PROYECTO
+% Proyecto: CasaScore (AlquilaPuno)
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{amssymb}
+% --- RECURSOS VISUALES: GRÁFICOS Y CÓDIGO DE COLORES ---
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\definecolor{GrisFila}{RGB}{246, 248, 251}
+\definecolor{CuadCerca}{RGB}{150, 30, 30}
+\definecolor{CuadSatisf}{RGB}{180, 130, 20}
+\definecolor{CuadInfo}{RGB}{10, 45, 90}
+\definecolor{CuadMonit}{RGB}{110, 115, 125}
+\newcommand{\etiqueta}[2]{{\setlength{\fboxsep}{2pt}\colorbox{#1}{\textcolor{white}{\scriptsize\bfseries #2}}}}
+\newcommand{\cerca}{\etiqueta{CuadCerca}{Gestionar de cerca}}
+\newcommand{\satisf}{\etiqueta{CuadSatisf}{Mantener satisfecho}}
+\newcommand{\informado}{\etiqueta{CuadInfo}{Mantener informado}}
+\newcommand{\monit}{\etiqueta{CuadMonit}{Monitorear}}
+\usepackage{needspace}
+\usepackage{longtable}
+\definecolor{Rama1}{RGB}{10, 45, 90}
+\definecolor{Rama2}{RGB}{40, 95, 150}
+\definecolor{Rama3}{RGB}{180, 130, 20}
+\definecolor{Rama4}{RGB}{30, 110, 60}
+\definecolor{Rama5}{RGB}{110, 60, 140}
+\definecolor{RaciR}{RGB}{150, 30, 30}
+\definecolor{RaciA}{RGB}{10, 45, 90}
+\definecolor{RaciC}{RGB}{180, 130, 20}
+\definecolor{RaciI}{RGB}{140, 145, 155}
+\definecolor{NivAlto}{RGB}{30, 110, 60}
+\definecolor{NivMedio}{RGB}{180, 130, 20}
+\definecolor{NivBajo}{RGB}{150, 30, 30}
+\usetikzlibrary{patterns}
+\definecolor{SevBaja}{RGB}{30, 110, 60}
+\definecolor{SevMedia}{RGB}{180, 130, 20}
+\definecolor{SevAlta}{RGB}{150, 30, 30}
+\usetikzlibrary{arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\scriptsize, frame=single, rulecolor=\color{AzulUNA!40}, backgroundcolor=\color{GrisFila}, columns=fullflexible, keepspaces=true, breaklines=true, xleftmargin=4pt, xrightmargin=4pt, literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1}
+
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Control del Proyecto -- CasaScore (AlquilaPuno)},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{CONTROL DEL PROYECTO}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore (AlquilaPuno)}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{CONTROL DEL PROYECTO}}}\\[3pt]
+    {\normalsize \textbf{CasaScore (AlquilaPuno)}}\\[4pt]
+    \footnotesize \textbf{Fecha:} viernes 02/10/2026 (semana 6) \quad \textbar\quad \textbf{Versión:} 1.0 \quad \textbar\quad \textbf{Fase:} Monitoreo
+\end{center}
+
+\vspace{0.1cm}
+
+\section{Datos Generales}
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.2cm} L@{}}
+\toprule
+\textbf{Proyecto:} & CasaScore (aplicación AlquilaPuno) \\
+\textbf{Responsable:} & Ruth Karina Apaza Solis -- Analista de Planificación \\
+\textbf{Proceso PM4DEV:} & Monitoreo y control (cronograma y presupuesto) \\
+\textbf{Insumos:} & Línea base del cronograma, presupuesto, actas de sprint y registro de horas y gastos \\
+\textbf{Fecha de corte:} & viernes 02/10/2026 (fin de la semana 6) \\
+\bottomrule
+\end{tabularx}
+
+\section{Método}
+El avance se mide con la gestión del valor ganado (EVM). Cada actividad de la EDT tiene un presupuesto (BAC); al corte se compara lo que debía estar hecho (PV), el valor de lo realmente hecho (EV $=$ \% real $\times$ BAC) y lo que costó (AC). El presupuesto del trabajo es S/ 11,108.07; la contingencia (S/ 555.40) se controla aparte. Los costos reales de este informe son simulados a partir del registro de horas y gastos del equipo.
+
+\Needspace{14\baselineskip}
+\section{Tablero de Control}
+\begin{center}
+\begin{tikzpicture}
+\node[draw=SevAlta, fill=SevAlta!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (0.00,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (0.00,0.62) {CRONOGRAMA};\node[font=\LARGE\bfseries, text=SevAlta] at (0.00,0.05) {0.56};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (0.00,-0.62) {SPI: atraso equivalente a 2 semanas};
+\node[draw=SevMedia, fill=SevMedia!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (3.80,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (3.80,0.62) {COSTO};\node[font=\LARGE\bfseries, text=SevMedia] at (3.80,0.05) {0.96};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (3.80,-0.62) {CPI: dentro del margen de 0.95};
+\node[draw=SevAlta, fill=SevAlta!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (7.60,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (7.60,0.62) {AVANCE};\node[font=\LARGE\bfseries, text=SevAlta] at (7.60,0.05) {23.6\,\%};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (7.60,-0.62) {del proyecto (plan: 42.2\,\%)};
+\node[draw=Rama4, fill=Rama4!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (11.40,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (11.40,0.62) {EFECTIVO};\node[font=\LARGE\bfseries, text=Rama4] at (11.40,0.05) {646.92};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (11.40,-0.62) {gastado de S/ 774.85 previstos al corte};
+\end{tikzpicture}
+\\[6pt]
+\begin{tikzpicture}
+\node[draw=SevMedia, fill=SevMedia!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (0.00,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (0.00,0.62) {RIESGOS ALTOS};\node[font=\LARGE\bfseries, text=SevMedia] at (0.00,0.05) {3};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (0.00,-0.62) {R01, R02 y R07 en vigilancia};
+\node[draw=AzulUNA, fill=AzulUNA!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (3.80,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (3.80,0.62) {CAMBIOS};\node[font=\LARGE\bfseries, text=AzulUNA] at (3.80,0.05) {1};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (3.80,-0.62) {SC-01 rechazada};
+\node[draw=SevAlta, fill=SevAlta!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (7.60,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (7.60,0.62) {CUARTOS};\node[font=\LARGE\bfseries, text=SevAlta] at (7.60,0.05) {4 / 15};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (7.60,-0.62) {registrados para el piloto};
+\node[draw=Rama4, fill=Rama4!10, line width=1pt, rounded corners=4pt, minimum width=3.5cm, minimum height=2.0cm] at (11.40,0) {};\node[font=\scriptsize\bfseries, text=GrisOscuro] at (11.40,0.62) {CONTINGENCIA};\node[font=\LARGE\bfseries, text=Rama4] at (11.40,0.05) {555.40};\node[font=\tiny, text=GrisOscuro, text width=3.3cm, align=center] at (11.40,-0.62) {sin uso al corte};
+\end{tikzpicture}
+\end{center}
+
+\Needspace{30\baselineskip}
+\section{Valor Ganado por Actividad}
+Se muestran las actividades con valor planificado o ganado al corte. Valores en soles.
+
+\vspace{0.1cm}
+{\footnotesize
+\setlength{\tabcolsep}{3pt}
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.7cm} L Q{1.4cm} Q{1.35cm} C{0.9cm} Q{1.35cm} Q{1.35cm} Q{1.4cm} Q{1.2cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Cód.} & \textbf{Actividad} & \textbf{BAC} & \textbf{PV} & \textbf{\% real} & \textbf{EV} & \textbf{AC} & \textbf{SV} & \textbf{CV} \\
+\midrule
+1.1 & Gobernanza del equipo & 372.65 & 372.65 & 100\,\% & 372.65 & 372.65 & 0.00 & 0.00 \\
+1.2 & Viabilidad y Acta de Constitución & 372.65 & 372.65 & 100\,\% & 372.65 & 380.10 & 0.00 & \textcolor{SevAlta}{-7.45} \\
+1.3 & Planificación base & 496.86 & 496.86 & 40\,\% & 198.74 & 222.59 & \textcolor{SevAlta}{-298.12} & \textcolor{SevAlta}{-23.85} \\
+1.4 & Planes de soporte & 372.65 & 372.65 & 10\,\% & 37.27 & 37.27 & \textcolor{SevAlta}{-335.38} & 0.00 \\
+1.5 & Seguimiento y control & 1,061.03 & 83.04 & nivel & 83.04 & 83.04 & 0.00 & 0.00 \\
+2.1 & Ficha técnica y requerimientos & 372.65 & 372.65 & 100\,\% & 372.65 & 372.65 & 0.00 & 0.00 \\
+2.2 & Modelo de datos y arquitectura & 372.65 & 372.65 & 60\,\% & 223.59 & 234.77 & \textcolor{SevAlta}{-149.06} & \textcolor{SevAlta}{-11.18} \\
+2.3 & Diseño de pantallas & 248.43 & 248.43 & 50\,\% & 124.22 & 129.18 & \textcolor{SevAlta}{-124.22} & \textcolor{SevAlta}{-4.97} \\
+3.1 & Motor CASA SCORE & 496.86 & 496.86 & 100\,\% & 496.86 & 536.61 & 0.00 & \textcolor{SevAlta}{-39.75} \\
+3.2 & Publicación de cuartos & 372.65 & 372.65 & 60\,\% & 223.59 & 237.01 & \textcolor{SevAlta}{-149.06} & \textcolor{SevAlta}{-13.42} \\
+3.3 & Ranking y detalle (MVP Unidad I) & 1,034.45 & 443.34 & 0\,\% & 0.00 & 0.00 & \textcolor{SevAlta}{-443.34} & 0.00 \\
+4.1 & Pruebas del motor & 248.43 & 212.94 & 0\,\% & 0.00 & 0.00 & \textcolor{SevAlta}{-212.94} & 0.00 \\
+4.2 & Levantamiento de cuartos & 474.43 & 474.43 & 25\,\% & 118.61 & 130.47 & \textcolor{SevAlta}{-355.82} & \textcolor{SevAlta}{-11.86} \\
+\midrule
+\rowcolor{white}\multicolumn{3}{@{}l}{\textbf{Total al corte}} & \textbf{4,691.79} & & \textbf{2,623.86} & \textbf{2,736.33} & \textbf{\textcolor{SevAlta}{-2,067.93}} & \textbf{\textcolor{SevAlta}{-112.48}} \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{16\baselineskip}
+\section{Indicadores}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{1.1cm} P{3.6cm} L Q{2.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Sigla} & \textbf{Indicador} & \textbf{Significado o fórmula} & \textbf{Valor} \\
+\midrule
+\textbf{PV} & Valor planificado & Costo del trabajo que debía estar hecho & \textbf{4,691.79} \\
+\textbf{EV} & Valor ganado & Costo presupuestado del trabajo realmente hecho & \textbf{2,623.86} \\
+\textbf{AC} & Costo real & Lo que realmente costó ese trabajo & \textbf{2,736.33} \\
+\textbf{SV} & Variación del cronograma & EV $-$ PV & \textbf{\textcolor{SevAlta}{-2,067.93}} \\
+\textbf{CV} & Variación del costo & EV $-$ AC & \textbf{\textcolor{SevMedia}{-112.48}} \\
+\textbf{SPI} & Índice de cronograma & EV / PV & \textbf{\textcolor{SevAlta}{0.56}} \\
+\textbf{CPI} & Índice de costo & EV / AC & \textbf{\textcolor{SevMedia}{0.96}} \\
+\textbf{EAC} & Estimación al concluir & BAC / CPI & \textbf{\textcolor{SevMedia}{11,584.23}} \\
+\textbf{ETC} & Estimación hasta concluir & EAC $-$ AC & \textbf{8,847.90} \\
+\textbf{VAC} & Variación al concluir & BAC $-$ EAC & \textbf{\textcolor{SevMedia}{-476.16}} \\
+\textbf{TCPI} & Desempeño requerido & (BAC $-$ EV) / (BAC $-$ AC) & \textbf{1.01} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.15cm}
+\noindent\textbf{Lectura:} el equipo hizo el 56\,\% del trabajo previsto al corte; el valor ganado (S/ 2,623.86) equivale al valor planificado de la semana 4, por lo que el atraso es de \textbf{dos semanas}. El costo está controlado: por cada sol gastado se obtuvieron S/ 0.96 de trabajo. Si el CPI se mantiene, el proyecto costaría S/ 11,584.23, monto que aún entra en la línea base de costos (S/ 11,663.47) gracias a la contingencia.
+
+\Needspace{20\baselineskip}
+\section{Curva S al Corte}
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize]
+\draw[gray!20] (0,0.00) -- (13.00,0.00); \node[anchor=east, font=\tiny] at (0,0.00) {0};
+\draw[gray!20] (0,0.92) -- (13.00,0.92); \node[anchor=east, font=\tiny] at (0,0.92) {2,000};
+\draw[gray!20] (0,1.83) -- (13.00,1.83); \node[anchor=east, font=\tiny] at (0,1.83) {4,000};
+\draw[gray!20] (0,2.75) -- (13.00,2.75); \node[anchor=east, font=\tiny] at (0,2.75) {6,000};
+\draw[gray!20] (0,3.67) -- (13.00,3.67); \node[anchor=east, font=\tiny] at (0,3.67) {8,000};
+\draw[gray!20] (0,4.58) -- (13.00,4.58); \node[anchor=east, font=\tiny] at (0,4.58) {10,000};
+\draw[gray!20] (0,5.50) -- (13.00,5.50); \node[anchor=east, font=\tiny] at (0,5.50) {12,000};
+\node[font=\tiny] at (0.00,-0.25) {1};
+\node[font=\tiny] at (0.81,-0.25) {2};
+\node[font=\tiny] at (1.62,-0.25) {3};
+\node[font=\tiny] at (2.44,-0.25) {4};
+\node[font=\tiny] at (3.25,-0.25) {5};
+\node[font=\tiny] at (4.06,-0.25) {6};
+\node[font=\tiny] at (4.88,-0.25) {7};
+\node[font=\tiny] at (5.69,-0.25) {8};
+\node[font=\tiny] at (6.50,-0.25) {9};
+\node[font=\tiny] at (7.31,-0.25) {10};
+\node[font=\tiny] at (8.12,-0.25) {11};
+\node[font=\tiny] at (8.94,-0.25) {12};
+\node[font=\tiny] at (9.75,-0.25) {13};
+\node[font=\tiny] at (10.56,-0.25) {14};
+\node[font=\tiny] at (11.38,-0.25) {15};
+\node[font=\tiny] at (12.19,-0.25) {16};
+\node[font=\tiny] at (13.00,-0.25) {17};
+\draw[->] (0,0) -- (13.30,0) node[right, font=\tiny]{semana};
+\draw[RaciR, dashed] (4.06,0) -- (4.06,5.5) node[above, font=\tiny, text=RaciR]{corte};
+\draw[AzulUNA, very thick] (0,0) -- (0.81,0.256) -- (1.62,0.512) -- (2.44,1.109) -- (3.25,1.747) -- (4.06,2.150) -- (4.88,2.435) -- (5.69,2.778) -- (6.50,2.910) -- (7.31,3.190) -- (8.12,3.385) -- (8.94,3.772) -- (9.75,4.153) -- (10.56,4.368) -- (11.38,4.624) -- (12.19,4.985) -- (13.00,5.091);
+\draw[Rama4, very thick] (0,0) -- (0.81,0.256) -- (1.62,0.512) -- (2.44,0.756) -- (3.25,0.985) -- (4.06,1.203);
+\draw[SevAlta, very thick, dashed] (0,0) -- (0.81,0.256) -- (1.62,0.516) -- (2.44,0.781) -- (3.25,1.030) -- (4.06,1.254);
+\draw[<->, GrisOscuro] (4.18,1.203) -- node[right, font=\tiny, text width=1.6cm]{SV = -2,067.93} (4.18,2.150);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize \textcolor{AzulUNA}{\rule{12pt}{2pt}}~PV (línea base) \quad \textcolor{Rama4}{\rule{12pt}{2pt}}~EV (valor ganado) \quad \textcolor{SevAlta}{\rule{12pt}{2pt}}~AC (costo real)}
+\end{center}
+
+\Needspace{16\baselineskip}
+\section{Solicitud de Cambio SC-01}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.6cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\multicolumn{2}{@{}l}{\textbf{Datos de la solicitud}} \\
+\midrule
+\textbf{Código y fecha:} & SC-01 \textperiodcentered\ presentada el martes 29/09/2026 (semana 6) \\
+\textbf{Solicitante:} & Ruth Karina Apaza Solis -- Analista de Planificación \\
+\textbf{Cambio propuesto:} & Aumentar la dedicación de cada integrante de 8 a 10 horas semanales desde la semana 7 hasta la semana 17, usando parte de las horas liberadas por la exclusión de Horus Sentinel. \\
+\textbf{Justificación:} & Recuperar el atraso de dos semanas antes del piloto de la semana 13. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.2cm}
+\noindent\textbf{Análisis de impacto}
+
+\vspace{0.05cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.4cm} L C{1.8cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Área} & \textbf{Impacto} & \textbf{Efecto} \\
+\midrule
+Alcance & Sin cambio: se mantienen los requisitos del MVP. & \etiqueta{Rama4}{Neutro} \\
+Cronograma & 88 horas adicionales del equipo (2 h $\times$ 4 integrantes $\times$ 11 semanas), equivalentes a 2.75 semanas de trabajo: recuperaría el atraso hacia la semana 13. & \etiqueta{Rama4}{Positivo} \\
+Costo & S/ 1,061.50 más de personal valorizado (88 h $\times$ S/ 12.0625); el presupuesto total pasaría de S/ 12,829.82 a S/ 13,891.32. & \etiqueta{SevAlta}{Negativo} \\
+Calidad & Más tiempo para pruebas y correcciones. & \etiqueta{Rama4}{Positivo} \\
+Equipo y riesgos & Mayor carga junto con los exámenes parciales (semana 9) y las demás asignaturas; aumenta el riesgo de ausencias y de baja calidad por cansancio. & \etiqueta{SevAlta}{Negativo} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.2cm}
+\noindent\textbf{Decisión del equipo (sponsor):} \etiqueta{SevAlta}{RECHAZADA} por unanimidad en la reunión de control del martes 29/09/2026. El aumento de costo y la carga académica pesan más que la recuperación del plazo. Se mantiene la dedicación de 8 horas semanales.
+
+\vspace{0.1cm}
+\noindent\textbf{Acción alternativa aprobada:} plan de recuperación sin horas adicionales: ejecutar en paralelo el ranking y la revisión de los documentos de planificación, levantar cuartos los sábados dentro de las 8 horas, y concentrar la revisión de documentos en las semanas 9 y 10, cuando el desarrollo se detiene por exámenes.
+
+\Needspace{10\baselineskip}
+\section{Registro de Cambios}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}C{1.1cm} C{1.6cm} L P{2.0cm} C{1.6cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Código} & \textbf{Fecha} & \textbf{Cambio} & \textbf{Solicitante} & \textbf{Estado} & \textbf{Decisión} \\
+\midrule
+SC-01 & 29/09/2026 & Aumentar la dedicación de 8 a 10 horas semanales & Ruth K. Apaza Solis & \etiqueta{SevAlta}{Rechazada} & 29/09/2026 \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{16\baselineskip}
+\section{Informe de Variación del Presupuesto}
+Comparación entre el costo previsto al corte según la línea base y el costo real registrado.
+
+\vspace{0.1cm}
+{\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.7cm} Q{1.6cm} Q{1.6cm} Q{1.5cm} Q{1.1cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Rubro} & \textbf{Previsto al corte} & \textbf{Real al corte} & \textbf{Variación} & \textbf{\%} & \textbf{Causa} \\
+\midrule
+Personal regular & 3,222.28 & 1,609.81 & -1,612.47 & -50\,\% & Menos horas registradas que las planificadas. \\
+Horas extra & 215.06 & 0.00 & -215.06 & -100\,\% & Aún no se realizó la jornada nocturna prevista. \\
+Equipos & 479.60 & 479.60 & 0.00 & 0\,\% & Depreciación según el tiempo transcurrido. \\
+Servicios & 282.02 & 282.02 & 0.00 & 0\,\% & Gasto fijo mensual. \\
+Productos de salud & 163.83 & 120.50 & -43.33 & -26\,\% & Compras menores a las previstas. \\
+Alimentación & 245.86 & 198.40 & -47.46 & -19\,\% & Menos reuniones presenciales. \\
+Transporte & 83.14 & 46.00 & -37.14 & -45\,\% & Menos visitas de campo por el atraso del levantamiento. \\
+\midrule
+\rowcolor{white}\textbf{Total} & \textbf{4,691.79} & \textbf{2,736.33} & \textbf{-1,955.46} & \textbf{-42\,\%} & \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.15cm}
+\noindent El gasto real es menor al previsto porque se hizo menos trabajo, no porque se ahorrara: por eso la variación del presupuesto debe leerse junto con el valor ganado. El gasto en efectivo al corte es de S/ 646.92 frente a S/ 774.85 previstos.
+
+\Needspace{10\baselineskip}
+\section{Acciones Correctivas}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{3.4cm} C{1.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Acción} & \textbf{Responsable} & \textbf{Hasta} \\
+\midrule
+Construir el ranking y el detalle en paralelo con la revisión de documentos & Eliseo Tarqui Ajahuana & 09/10 \\
+Completar el levantamiento de cuartos con visitas los sábados & Clyde N. Paricahua Pari & Semana 12 \\
+Revisar y firmar los documentos de planificación en las semanas de exámenes & Viviana M. Quisbert Quispe & Semana 10 \\
+Registrar las horas reales cada día en el Issue de cada tarea & Todos & Permanente \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{24\baselineskip}
+\section{Firmas}
+\noindent En señal de conformidad con el presente documento, los integrantes del equipo firman a continuación:
+
+\vspace{1.5cm}
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+\end{document}
