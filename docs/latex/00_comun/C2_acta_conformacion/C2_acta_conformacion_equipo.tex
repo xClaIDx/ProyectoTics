@@ -1,0 +1,299 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================================
+% ACTA DE CONFORMACIÓN DEL EQUIPO
+% Documento común a los proyectos CasaScore y Horus Sentinel
+% Gestión de Proyectos TICS (EST315) -- Semestre 2026-II -- Team Sobrevivientes
+% =========================================================================
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+% Compatibilidad con babel-spanish reciente (flechas de TikZ y signo de porcentaje)
+\AtBeginDocument{\shorthandoff{<>}\spanishplainpercent}
+\usepackage{geometry}
+\geometry{
+    top=3.6cm,
+    bottom=2.3cm,
+    left=2.2cm,
+    right=2.2cm,
+    % PARTE MODIFICABLE: headheight debe ser mayor que la altura del logo más alto (2.56cm = 73pt).
+    headheight=80pt,
+    headsep=15pt,
+    footskip=20pt
+}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+% Logos: funciona a 2 o 3 niveles de profundidad dentro de docs/latex/
+\graphicspath{{../../assets/img/}{../../../assets/img/}}
+
+% --- PALETA INSTITUCIONAL FIEI / UNA PUNO ---
+\definecolor{AzulUNA}{RGB}{10, 45, 90}
+\definecolor{DoradoFIEI}{RGB}{180, 130, 20}
+\definecolor{GrisOscuro}{RGB}{50, 50, 50}
+\definecolor{AzulClaro}{RGB}{228, 236, 246}
+
+% --- CONFIGURACIÓN DE LISTAS ---
+\setlist{topsep=2pt, itemsep=2pt, parsep=1pt}
+
+% --- COLUMNAS DE TABLA ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.25}
+
+% --- FORMATO DE ENLACES ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulUNA,
+    urlcolor=AzulUNA,
+    citecolor=AzulUNA,
+    pdftitle={Acta de Conformación del Equipo},
+    pdfauthor={Team Sobrevivientes}
+}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\color{AzulUNA}\normalfont\large\bfseries}{\thesection.}{0.7em}{}[\color{AzulUNA}\titlerule]
+\titleformat{\subsection}{\color{AzulUNA}\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- ENCABEZADO Y PIE DE PÁGINA (fancyhdr) ---
+\pagestyle{fancy}
+\fancyhf{}
+
+% ===== TAMAÑO DE LOS LOGOS (PARTE MODIFICABLE) =====
+% logo_fiei.png  : height=1.45cm (lado izquierdo)
+% logo_equipo.png: height=2.56cm (lado derecho; 25 % más grande porque la imagen tiene más borde blanco)
+% Para cambiar el tamaño, modifique solo el valor height=... de cada \includegraphics.
+% Si el logo más alto supera 2.6cm, aumente también headheight y top en la configuración de página.
+\fancyhead[L]{%
+    \includegraphics[height=1.45cm,keepaspectratio]{logo_fiei.png}%
+}
+\fancyhead[C]{%
+    \scriptsize \textbf{\textcolor{AzulUNA}{UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO}}\\[2pt]
+    \tiny \textcolor{GrisOscuro}{FACULTAD DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}\\[2pt]
+    \scriptsize \textbf{\textcolor{AzulUNA}{Gestión de Proyectos TICS (EST315) \textbar\ Team Sobrevivientes}}\\[2pt]
+    \footnotesize \textbf{\textcolor{DoradoFIEI}{ACTA DE CONFORMACIÓN DEL EQUIPO}}%
+}
+\fancyhead[R]{%
+    \includegraphics[height=2.56cm,keepaspectratio]{logo_equipo.png}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{}
+
+\fancyfoot[L]{\scriptsize \textcolor{GrisOscuro}{CasaScore \textperiodcentered\ Horus Sentinel}}
+\fancyfoot[C]{\small \thepage}
+\fancyfoot[R]{\scriptsize \textcolor{GrisOscuro}{Puno, Perú -- Semestre 2026-II}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+% =========================================================================
+% CABECERA DEL DOCUMENTO
+% =========================================================================
+
+\begin{center}
+    {\Large \textbf{\textcolor{AzulUNA}{ACTA DE CONFORMACIÓN DEL EQUIPO}}}\\[3pt]
+    {\normalsize \textbf{Constitución de Team Sobrevivientes para los proyectos CasaScore y Horus Sentinel}}\\[4pt]
+    \footnotesize \textbf{Fecha:} martes 01/09/2026 (semana 2) \quad \textbar\quad \textbf{Hora:} 20:00 -- 21:00 \quad \textbar\quad \textbf{Versión:} 1.0
+\end{center}
+
+\vspace{0.1cm}
+
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.8cm} L@{}}
+\toprule
+\textbf{Curso:} & Gestión de Proyectos TICS (EST315) -- Semestre 2026-II \\
+\textbf{Docente:} & Ing. Renzo Apaza Cutipa \\
+\textbf{Lugar:} & Facultad de Ingeniería Estadística e Informática -- Universidad Nacional del Altiplano de Puno \\
+\textbf{Asistentes:} & Los cuatro integrantes del equipo \\
+\textbf{Agenda:} & 1. Conformación del equipo y asignación de roles \textperiodcentered\ 2. Competencias y disponibilidad \textperiodcentered\ 3. Proyectos a desarrollar \textperiodcentered\ 4. Canales de trabajo \textperiodcentered\ 5. Compromisos y acuerdos \\
+\bottomrule
+\end{tabularx}
+
+% =========================================================================
+\section{Conformación del Equipo}
+% =========================================================================
+Los integrantes acuerdan constituir el equipo de trabajo con el nombre \textbf{Team Sobrevivientes} y asignar los siguientes roles, válidos para ambos proyectos:
+
+\vspace{0.1cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.4cm} P{3.6cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad principal} \\
+\midrule
+\textbf{Paricahua Pari, Clyde Neil} & Project Manager & Dirige ambos proyectos, aprueba entregables, representa al equipo ante el docente y firma las actas. \\
+\textbf{Apaza Solis, Ruth Karina} & Analista de Planificación & EDT, cronograma, presupuesto, tablero de control y valor ganado. \\
+\textbf{Tarqui Ajahuana, Eliseo} & Especialista Técnico / Arquitectura & Arquitectura, base de datos, algoritmos, desarrollo y pruebas del software. \\
+\textbf{Quisbert Quispe, Viviana Mary} & Gestora de Comunicación, Riesgos y Documentación & Riesgos, actas, comunicaciones y expediente documental en \LaTeX. \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Competencias del Equipo}
+% =========================================================================
+
+\subsection{Tabla de habilidades}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L C{1.35cm} C{1.35cm} C{1.35cm} C{1.35cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Habilidad} & \textbf{Uso en los proyectos} & \textbf{Clyde} & \textbf{Ruth} & \textbf{Eliseo} & \textbf{Viviana} \\
+\midrule
+Gestión de proyectos & Dirección, control del alcance y decisiones & Alta & Media & Básica & Media \\
+Planificación y costos & Cronograma, presupuesto y valor ganado & Media & Alta & Básica & Básica \\
+Estadística aplicada & Normalización, modelos de riesgo y análisis de datos & Media & Media & Media & Media \\
+Desarrollo de software & Aplicación móvil, lógica y algoritmos & Básica & Básica & Alta & Básica \\
+Bases de datos & Modelo relacional, consultas y seguridad & Básica & Básica & Alta & Básica \\
+Redacción técnica y \LaTeX & Actas, planes e informes formales & Media & Media & Básica & Alta \\
+Gestión de riesgos & Registro, análisis y respuesta & Media & Básica & Básica & Alta \\
+Comunicación y exposición & Relación con el docente y sustentaciones & Alta & Media & Media & Media \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Brechas de competencias y acciones}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{4.2cm} L P{2.8cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Brecha identificada} & \textbf{Acción acordada} & \textbf{Responsable} \\
+\midrule
+Desarrollo de software concentrado en una sola persona. & Revisión de código por otro integrante en cada Pull Request y sesiones cortas de explicación del código. & Eliseo Tarqui Ajahuana \\
+Análisis geoespacial para Horus Sentinel (mapas de calor y rutas). & Estudio guiado de mapas de densidad y cálculo de rutas sobre mapas abiertos antes del primer sprint de Horus. & Eliseo Tarqui Ajahuana \newline Ruth Karina Apaza Solis \\
+Redacción en \LaTeX\ concentrada en una sola persona. & Plantilla común con el encabezado institucional para que todos puedan redactar. & Viviana Mary Quisbert Quispe \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Disponibilidad y Asignación de Horas}
+% =========================================================================
+Cada integrante dedica \textbf{8 horas semanales a cada proyecto}, durante las semanas 2 a 17 del semestre.
+
+\vspace{0.1cm}
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}L C{2.2cm} C{2.2cm} C{2.2cm} C{2.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Integrante} & \textbf{CasaScore (h/sem)} & \textbf{Horus Sentinel (h/sem)} & \textbf{Total (h/sem)} & \textbf{Total semestre (h)} \\
+\midrule
+Clyde Neil Paricahua Pari & 8 & 8 & 16 & 256 \\
+Ruth Karina Apaza Solis & 8 & 8 & 16 & 256 \\
+Eliseo Tarqui Ajahuana & 8 & 8 & 16 & 256 \\
+Viviana Mary Quisbert Quispe & 8 & 8 & 16 & 256 \\
+\midrule
+\textbf{Equipo} & \textbf{32} & \textbf{32} & \textbf{64} & \textbf{1,024} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Reuniones ordinarias:} martes y viernes de 20:00 a 21:00, incluidas dentro de las horas asignadas.
+    \item \textbf{Carga máxima:} ningún integrante supera las 16 horas semanales en el proyecto sin acuerdo registrado en acta.
+\end{itemize}
+
+% =========================================================================
+\section{Proyectos a Desarrollar}
+% =========================================================================
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.2cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Proyecto} & \textbf{Descripción} \\
+\midrule
+\textbf{CasaScore (AlquilaPuno)} & Sistema de recomendación multicriterio de cuartos y departamentos en alquiler para estudiantes de la UNA Puno. \\
+\textbf{Horus Sentinel} & Sistema de mapeo predictivo de zonas de riesgo delictivo y sugerencia de rutas seguras. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent La forma en que continúa cada proyecto se decide en el Acta de Evaluación de Cartera.
+
+% =========================================================================
+\section{Canales de Trabajo}
+% =========================================================================
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.6cm} L P{3.0cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Canal} & \textbf{Uso} & \textbf{Administra} \\
+\midrule
+Repositorio GitHub & Código, documentos, Issues, tablero Kanban y versiones. & Ruth Karina Apaza Solis \\
+Grupo de WhatsApp & Coordinación rápida y avisos. Las decisiones se registran luego en acta. & Viviana Mary Quisbert Quispe \\
+Reuniones ordinarias & Control de avance (martes) y revisión del sprint (viernes). & Clyde Neil Paricahua Pari \\
+Correo institucional & Comunicación formal con el docente. & Clyde Neil Paricahua Pari \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Compromisos de los Integrantes}
+% =========================================================================
+Cada integrante se compromete a:
+\begin{enumerate}[leftmargin=*]
+    \item Cumplir las horas semanales asignadas y asistir a las reuniones ordinarias.
+    \item Avisar con anticipación cualquier inasistencia o retraso y revisar el acta de la reunión perdida.
+    \item Entregar sus tareas en la fecha del Issue asignado o comunicar el impedimento antes del vencimiento.
+    \item Trabajar siempre en el repositorio, respetando las ramas y la revisión por pares.
+    \item Revisar con respeto y de forma constructiva el trabajo de los demás integrantes.
+    \item Mantener la confidencialidad de los datos de usuarios y de la información interna del equipo.
+    \item Cumplir las Políticas del Proyecto y Gobernanza una vez aprobadas.
+\end{enumerate}
+
+% =========================================================================
+\section{Acuerdos}
+% =========================================================================
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.7cm} L P{3.2cm} P{2.2cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{N.\textsuperscript{o}} & \textbf{Acuerdo} & \textbf{Responsable} & \textbf{Fecha límite} \\
+\midrule
+1 & Designar a Clyde Neil Paricahua Pari como Project Manager de ambos proyectos. & Equipo & 01/09/2026 \\
+2 & Crear el repositorio GitHub con las carpetas del equipo y de cada proyecto, y el tablero Kanban. & Ruth Karina Apaza Solis & 03/09/2026 \\
+3 & Redactar y aprobar las Políticas del Proyecto y Gobernanza. & Viviana Mary Quisbert Quispe & 04/09/2026 \\
+4 & Elaborar la especificación de requerimientos de ambos proyectos. & Eliseo Tarqui Ajahuana & 04/09/2026 \\
+5 & Evaluar la cartera y decidir cómo continúa cada proyecto. & Clyde Neil Paricahua Pari & 08/09/2026 \\
+\bottomrule
+\end{tabularx}
+}
+
+% =========================================================================
+\section{Firmas}
+% =========================================================================
+\noindent En señal de conformidad, los integrantes del equipo firman la presente acta:
+
+\vspace{1.5cm}
+
+\begin{center}
+\begin{tabular}{c c c}
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Clyde Neil Paricahua Pari}\\[2pt] {\footnotesize Project Manager}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Ruth Karina Apaza Solis}\\[2pt] {\footnotesize Analista de Planificación}}
+    \\[2.0cm]
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Eliseo Tarqui Ajahuana}\\[2pt] {\footnotesize Especialista Técnico / Arquitectura}}
+    & \hspace{0.8cm} &
+    \parbox{6.5cm}{\centering \rule{6.0cm}{0.6pt}\\[5pt] \textbf{Viviana Mary Quisbert Quispe}\\[2pt] {\footnotesize Gestora de Comunicación, Riesgos y Documentación}}
+\end{tabular}
+\end{center}
+
+\end{document}
