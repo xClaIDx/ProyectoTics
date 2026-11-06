@@ -139,16 +139,17 @@
 
 \begin{document}
 \shorthandoff{<>}
+\lstset{basicstyle=\ttfamily\fontsize{6.8}{8.2}\selectfont, breaklines=false}
 \begin{center}
     {\Large \textbf{\textcolor{AzulUNA}{GUÍA DE TRABAJO DEL INTEGRANTE}}}\\[3pt]
     {\normalsize \textbf{Ruth Karina Apaza Solis -- Analista de Planificación}}\\[4pt]
-    \footnotesize \textbf{Fecha:} jueves 05/11/2026 (semana 11) \quad \textbar\quad \textbf{Repositorio:} \nolinkurl{xClaIDx/ProyectoTics} \quad \textbar\quad \textbf{Encarga:} Clyde Neil Paricahua Pari
+    \footnotesize \textbf{Fecha:} jueves 05/11/2026 (semana 11) \quad \textbar\quad \textbf{Versión:} 2.0 \quad \textbar\quad \textbf{Encarga:} Clyde N. Paricahua Pari
 \end{center}
 
 \vspace{0.1cm}
 
 \section{Propósito}
-El equipo trabaja desde ahora en el repositorio \texttt{ProyectoTics}. Esta guía indica cómo subir a ese repositorio los documentos que elaboraste, uno por uno y con su Pull Request, y cómo llevar tus tarjetas en el tablero \textit{CasaScore -- Tablero híbrido}.
+El equipo trabaja desde ahora en el repositorio \texttt{ProyectoTics}. Esta guía explica, desde cero, cómo preparar tu computadora, clonar el repositorio y subir tus documentos desde la terminal, cada uno con su rama, su commit y su Pull Request. El seguimiento de tus tareas se hace en el navegador, en el tablero \textit{CasaScore -- Tablero híbrido}.
 
 \vspace{0.1cm}
 \noindent\begin{tabularx}{\textwidth}{@{}P{3.6cm} L@{}}
@@ -156,38 +157,96 @@ El equipo trabaja desde ahora en el repositorio \texttt{ProyectoTics}. Esta guí
 \textbf{Repositorio:} & \nolinkurl{https://github.com/xClaIDx/ProyectoTics} \\
 \textbf{Tablero:} & \nolinkurl{https://github.com/users/xClaIDx/projects/1} \\
 \textbf{Tu usuario:} & \texttt{R-Karina-A-Solis} \\
-\textbf{Revisor:} & Clyde (\texttt{xClaIDx}) revisa y aprueba cada Pull Request \\
+\textbf{Revisor:} & Clyde (\texttt{xClaIDx}) revisa, aprueba y fusiona cada Pull Request \\
 \textbf{Plazo:} & PR 1 a 7 hasta el viernes 06/11; PR 8 el mismo viernes, después del corte de valor ganado \\
 \bottomrule
 \end{tabularx}
 
 \section{Lo que Recibes}
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{El archivo \texttt{paquete\_ruth.zip}}, que Clyde te envía por WhatsApp. Al descomprimirlo verás la carpeta \nolinkurl{paquete_ruth/docs/latex/} con tus 14 documentos (\texttt{.tex} y \texttt{.pdf}) ordenados en las mismas carpetas que tienen en el repositorio.
+    \item \textbf{El archivo \texttt{paquete\_ruth.zip}}, que Clyde te envía por WhatsApp. Contiene la carpeta \nolinkurl{paquete_ruth/docs/latex/} con tus 14 documentos (\texttt{.tex} y \texttt{.pdf}) en las mismas carpetas que tienen en el repositorio.
     \item \textbf{La invitación al repositorio} \texttt{ProyectoTics}, que llega a tu correo de GitHub.
     \item \textbf{Tus tarjetas en el tablero}, ya asignadas a tu usuario.
 \end{enumerate}
 
+\Needspace{20\baselineskip}
+\section{Preparación desde Cero (una sola vez)}
+
+\subsection{Instalar Git y la terminal de GitHub}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.2cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+& \textbf{Windows} & \textbf{Mac} \\
+\midrule
+Git & Descarga \textbf{Git for Windows} desde \nolinkurl{https://git-scm.com/download/win} e instálalo con las opciones por defecto. & Abre la app \textbf{Terminal} y escribe \texttt{xcode-select --install}; acepta la instalación. \\
+GitHub CLI & Descarga el instalador desde \nolinkurl{https://cli.github.com} e instálalo. & Descarga el instalador \texttt{.pkg} desde \nolinkurl{https://cli.github.com} e instálalo. \\
+Terminal que usarás & \textbf{Git Bash} (búscalo en el menú Inicio). Todos los comandos de esta guía funcionan en Git Bash. & La app \textbf{Terminal}. \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent Cierra y vuelve a abrir la terminal, y comprueba que ambos programas responden con su número de versión:
+
+\begin{lstlisting}
+git --version
+gh --version
+\end{lstlisting}
+
+\subsection{Configurar tu nombre}
+Así cada commit queda a tu nombre. Usa el correo de tu cuenta de GitHub.
+
+\begin{lstlisting}
+git config --global user.name "Ruth Karina Apaza Solis"
+git config --global user.email "tu-correo-de-github@ejemplo.com"
+git config --global init.defaultBranch main
+\end{lstlisting}
+
+\Needspace{14\baselineskip}
+\subsection{Iniciar sesión en GitHub desde la terminal}
+\begin{lstlisting}
+gh auth login
+\end{lstlisting}
+
+\noindent Responde así a cada pregunta (usa las flechas y Enter): \textbf{GitHub.com} $\rightarrow$ \textbf{HTTPS} $\rightarrow$ \textbf{Yes} (autenticar Git con tus credenciales) $\rightarrow$ \textbf{Login with a web browser}. La terminal muestra un código de 8 caracteres; pulsa Enter, se abre el navegador, pega el código y autoriza. Comprueba con:
+
+\begin{lstlisting}
+gh auth status
+\end{lstlisting}
+
 \Needspace{12\baselineskip}
-\section{Antes de Empezar (una sola vez)}
+\subsection{Aceptar la invitación al repositorio}
+Desde el navegador, en el correo de GitHub (\textbf{View invitation} $\rightarrow$ \textbf{Accept invitation}) o en \nolinkurl{https://github.com/xClaIDx/ProyectoTics/invitations}. Sin este paso, la terminal rechazará tus envíos con un error de permiso.
+
+\Needspace{16\baselineskip}
+\subsection{Clonar el repositorio y preparar tu paquete}
 \begin{enumerate}[leftmargin=*]
-    \item Acepta la invitación desde el correo (\textbf{View invitation} $\rightarrow$ \textbf{Accept invitation}) o en \nolinkurl{github.com/xClaIDx/ProyectoTics/invitations}.
-    \item Abre el repositorio y comprueba que ya existen las carpetas \nolinkurl{docs/latex/casascore/}, \nolinkurl{docs/latex/horus_sentinel/} y \nolinkurl{docs/latex/00_comun/}. Las sube Clyde antes que tú; si no las ves, avísale.
-    \item Descomprime \texttt{paquete\_ruth.zip} en tu escritorio.
-    \item Abre el tablero, filtra con \texttt{assignee:R-Karina-A-Solis} y revisa tus tarjetas.
+    \item Descomprime \texttt{paquete\_ruth.zip} con doble clic y deja la carpeta \texttt{paquete\_ruth} en tu \textbf{Escritorio}.
+    \item En la terminal, ve al Escritorio y clona el repositorio:
 \end{enumerate}
+
+\begin{lstlisting}
+cd ~/Desktop
+git clone https://github.com/xClaIDx/ProyectoTics.git
+cd ProyectoTics
+ls docs/latex
+\end{lstlisting}
+
+\noindent Debes ver las carpetas \texttt{00\_comun}, \texttt{casascore} y \texttt{horus\_sentinel}. En Windows, si tu Escritorio está en OneDrive, usa \nolinkurl{cd ~/OneDrive/Escritorio} en lugar de \nolinkurl{cd ~/Desktop}. Desde ahora, todos los comandos se escriben \textbf{dentro de la carpeta} \texttt{ProyectoTics}; el paquete queda al lado, en \nolinkurl{../paquete_ruth}.
 
 \Needspace{12\baselineskip}
 \section{Cómo se Simula el Historial}
 Cada documento conserva la fecha que tiene escrita; no se modifica ningún archivo. GitHub registrará el día real en que lo subes. Para que se sepa cuándo debió entregarse, el mensaje del commit y el título del Pull Request terminan con la fecha prevista, por ejemplo:
 
 \begin{lstlisting}
-docs(casascore-viabilidad): viabilidad y business case [fecha prevista 10/09/2026]
+docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]
 \end{lstlisting}
 
 \Needspace{24\baselineskip}
 \section{Tus Ocho Pull Requests}
-Súbelos en este orden. En cada uno, las carpetas se toman de \nolinkurl{paquete_ruth/docs/latex/} y se suben a la misma ruta dentro de \nolinkurl{docs/latex/} del repositorio.
+Súbelos en este orden. Cada carpeta se copia desde \nolinkurl{../paquete_ruth/docs/latex/} a la misma ruta dentro de \nolinkurl{docs/latex/}.
 
 \vspace{0.1cm}
 {\small
@@ -209,70 +268,188 @@ Súbelos en este orden. En cada uno, las carpetas se toman de \nolinkurl{paquete
 \end{tabularx}
 }
 
-\vspace{0.1cm}
-\noindent\textbf{Mensajes de commit:}
-
-\begin{lstlisting}
-PR 1  docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]
-PR 2  docs(casascore-edt): EDT y diccionario de ambos proyectos [fecha prevista 18/09/2026]
-PR 3  docs(casascore-equipo): plan del equipo de ambos proyectos [fecha prevista 18/09/2026]
-PR 4  docs(casascore-cronograma): cronograma de ambos proyectos [fecha prevista 18/09/2026]
-PR 5  docs(casascore-presupuesto): presupuesto de ambos proyectos [fecha prevista 18/09/2026]
-PR 6  docs(horus-control): control al corte de la semana 4 y comparacion financiera [fecha prevista 21/09/2026]
-PR 7  docs(casascore-control): control del proyecto al corte de la semana 6 [fecha prevista 02/10/2026]
-PR 8  docs(casascore-desempeno): informe de desempeno al corte de la semana 11 [fecha prevista 06/11/2026]
-\end{lstlisting}
-
 \Needspace{30\baselineskip}
-\section{Paso a Paso desde el Navegador}
-Es la forma más sencilla: no necesitas instalar nada. El ejemplo es el PR 1; los demás se hacen igual cambiando la rama, las carpetas y el mensaje.
+\section{Ciclo Completo de un Pull Request}
+Ejemplo con el PR 1. Cada bloque va precedido de lo que hace.
 
-\subsection{Crear la rama}
-\begin{enumerate}[leftmargin=*]
-    \item Entra a \nolinkurl{github.com/xClaIDx/ProyectoTics}.
-    \item Haz clic en el botón de la rama, que dice \textbf{main}, arriba a la izquierda de la lista de archivos.
-    \item Escribe \nolinkurl{docs/casascore-viabilidad} y elige \textbf{Create branch docs/casascore-viabilidad from main}. El botón ahora muestra el nombre de tu rama.
-\end{enumerate}
-
-\subsection{Subir las carpetas}
-\begin{enumerate}[leftmargin=*]
-    \item Con tu rama seleccionada, entra a \texttt{docs} $\rightarrow$ \texttt{latex} $\rightarrow$ \texttt{casascore}.
-    \item Pulsa \textbf{Add file} $\rightarrow$ \textbf{Upload files}.
-    \item Desde tu escritorio, arrastra la carpeta completa \nolinkurl{paquete_ruth/docs/latex/casascore/03_viabilidad_business_case} al recuadro. GitHub conserva la carpeta con sus dos archivos.
-    \item Abajo, en \textbf{Commit changes}, escribe el mensaje del PR 1. Deja marcada la opción \textbf{Commit directly to the docs/casascore-viabilidad branch} y pulsa \textbf{Commit changes}.
-    \item Vuelve a \nolinkurl{docs/latex/}, entra a \texttt{horus\_sentinel} (sin cambiar de rama) y repite con la carpeta \nolinkurl{horus_sentinel/03_viabilidad_business_case}. En el mensaje agrega al final ``(Horus Sentinel)''.
-\end{enumerate}
-
-\subsection{Abrir el Pull Request}
-\begin{enumerate}[leftmargin=*]
-    \item Aparecerá un aviso amarillo con el botón \textbf{Compare \& pull request}; púlsalo. Si no aparece, entra a la pestaña \textbf{Pull requests} $\rightarrow$ \textbf{New pull request} y elige tu rama.
-    \item Verifica arriba: \textbf{base: main} $\leftarrow$ \textbf{compare: docs/casascore-viabilidad}.
-    \item Título: el mismo del mensaje de commit. En la descripción copia esta plantilla:
-\end{enumerate}
-
+\vspace{0.1cm}
+\noindent\textbf{1. Partir de la versión más reciente de \texttt{main}}
 \begin{lstlisting}
-Fecha prevista: 10/09/2026 (semana 3)
-Que incluye: Viabilidad y Business Case de CasaScore y de Horus Sentinel (.tex y .pdf)
-Tarjeta del tablero: "Subir mis documentos a ProyectoTics (8 PR)" - PR 1
-Horas: 0.5
+git switch main
+git pull
 \end{lstlisting}
 
-\begin{enumerate}[leftmargin=*, resume]
-    \item A la derecha, en \textbf{Reviewers}, elige \texttt{xClaIDx}.
-    \item Pulsa \textbf{Create pull request}. No lo fusiones tú: Clyde lo revisa, lo aprueba y pulsa \textbf{Merge pull request}.
-\end{enumerate}
+\noindent\textbf{2. Crear tu rama}
+\begin{lstlisting}
+git switch -c docs/casascore-viabilidad
+\end{lstlisting}
 
-\Needspace{14\baselineskip}
-\subsection{Después de cada Pull Request}
-\begin{enumerate}[leftmargin=*]
-    \item En el tablero abre la tarjeta \textit{Subir mis documentos a ProyectoTics (8 PR)}, marca la casilla del PR y suma las horas en \textit{Horas reales}.
-    \item Si Clyde deja observaciones, entra al Pull Request, corrige en la misma rama (\textbf{Add file} $\rightarrow$ \textbf{Upload files} reemplaza el archivo) y responde el comentario.
-    \item Cuando Clyde fusione el Pull Request, la rama se puede borrar con el botón \textbf{Delete branch}.
-    \item Para el siguiente Pull Request, crea la nueva rama siempre desde \textbf{main}.
-\end{enumerate}
+\noindent\textbf{3. Copiar tus carpetas desde el paquete}
+\begin{lstlisting}
+cp -r ../paquete_ruth/docs/latex/casascore/03_viabilidad_business_case docs/latex/casascore/
+cp -r ../paquete_ruth/docs/latex/horus_sentinel/03_viabilidad_business_case docs/latex/horus_sentinel/
+\end{lstlisting}
 
-\Needspace{20\baselineskip}
-\section{Tus Tarjetas en el Tablero}
+\noindent\textbf{4. Revisar qué cambió}: deben aparecer en rojo las dos carpetas nuevas.
+\begin{lstlisting}
+git status
+\end{lstlisting}
+
+\noindent\textbf{5. Preparar y guardar el cambio (commit)}
+\begin{lstlisting}
+git add docs/latex/casascore/03_viabilidad_business_case
+git add docs/latex/horus_sentinel/03_viabilidad_business_case
+git commit -m "docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]"
+\end{lstlisting}
+
+\noindent\textbf{6. Enviar la rama a GitHub}
+\begin{lstlisting}
+git push -u origin docs/casascore-viabilidad
+\end{lstlisting}
+
+\noindent\textbf{7. Abrir el Pull Request con Clyde como revisor}
+\begin{lstlisting}
+gh pr create --base main --reviewer xClaIDx \
+  --title "docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]" \
+  --body "Fecha prevista 10/09/2026. Viabilidad y Business Case de CasaScore y Horus (.tex y .pdf). PR 1 de 8."
+\end{lstlisting}
+
+\noindent La terminal responde con el enlace del Pull Request. No lo fusiones tú: Clyde lo revisa y lo fusiona.
+
+\vspace{0.1cm}
+\noindent\textbf{8. Cuando Clyde lo fusione, volver a \texttt{main} y borrar la rama local}
+\begin{lstlisting}
+git switch main
+git pull
+git branch -d docs/casascore-viabilidad
+\end{lstlisting}
+
+\noindent No esperes a que fusione un PR para empezar el siguiente: el paso 1 siempre parte de \texttt{main}, y cada rama es independiente.
+
+\Needspace{12\baselineskip}
+\subsection{Si Clyde pide cambios}
+Vuelve a tu rama, corrige el archivo, y envía un nuevo commit; el Pull Request se actualiza solo.
+\begin{lstlisting}
+git switch docs/casascore-viabilidad
+git add docs/latex/casascore/03_viabilidad_business_case
+git commit -m "fix(casascore-viabilidad): correcciones de la revision"
+git push
+\end{lstlisting}
+
+\Needspace{12\baselineskip}
+\subsection{Ver el estado de tus Pull Requests}
+\begin{lstlisting}
+gh pr status
+gh pr list --author "@me"
+gh pr view --web
+\end{lstlisting}
+
+\Needspace{16\baselineskip}
+\section{Comandos de los PR 2 a 8}
+Cada bloque se ejecuta igual que el ciclo anterior. Después de cada uno, cuando Clyde lo fusione, haz el paso 8 con el nombre de esa rama.
+
+\vspace{0.1cm}
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 2 -- EDT (18/09/2026)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/casascore-edt
+cp -r ../paquete_ruth/docs/latex/casascore/06_edt docs/latex/casascore/
+cp -r ../paquete_ruth/docs/latex/horus_sentinel/06_edt docs/latex/horus_sentinel/
+git add docs/latex/casascore/06_edt
+git add docs/latex/horus_sentinel/06_edt
+git commit -m "docs(casascore-edt): EDT y diccionario de ambos proyectos [fecha prevista 18/09/2026]"
+git push -u origin docs/casascore-edt
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 3 -- Plan del equipo (18/09/2026)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/casascore-plan-equipo
+cp -r ../paquete_ruth/docs/latex/casascore/07_plan_equipo docs/latex/casascore/
+cp -r ../paquete_ruth/docs/latex/horus_sentinel/07_plan_equipo docs/latex/horus_sentinel/
+git add docs/latex/casascore/07_plan_equipo
+git add docs/latex/horus_sentinel/07_plan_equipo
+git commit -m "docs(casascore-plan-equipo): plan del equipo de ambos proyectos [fecha prevista 18/09/2026]"
+git push -u origin docs/casascore-plan-equipo
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 4 -- Cronograma (18/09/2026)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/casascore-cronograma
+cp -r ../paquete_ruth/docs/latex/casascore/08_cronograma docs/latex/casascore/
+cp -r ../paquete_ruth/docs/latex/horus_sentinel/08_cronograma docs/latex/horus_sentinel/
+git add docs/latex/casascore/08_cronograma
+git add docs/latex/horus_sentinel/08_cronograma
+git commit -m "docs(casascore-cronograma): cronograma de ambos proyectos [fecha prevista 18/09/2026]"
+git push -u origin docs/casascore-cronograma
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 5 -- Presupuesto (18/09/2026)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/casascore-presupuesto
+cp -r ../paquete_ruth/docs/latex/casascore/09_presupuesto docs/latex/casascore/
+cp -r ../paquete_ruth/docs/latex/horus_sentinel/09_presupuesto docs/latex/horus_sentinel/
+git add docs/latex/casascore/09_presupuesto
+git add docs/latex/horus_sentinel/09_presupuesto
+git commit -m "docs(casascore-presupuesto): presupuesto de ambos proyectos [fecha prevista 18/09/2026]"
+git push -u origin docs/casascore-presupuesto
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 6 -- Control de Horus y comparación financiera (21/09/2026)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/horus-control
+cp -r ../paquete_ruth/docs/latex/horus_sentinel/16_control_proyecto docs/latex/horus_sentinel/
+cp -r ../paquete_ruth/docs/latex/00_comun/C7_comparacion_financiera docs/latex/00_comun/
+git add docs/latex/horus_sentinel/16_control_proyecto
+git add docs/latex/00_comun/C7_comparacion_financiera
+git commit -m "docs(horus-control): control al corte de la semana 4 y comparacion financiera [fecha prevista 21/09/2026]"
+git push -u origin docs/horus-control
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 7 -- Control del proyecto CasaScore (02/10/2026)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/casascore-control
+cp -r ../paquete_ruth/docs/latex/casascore/16_control_proyecto docs/latex/casascore/
+git add docs/latex/casascore/16_control_proyecto
+git commit -m "docs(casascore-control): control del proyecto al corte de la semana 6 [fecha prevista 02/10/2026]"
+git push -u origin docs/casascore-control
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\Needspace{13\baselineskip}
+\noindent\textbf{PR 8 -- Informe de desempeño (06/11/2026, después del corte)}
+\begin{lstlisting}
+git switch main && git pull
+git switch -c docs/casascore-desempeno
+cp -r ../paquete_ruth/docs/latex/casascore/21_informe_desempeno docs/latex/casascore/
+git add docs/latex/casascore/21_informe_desempeno
+git commit -m "docs(casascore-desempeno): informe de desempeno al corte de la semana 11 [fecha prevista 06/11/2026]"
+git push -u origin docs/casascore-desempeno
+gh pr create --base main --reviewer xClaIDx --fill
+\end{lstlisting}
+
+\noindent La opción \texttt{--fill} usa el mensaje del commit como título y descripción del Pull Request.
+
+\Needspace{24\baselineskip}
+\section{Manejo del Proyecto en el Navegador}
+El tablero se usa desde \nolinkurl{https://github.com/users/xClaIDx/projects/1}. Escribe \nolinkurl{assignee:R-Karina-A-Solis} en la barra de filtro para ver solo tus tarjetas.
+
+\subsection{Qué haces con cada tarjeta}
 {\small
 \rowcolors{2}{white}{GrisFila}
 \noindent\begin{tabularx}{\textwidth}{@{}P{4.4cm} C{1.9cm} L@{}}
@@ -280,50 +457,60 @@ Horas: 0.5
 \rowcolor{AzulClaro}
 \textbf{Tarjeta} & \textbf{Estado} & \textbf{Qué haces} \\
 \midrule
-Subir mis documentos a ProyectoTics (8 PR) & Por hacer & Muévela a \textit{En Progreso} al empezar. Marca cada PR al abrirlo y pásala a \textit{Hecho} cuando Clyde fusione el PR 8. \\
-Montar el tablero híbrido & En Progreso & En la vista \textit{Tablero}, abre el menú de la columna \textit{En Progreso} $\rightarrow$ \textbf{Set limit} y pon 4; en \textit{En Revision} pon 3. Luego pásala a \textit{Hecho}. \\
+Subir mis documentos a ProyectoTics (8 PR) & Por hacer & Arrástrala a \textit{En Progreso} al empezar. Ábrela y marca la casilla de cada PR cuando lo crees. Pásala a \textit{Hecho} cuando Clyde fusione el PR 8. \\
+Montar el tablero híbrido & En Progreso & En la vista \textit{Tablero}, abre el menú (\textbf{\ldots}) de la columna \textit{En Progreso} $\rightarrow$ \textbf{Set limit} y pon 4; en \textit{En Revision} pon 3. Luego pásala a \textit{Hecho}. \\
 Corte de valor ganado semana 11 & En Progreso & El viernes 06/11 calcula PV, EV, AC, SPI y CPI con la vista \textit{Control semanal}; ese corte es el que sube el PR 8. \\
 Seguridad por fila (RLS) & En Progreso & Apoya a Eliseo con la seguridad por fila de Supabase hasta el 18/11. \\
-Viabilidad y Acta de Constitución; Cronograma y presupuesto de Horus; Control de Horus y comparación financiera; Planificación base & Hecho & Ya están cerradas. Cuando fusionen tu PR, pega el enlace del Pull Request como comentario en la tarjeta que le corresponde. \\
+Viabilidad y Acta de Constitución; Cronograma y presupuesto de Horus; Control de Horus y comparación financiera; Planificación base & Hecho & Cuando se fusione el PR de cada documento, escribe en la tarjeta un comentario con el enlace del Pull Request. \\
 \bottomrule
 \end{tabularx}
 }
 
-\vspace{0.1cm}
-\noindent\textbf{Horas:} anota en \textit{Horas reales} el tiempo de cada sesión el mismo día, en decimales (media hora $=$ 0.5).
-
-\Needspace{20\baselineskip}
-\section{Alternativa desde la Terminal}
-Si prefieres Git, haz lo mismo con estos comandos. El ejemplo es el PR 1; la carpeta \texttt{paquete\_ruth} debe estar en tu escritorio.
-
-\begin{lstlisting}
-git clone https://github.com/xClaIDx/ProyectoTics.git
-cd ProyectoTics
-git checkout main && git pull
-git checkout -b docs/casascore-viabilidad
-cp -r ~/Desktop/paquete_ruth/docs/latex/casascore/03_viabilidad_business_case docs/latex/casascore/
-cp -r ~/Desktop/paquete_ruth/docs/latex/horus_sentinel/03_viabilidad_business_case docs/latex/horus_sentinel/
-git add docs/latex/casascore/03_viabilidad_business_case docs/latex/horus_sentinel/03_viabilidad_business_case
-git commit -m "docs(casascore-viabilidad): viabilidad y business case de ambos proyectos [fecha prevista 10/09/2026]"
-git push -u origin docs/casascore-viabilidad
-\end{lstlisting}
-
-\noindent Después abre el Pull Request en GitHub como se indica en la sección anterior.
+\Needspace{12\baselineskip}
+\subsection{Acciones en la tarjeta}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Cambiar de estado:} arrastra la tarjeta a otra columna, o ábrela y cambia el campo \textit{Status}.
+    \item \textbf{Marcar un avance:} abre la tarjeta y marca la casilla de la lista en su descripción.
+    \item \textbf{Registrar horas:} en el panel derecho de la tarjeta, suma el tiempo en \textit{Horas reales}, el mismo día y en decimales (media hora $=$ 0.5).
+    \item \textbf{Dejar evidencia:} escribe un comentario abajo de la tarjeta con el enlace del Pull Request.
+    \item \textbf{Avisar un bloqueo:} escribe el motivo como comentario y avisa a Clyde por WhatsApp el mismo día.
+\end{itemize}
 
 \Needspace{16\baselineskip}
+\section{Comandos de Consulta Rápida}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{5.6cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Comando} & \textbf{Para qué sirve} \\
+\midrule
+\texttt{pwd} & Ver en qué carpeta estás; debe terminar en \texttt{ProyectoTics}. \\
+\texttt{git status} & Ver en qué rama estás y qué archivos cambiaron. \\
+\texttt{git branch} & Listar tus ramas; la actual tiene un asterisco. \\
+\texttt{git log --oneline -5} & Ver los últimos 5 commits. \\
+\texttt{git switch main \&\& git pull} & Volver a \texttt{main} y traer lo último de GitHub. \\
+\texttt{gh pr status} & Ver el estado de tus Pull Requests. \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{18\baselineskip}
 \section{Si Algo Sale Mal}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}P{5.0cm} L@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}P{5.2cm} L@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{Situación} & \textbf{Solución} \\
+\textbf{Mensaje o situación} & \textbf{Solución} \\
 \midrule
-No aparece \textbf{Add file} o dice que no tienes permiso & Aún no aceptaste la invitación al repositorio; acéptala y recarga la página. \\
-Subiste los archivos a \texttt{main} sin querer & No hagas nada más y avisa a Clyde; él lo corrige. \\
-Subiste a una carpeta equivocada & En la misma rama abre el archivo, menú \textbf{\ldots} $\rightarrow$ \textbf{Delete file}, y vuelve a subirlo en la carpeta correcta. \\
-El Pull Request dice \textit{This branch has conflicts} & Avisa a Clyde por WhatsApp con el enlace del Pull Request. \\
-No encuentras tu tarjeta en el tablero & Quita los filtros y escribe \texttt{assignee:R-Karina-A-Solis} en la barra de filtro. \\
+\texttt{fatal: not a git repository} & No estás dentro de la carpeta; escribe \nolinkurl{cd ~/Desktop/ProyectoTics}. \\
+\texttt{Permission denied} o error 403 al hacer \texttt{push} & Acepta la invitación al repositorio y vuelve a ejecutar \texttt{gh auth login}. \\
+\texttt{Author identity unknown} & Falta configurar tu nombre y correo (sección 3.2). \\
+\texttt{cp: cannot stat} & La carpeta \texttt{paquete\_ruth} no está en el Escritorio, al lado de \texttt{ProyectoTics}. \\
+\texttt{pathspec did not match} & La ruta está mal escrita; usa la tecla Tab para completarla. \\
+\texttt{rejected (fetch first)} & Ejecuta \texttt{git pull} en tu rama y vuelve a hacer \texttt{git push}. \\
+Hiciste un commit estando en \texttt{main} & No hagas \texttt{push}; avisa a Clyde y él te indica cómo moverlo a una rama. \\
 \bottomrule
 \end{tabularx}
 }
