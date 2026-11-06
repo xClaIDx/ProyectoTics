@@ -1,6 +1,12 @@
+<p align="center">
+  <img src="docs/assets/img/logo_equipo.svg" alt="Team Sobrevivientes" width="360">
+</p>
+
 # ProyectoTics — CasaScore (AlquilaPuno)
 
 Repositorio del equipo **Team Sobrevivientes** para el curso Gestión de Proyectos TICS (EST315), UNA Puno, semestre 2026-II.
+
+**CasaScore** ordena los cuartos en alquiler de Puno con un puntaje de 0 a 100, el **CASA SCORE**, según el precio, la cercanía al punto que elige el arrendatario, la seguridad, los servicios y el tipo de baño, y muestra siempre el desglose del puntaje. Para probar la web, sigue los pasos de [`src/web/README.md`](src/web/README.md).
 
 - **Project Manager:** Clyde Neil Paricahua Pari (`xClaIDx`)
 - **Analista de Planificación:** Ruth Karina Apaza Solis (`R-Karina-A-Solis`)
