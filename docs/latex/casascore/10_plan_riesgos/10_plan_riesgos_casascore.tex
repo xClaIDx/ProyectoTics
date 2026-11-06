@@ -144,7 +144,7 @@
 \begin{center}
     {\Large \textbf{\textcolor{AzulUNA}{PLAN Y REGISTRO DE RIESGOS}}}\\[3pt]
     {\normalsize \textbf{CasaScore (AlquilaPuno)}}\\[4pt]
-    \footnotesize \textbf{Fecha:} martes 22/09/2026 (semana 5) \quad \textbar\quad \textbf{Versión:} 1.0 \quad \textbar\quad \textbf{Fase:} Planificación
+    \footnotesize \textbf{Fecha:} viernes 06/11/2026 (semana 11) \quad \textbar\quad \textbf{Versión:} 1.1 \quad \textbar\quad \textbf{Fase:} Monitoreo
 \end{center}
 
 \vspace{0.1cm}
@@ -155,7 +155,8 @@
 \textbf{Proyecto:} & CasaScore (aplicación AlquilaPuno) \\
 \textbf{Responsable:} & Viviana Mary Quisbert Quispe -- Gestora de Comunicación, Riesgos y Documentación \\
 \textbf{Proceso PM4DEV:} & Gestión de riesgos \\
-\textbf{Insumos:} & Acta de Constitución, cronograma, presupuesto y registro de interesados \\
+\textbf{Insumos:} & Acta de Constitución, cronograma, presupuesto, registro de interesados e informe de desempeño al corte de la semana 11 \\
+\textbf{Versiones:} & 1.0 del 22/09/2026 (línea base) y 1.1 del 06/11/2026 (activación de R02, nuevo R08 y recalificación de R07) \\
 \bottomrule
 \end{tabularx}
 
@@ -293,6 +294,7 @@ R04 & Costos & Ruth K. Apaza Solis & 68.60 \\
 R05 & Equipo & Clyde N. Paricahua Pari & 56.08 \\
 R06 & Técnico & Eliseo Tarqui Ajahuana & \textcolor{GrisOscuro}{sin costo} \\
 R07 & Clientes & Viviana M. Quisbert Quispe & \textcolor{GrisOscuro}{sin costo} \\
+R08 & Cronograma & Ruth K. Apaza Solis & \textcolor{GrisOscuro}{sin costo} \\
 \midrule
 \rowcolor{white}\multicolumn{3}{@{}l}{\textbf{Reserva de contingencia}} & \textbf{555.40} \\
 \bottomrule
@@ -323,6 +325,34 @@ Aceptar & Se asume el riesgo y se cubre con la contingencia si ocurre. \\
     \item \textbf{Cierre de un riesgo:} cuando su causa desaparece o pasa su ventana de tiempo, se marca como cerrado.
     \item \textbf{Actualización:} el registro se versiona en el repositorio al cierre de cada fase.
 \end{itemize}
+
+\Needspace{24\baselineskip}
+\section{Seguimiento del Registro al 06/11/2026}
+Revisión de los disparadores con el corte de la semana 11 (SPI 0.87 y CPI 0.95). Las calificaciones de la versión 1.0 se mantienen como línea base para comparar.
+
+\vspace{0.1cm}
+{\footnotesize
+\setlength{\tabcolsep}{3pt}
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.75cm} P{3.0cm} C{0.6cm} C{0.6cm} C{0.95cm} C{0.95cm} L P{1.75cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{ID} & \textbf{Riesgo} & \textbf{P} & \textbf{I} & \textbf{v1.0} & \textbf{v1.1} & \textbf{Situación y respuesta} & \textbf{Estado} \\
+\midrule
+\textbf{R02} & Retraso en la migración a Supabase & 3 & 3 & \etiqueta{SevAlta}{\,6\,} & \etiqueta{SevAlta}{\,9\,} & El disparador se cumplió: el inicio de sesión no funcionaba al cierre de la semana 10 y la migración va al 40\,\% (debía ir al 89\,\%). Ruth apoya la seguridad por fila y Eliseo se concentra en el registro; el hito pasa del 10/11 al 18/11. & \etiqueta{SevAlta}{Activado} \\
+\textbf{R08} & Nuevo: si el registro en la nube no está listo, el piloto no puede hacerse en la semana 13 & 2 & 3 & -- & \etiqueta{SevAlta}{\,6\,} & Evitar: solicitud de cambio SC-02 para mover el piloto a la semana 14 (23 al 27/11), sin mover el MVP final ni el cierre. & \etiqueta{SevAlta}{Nuevo} \\
+\textbf{R01} & Pocos propietarios dispuestos a publicar & 2 & 3 & \etiqueta{SevAlta}{\,6\,} & \etiqueta{SevAlta}{\,6\,} & 10 de 15 cuartos registrados con las visitas de los sábados. Se propone una meta de 12 cuartos, suficiente para 10 arrendatarios y 5 propietarios. & \etiqueta{SevMedia}{Vigilancia} \\
+\textbf{R07} & Baja adopción en el piloto & 2 & 2 & \etiqueta{SevAlta}{\,6\,} & \etiqueta{SevMedia}{\,4\,} & 14 arrendatarios inscritos por los grupos de WhatsApp y los afiches; el impacto baja porque la muestra mínima de 10 ya está cubierta. & \etiqueta{SevMedia}{Vigilancia} \\
+\textbf{R05} & Enfermedad o ausencia de un integrante & 2 & 2 & \etiqueta{SevMedia}{\,4\,} & \etiqueta{SevMedia}{\,4\,} & Sin ausencias en el periodo. & \etiqueta{Rama4}{Sin cambio} \\
+\textbf{R06} & Límites del plan gratuito & 2 & 2 & \etiqueta{SevMedia}{\,4\,} & \etiqueta{SevMedia}{\,4\,} & Uso de Supabase menor al 10\,\% de sus límites. & \etiqueta{Rama4}{Sin cambio} \\
+\textbf{R03} & Falla o robo de un equipo & 1 & 3 & \etiqueta{SevMedia}{\,3\,} & \etiqueta{SevMedia}{\,3\,} & Sin incidentes; todo se sube a GitHub cada día. & \etiqueta{Rama4}{Sin cambio} \\
+\textbf{R04} & Alza de precios & 2 & 1 & \etiqueta{SevBaja}{\,2\,} & \etiqueta{SevBaja}{\,2\,} & El gasto en efectivo va por debajo de lo previsto. & \etiqueta{Rama4}{Sin cambio} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.1cm}
+\noindent La respuesta a R02 reasigna horas del equipo y no requiere gasto, por lo que la contingencia (S/ 555.40) sigue sin uso. R08 no suma contingencia porque se responde con un cambio de fechas.
 
 \Needspace{24\baselineskip}
 \section{Firmas}
