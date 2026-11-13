@@ -109,6 +109,7 @@
  etq/.style={font=\small\bfseries, text=GrisOscuro, fill=white, inner sep=1.5pt},
  actor/.style={draw=#1, fill=#1!10, line width=1.2pt, rounded corners=6pt, align=center, font=\large},
 }
+\newcommand{\marca}{{\Large$\square$}\,{\scriptsize Sí}\ \ {\Large$\square$}\,{\scriptsize No}}
 \newcommand{\caja}[3]{\node[draw=#1, fill=#1!10, line width=1pt, rounded corners=4pt, align=center, inner sep=5pt] #2 {#3};}
 
 
@@ -182,7 +183,7 @@
 \begin{center}
     {\Large \textbf{\textcolor{AzulUNA}{EXPEDIENTE DEL PROYECTO}}}\\[3pt]
     {\normalsize \textbf{CasaScore (AlquilaPuno)}}\\[4pt]
-    \footnotesize \textbf{Fecha:} viernes 13/11/2026 (semana 12) \quad \textbar\quad \textbf{Versión:} 1.1 \quad \textbar\quad \textbf{Avance al corte:} viernes 06/11/2026
+    \footnotesize \textbf{Fecha:} viernes 13/11/2026 (semana 12) \quad \textbar\quad \textbf{Versión:} 1.2 \quad \textbar\quad \textbf{Avance al corte:} viernes 06/11/2026
 \end{center}
 
 \section{El Proyecto en una Hoja}
@@ -208,27 +209,54 @@
 \tile{4.25}{0}{AzulUNA}{ESFUERZO}{512 h}{5 ramas y 23 paquetes}
 \tile{8.5}{0}{AzulUNA}{REQUISITOS}{9 RF + 8 RNF}{RF-01 a RF-09 en el MVP}
 \tile{12.75}{0}{AzulUNA}{PLAZO}{16 semanas}{75\,\% de terminar a tiempo}
-\tile{0}{-2.3}{Rama4}{VAN ECONÓMICO}{S/ 65,781.59}{beneficio social a 3 años}
-\tile{4.25}{-2.3}{Rama4}{PAYBACK}{0.92 años}{descontado: 1.01 años}
-\tile{8.5}{-2.3}{Rama4}{TIR ECONÓMICA}{169.9\,\%}{relación B/C de 6.92}
+\tile{0}{-2.3}{Rama4}{VAN ECONÓMICO}{S/ 82,891}{a 3 años; B/C 8.46}
+\tile{4.25}{-2.3}{Rama4}{PAYBACK}{3.6 años}{financiero; económico 0.85}
+\tile{8.5}{-2.3}{Rama4}{VAN A 10 AÑOS}{S/ 51,661}{financiero, región Puno}
 \tile{12.75}{-2.3}{Rama4}{GASTO EN EFECTIVO}{S/ 2,507.44}{S/ 626.86 por integrante}
 \end{tikzpicture}
 \end{center}
 
 \Needspace{16\baselineskip}
-\section{Objetivos y Cómo se Miden}
-{\small
-\rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.7cm} L P{4.6cm} C{1.7cm} C{1.7cm}@{}}
+\section{Jerarquía de Objetivos}
+Los objetivos se ordenan en tres niveles: el \textbf{alto} dice para qué existe el proyecto, el \textbf{intermedio} dice qué resultados entrega y el \textbf{bajo} dice qué se logra en cada iteración. Cada nivel tiene un indicador medible y un medio para verificarlo. Las casillas se marcan a mano al revisar cada objetivo.
+
+\vspace{0.1cm}
+{\footnotesize
+\setlength{\tabcolsep}{3pt}
+\noindent\begin{tabularx}{\textwidth}{@{}P{1.75cm} L P{3.4cm} P{2.1cm} C{1.0cm} C{1.9cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{N.\textsuperscript{o}} & \textbf{Objetivo específico} & \textbf{Indicador y meta} & \textbf{Fecha} & \textbf{Estado} \\
+\textbf{Nivel} & \textbf{Objetivo} & \textbf{Indicador y meta} & \textbf{Se verifica con} & \textbf{Fecha} & \textbf{Cumplido} \\
 \midrule
-O1 & Entregar el MVP de la Unidad I con motor y ranking explicado. & Ranking en 250 ms o menos; 5 cuartos de prueba en el orden esperado; 7 de 7 pruebas del motor. & 09/10 & \etiqueta{Rama4}{Cumplido} \\
-O2 & Entregar el MVP final con registro, punto de referencia y datos en la nube. & RF-01 a RF-09 aceptados; 0 errores críticos abiertos. & 04/12 & \etiqueta{SevMedia}{En curso} \\
-O3 & Lograr la satisfacción de los arrendatarios del piloto. & 80\,\% o más de 10 arrendatarios califica 4 o 5 sobre 5. & 27/11 & \etiqueta{GrisOscuro}{Piloto} \\
-O4 & Facilitar la publicación a los propietarios. & 5 propietarios publican en 10 min o menos; 80\,\% o más satisfecho. & 27/11 & \etiqueta{GrisOscuro}{Piloto} \\
-O5 & Terminar dentro del tiempo y del presupuesto. & SPI y CPI de 0.95 o más; gasto en efectivo de S/ 2,507.44 o menos. & 18/12 & \etiqueta{SevMedia}{CPI 0.95} \\
+\rowcolor{AzulUNA!12}\textbf{Alto}\newline fin & Contribuir a que los arrendatarios de la región Puno encuentren cuartos seguros, a precio justo y con reglas claras. & Ahorro de S/ 41.64 por arrendatario al año; 70\,\% de usuarios encuentra cuarto. & Encuesta anual a usuarios & 2027--2029 & \marca \\
+\rowcolor{AzulUNA!12}\textbf{Alto}\newline propósito & CasaScore validado con clientes reales y operando en la nube al cerrar 2026. & 80\,\% de satisfacción en el piloto; MVP en la nube; acta firmada. & Encuesta, URL del MVP y acta & 18/12 & \marca \\
+\midrule
+\textbf{Intermedio}\newline O1 & MVP de la Unidad I con motor y ranking explicado. & Ranking en 250 ms o menos; 7 de 7 pruebas del motor. & Informe de validación & 09/10 & \marca \\
+\textbf{Intermedio}\newline O2 & MVP final con registro, punto de referencia y nube. & RF-01 a RF-09 aceptados; 0 errores críticos. & Casos de prueba y PR & 04/12 & \marca \\
+\textbf{Intermedio}\newline O3 & Satisfacción de los arrendatarios del piloto. & 80\,\% o más de 10 arrendatarios califica 4 o 5. & Encuesta del piloto & 27/11 & \marca \\
+\textbf{Intermedio}\newline O4 & Publicación fácil para los propietarios. & 5 propietarios publican en 10 min o menos. & Registro del piloto & 27/11 & \marca \\
+\textbf{Intermedio}\newline O5 & Terminar dentro del tiempo y del presupuesto. & SPI y CPI de 0.95 o más; efectivo de S/ 2,507.44 o menos. & Informe de desempeño & 18/12 & \marca \\
+\midrule
+\textbf{Bajo} & Objetivo de cada sprint (tabla siguiente) y criterio de aceptación de cada paquete de la EDT. & Tarjeta en Hecho con evidencia y horas. & Tablero de GitHub & Semanal & -- \\
+\bottomrule
+\end{tabularx}
+}
+
+\Needspace{22\baselineskip}
+\section{Enfoques de Gestión Aplicados}
+{\footnotesize
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} L L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Enfoque} & \textbf{Qué propone} & \textbf{Cómo lo aplicamos} \\
+\midrule
+Marco lógico & Ordenar el proyecto en fin, propósito, resultados y actividades, con indicadores, medios de verificación y supuestos. & Jerarquía de objetivos de tres niveles. \\
+Gestión por resultados & Medir el avance por los resultados logrados y no por el esfuerzo. & Indicadores con semáforo cada martes (SPI, CPI y metas del producto). \\
+Ciclo de vida por fases & Avanzar por inicio, planificación, implementación, monitoreo, adaptación y cierre, con una decisión al final de cada fase. & Cinco gates (G1 a G5) aprobados por el sponsor. \\
+Restricciones del proyecto & Controlar juntos alcance, tiempo, costo y calidad con líneas base. & EDT, cronograma PERT, presupuesto con reservas y plan de calidad. \\
+Procesos de soporte & Gestionar equipo, interesados, información, riesgos y contratos. & Matriz RACI, matriz poder--interés, actas en 24 h y riesgos cada dos semanas. \\
+Gestión adaptativa & Ajustar el producto con entregas cortas y retroalimentación. & Sprints semanales, revisión con el sponsor y control de cambios. \\
 \bottomrule
 \end{tabularx}
 }
@@ -241,23 +269,23 @@ Cada sprint dura una semana (sábado a viernes) y tiene un objetivo medible que 
 {\footnotesize
 \setlength{\tabcolsep}{3.5pt}
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.9cm} C{0.8cm} L P{4.4cm} C{1.6cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.8cm} C{0.6cm} L P{3.9cm} C{1.5cm} C{1.9cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{Sprint} & \textbf{Sem.} & \textbf{Objetivo del sprint} & \textbf{Se logra si} & \textbf{Resultado} \\
+\textbf{Sprint} & \textbf{Sem.} & \textbf{Objetivo del sprint (nivel bajo)} & \textbf{Se logra si} & \textbf{Resultado} & \textbf{Cumplido} \\
 \midrule
-1 & 4 & Terminar la planificación base y avanzar el motor CASA SCORE. & Motor al 45\,\%; planificación al 95\,\%. & \etiqueta{SevAlta}{SPI 0.78} \\
-2 & 5 & Cerrar el motor y el modelo de datos; decidir sobre Horus Sentinel. & Motor con 4 criterios; acta de exclusión votada. & \etiqueta{SevAlta}{SPI 0.65} \\
-3 & 6 & Terminar la publicación de cuartos e iniciar el levantamiento. & Formulario con 4 fotos; 5 cuartos reales. & \etiqueta{SevAlta}{SPI 0.56} \\
-4 & 7 & Entregar el prototipo con ranking explicado. & Ranking de 5 cuartos en el orden esperado. & \etiqueta{Rama4}{Cumplido} \\
-5 & 8 & Sustentar la Unidad I y cerrar ranking y detalle. & Sustentación aprobada; 9 cuartos. & \etiqueta{Rama4}{Cumplido} \\
-6 & 10 & Aprobar el Plan de Dirección y preparar la nube. & Plan v1.1 firmado; proyecto Supabase creado. & \etiqueta{Rama4}{Cumplido} \\
-7 & 11 & Avanzar el registro en la nube y medir el desempeño. & Registro al 60\,\%; corte de valor ganado. & \etiqueta{SevMedia}{40\,\%} \\
-8 & 12 & Punto de referencia, convocatoria y cambio del piloto. & 10 inscritos; SC-02 votada; plan de cierre. & \etiqueta{AzulUNA}{En curso} \\
-9 & 13 & Registro e inicio de sesión con Supabase y perfil. & Inicio de sesión con RLS (18/11); 12 cuartos. & \etiqueta{GrisOscuro}{Plan} \\
-10 & 14 & Piloto con clientes reales. & 10 arrendatarios y 5 propietarios; encuesta. & \etiqueta{GrisOscuro}{Plan} \\
-11 & 15 & Corregir defectos y aceptar el MVP final. & 0 errores críticos; 14 casos de prueba; v1.0. & \etiqueta{GrisOscuro}{Plan} \\
-12 & 16 & Informe final y último corte de valor ganado. & Informe revisado; SPI y CPI finales. & \etiqueta{GrisOscuro}{Plan} \\
+1 & 4 & Terminar la planificación base y avanzar el motor CASA SCORE. & Motor al 45\,\%; planificación al 95\,\%. & \etiqueta{SevAlta}{SPI 0.78} & \marca \\
+2 & 5 & Cerrar el motor y el modelo de datos; decidir sobre Horus Sentinel. & Motor con 4 criterios; acta de exclusión votada. & \etiqueta{SevAlta}{SPI 0.65} & \marca \\
+3 & 6 & Terminar la publicación de cuartos e iniciar el levantamiento. & Formulario con 4 fotos; 5 cuartos reales. & \etiqueta{SevAlta}{SPI 0.56} & \marca \\
+4 & 7 & Entregar el prototipo con ranking explicado. & Ranking de 5 cuartos en el orden esperado. & \etiqueta{Rama4}{Cumplido} & \marca \\
+5 & 8 & Sustentar la Unidad I y cerrar ranking y detalle. & Sustentación aprobada; 9 cuartos. & \etiqueta{Rama4}{Cumplido} & \marca \\
+6 & 10 & Aprobar el Plan de Dirección y preparar la nube. & Plan v1.1 firmado; proyecto Supabase creado. & \etiqueta{Rama4}{Cumplido} & \marca \\
+7 & 11 & Avanzar el registro en la nube y medir el desempeño. & Registro al 60\,\%; corte de valor ganado. & \etiqueta{SevMedia}{40\,\%} & \marca \\
+8 & 12 & Punto de referencia, convocatoria y cambio del piloto. & 10 inscritos; SC-02 votada; plan de cierre. & \etiqueta{AzulUNA}{En curso} & \marca \\
+9 & 13 & Registro e inicio de sesión con Supabase y perfil. & Inicio de sesión con RLS (18/11); 12 cuartos. & \etiqueta{GrisOscuro}{Plan} & \marca \\
+10 & 14 & Piloto con clientes reales. & 10 arrendatarios y 5 propietarios; encuesta. & \etiqueta{GrisOscuro}{Plan} & \marca \\
+11 & 15 & Corregir defectos y aceptar el MVP final. & 0 errores críticos; 14 casos de prueba; v1.0. & \etiqueta{GrisOscuro}{Plan} & \marca \\
+12 & 16 & Informe final y último corte de valor ganado. & Informe revisado; SPI y CPI finales. & \etiqueta{GrisOscuro}{Plan} & \marca \\
 \bottomrule
 \end{tabularx}
 }
@@ -269,20 +297,20 @@ Cada sprint dura una semana (sábado a viernes) y tiene un objetivo medible que 
 \section{Requisitos del MVP}
 {\footnotesize
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{1.1cm} P{3.4cm} L C{1.8cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}C{1.1cm} P{3.2cm} L C{1.6cm} C{1.9cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{Código} & \textbf{Requisito} & \textbf{Qué hace la app} & \textbf{Estado} \\
+\textbf{Código} & \textbf{Requisito} & \textbf{Qué hace la app} & \textbf{Estado} & \textbf{Cumplido} \\
 \midrule
-RF-01 & Registro e inicio de sesión & Cuentas de arrendatario y propietario; cada rol ve sus opciones. & \etiqueta{SevMedia}{En curso} \\
-RF-02 & Publicación de cuartos & Formulario en 5 pasos con 4 fotos obligatorias. & \etiqueta{Rama4}{Hecho} \\
-RF-03 & Punto de referencia & Distancia y tiempo a pie desde el punto marcado en el mapa. & \etiqueta{Rama4}{Web} \\
-RF-04 & Prioridades & Pesos de 0 a 5 para precio, cercanía, seguridad, servicios y baño. & \etiqueta{Rama4}{Hecho} \\
-RF-05 & Normalización 0--100 & Cada criterio a una escala común (S/ 140 da 100; S/ 850 da 0). & \etiqueta{Rama4}{Hecho} \\
-RF-06 & CASA SCORE y ranking & Promedio ponderado, bonificaciones y penalizaciones, de 0 a 100. & \etiqueta{Rama4}{Hecho} \\
-RF-07 & Explicación del puntaje & Desglose de los 5 criterios, bonificaciones y penalizaciones. & \etiqueta{Rama4}{Hecho} \\
-RF-08 & Perfil y mis cuartos & Prioridades guardadas; editar u ocultar cuartos. & \etiqueta{SevMedia}{En curso} \\
-RF-09 & Datos en la nube & Usuarios, cuartos y preferencias compartidos en Supabase. & \etiqueta{SevMedia}{En curso} \\
+RF-01 & Registro e inicio de sesión & Cuentas de arrendatario y propietario; cada rol ve sus opciones. & \etiqueta{SevMedia}{En curso} & \marca \\
+RF-02 & Publicación de cuartos & Formulario en 5 pasos con 4 fotos obligatorias. & \etiqueta{Rama4}{Hecho} & \marca \\
+RF-03 & Punto de referencia & Distancia y tiempo a pie desde el punto marcado en el mapa. & \etiqueta{Rama4}{Web} & \marca \\
+RF-04 & Prioridades & Pesos de 0 a 5 para precio, cercanía, seguridad, servicios y baño. & \etiqueta{Rama4}{Hecho} & \marca \\
+RF-05 & Normalización 0--100 & Cada criterio a una escala común (S/ 140 da 100; S/ 850 da 0). & \etiqueta{Rama4}{Hecho} & \marca \\
+RF-06 & CASA SCORE y ranking & Promedio ponderado, bonificaciones y penalizaciones, de 0 a 100. & \etiqueta{Rama4}{Hecho} & \marca \\
+RF-07 & Explicación del puntaje & Desglose de los 5 criterios, bonificaciones y penalizaciones. & \etiqueta{Rama4}{Hecho} & \marca \\
+RF-08 & Perfil y mis cuartos & Prioridades guardadas; editar u ocultar cuartos. & \etiqueta{SevMedia}{En curso} & \marca \\
+RF-09 & Datos en la nube & Usuarios, cuartos y preferencias compartidos en Supabase. & \etiqueta{SevMedia}{En curso} & \marca \\
 \bottomrule
 \end{tabularx}
 }
@@ -355,6 +383,8 @@ RF-09 & Datos en la nube & Usuarios, cuartos y preferencias compartidos en Supab
 \foreach \i in {0,...,5} {\draw[->, >=Stealth, thick, AzulUNA] (2.6+\i*\W+1.5,0) -- (2.6+\i*\W+\W-1.5,0);}
 \end{tikzpicture}
 \end{grande}
+\vspace{0.3cm}
+{\large\noindent \textbf{Concepto.} El mapa del servicio (\textit{service blueprint}) muestra un recorrido del cliente en cuatro capas: lo que hace el cliente, lo que ve, lo que el sistema hace por detrás y quién da soporte. La línea de interacción separa al cliente de la app; la línea de visibilidad separa lo que el cliente ve de lo que no ve. Sirve para encontrar dónde puede fallar la experiencia: por ejemplo, si el motor no responde, el arrendatario no ve el ranking.}
 \end{hojah}
 
 \begin{hojah}{Diagrama de Flujo: el Arrendatario Busca un Cuarto}
@@ -393,6 +423,8 @@ RF-09 & Datos en la nube & Usuarios, cuartos y preferencias compartidos en Supab
 \draw[fle] (wsp) -- (fin);
 \end{tikzpicture}
 \end{grande}
+\vspace{0.3cm}
+{\large\noindent \textbf{Concepto.} Un diagrama de flujo representa un proceso paso a paso: el óvalo marca el inicio y el fin, el rectángulo una acción y el rombo una decisión con dos salidas (sí o no). Este flujo es la base de las pruebas de aceptación: cada camino del diagrama es un caso que el piloto debe recorrer sin errores.}
 \end{hojah}
 
 \begin{hojah}{Diagrama de Flujo: el Propietario Publica un Cuarto}
@@ -497,6 +529,8 @@ RF-09 & Datos en la nube & Usuarios, cuartos y preferencias compartidos en Supab
 \draw[->, dashed, thick] (u6.east) -- node[etq, sloped, below, pos=0.55]{\guillemotleft include\guillemotright} (u5.south west);
 \end{tikzpicture}
 \end{grande}
+\vspace{0.3cm}
+{\large\noindent \textbf{Concepto.} El diagrama de casos de uso de UML muestra qué puede hacer cada actor con el sistema, sin entrar en cómo se programa. \guillemotleft include\guillemotright\ indica un paso que siempre ocurre dentro de otro (ver el ranking siempre calcula el CASA SCORE); \guillemotleft extend\guillemotright\ indica un paso opcional (la vista previa del puntaje al publicar).}
 \end{hojah}
 
 \begin{hojah}{UML: Diagrama de Clases}
@@ -523,6 +557,8 @@ RF-09 & Datos en la nube & Usuarios, cuartos y preferencias compartidos en Supab
 \draw[->, thick] (mot.south) -- node[etq, right]{produce} (des.north);
 \end{tikzpicture}
 \end{grande}
+\vspace{0.3cm}
+{\large\noindent \textbf{Concepto.} El diagrama de clases muestra las entidades del sistema con sus datos (atributos) y lo que pueden hacer (métodos), y cómo se relacionan: 1 a 1, 1 a muchos (*) o muchos a muchos. Es la base del modelo de datos de 8 tablas de la base de datos.}
 \end{hojah}
 
 \begin{hojah}{UML: Diagrama de Secuencia del Ranking}
@@ -692,6 +728,8 @@ I8 & Proveedores de servicios: revisión mensual de límites & 3, 1 \\
 \end{tabularx}
 }
 \end{minipage}
+\vspace{0.3cm}
+{\large\noindent \textbf{Concepto.} Un interesado es toda persona u organización que influye en el proyecto o es afectada por él. La matriz poder--interés define cuánta atención recibe cada uno: a los de alto poder y alto interés se les gestiona de cerca (participan en decisiones y pruebas), y a los de bajo poder y bajo interés solo se les monitorea.}
 \end{hojah}
 
 \begin{hojah}{Estructura de Desglose del Trabajo (EDT)}
@@ -1014,10 +1052,11 @@ I8 & Proveedores de servicios: revisión mensual de límites & 3, 1 \\
 \begin{hojah}{Tablero de Indicadores al 06/11/2026}
 \begin{grande}
 \begin{tikzpicture}
-\newcommand{\kpi}[6]{\node[draw=#3, fill=#3!9, line width=1.4pt, rounded corners=5pt, minimum width=5.4cm, minimum height=3.0cm] at (#1,#2) {};
-\node[font=\small\bfseries, text=GrisOscuro] at (#1,#2+0.95) {#4};
-\node[font=\Huge\bfseries, text=#3] at (#1,#2+0.05) {#5};
-\node[font=\small, text=GrisOscuro, text width=5.0cm, align=center] at (#1,#2-0.95) {#6};}
+\newcommand{\kpi}[6]{\node[draw=#3, fill=#3!9, line width=1.4pt, rounded corners=5pt, minimum width=5.4cm, minimum height=3.3cm] at (#1,#2) {};
+\node[font=\footnotesize\bfseries, text=GrisOscuro] at (#1,#2+1.15) {#4};
+\node[font=\Huge\bfseries, text=#3] at (#1,#2+0.3) {#5};
+\node[font=\small, text=GrisOscuro, text width=5.0cm, align=center] at (#1,#2-0.55) {#6};
+\node[font=\small, fill=white, inner sep=1.5pt] at (#1,#2-1.25) {cumple: \marca};}
 \node[font=\Large\bfseries, text=AzulUNA, anchor=west] at (-2.7,2.2) {Cronograma y costo};
 \kpi{0}{0}{RaciR}{SPI = EV / PV}{0.87}{rojo; era 0.56 en la semana 6}
 \kpi{5.8}{0}{Rama4}{CPI = EV / AC}{0.95}{verde en el límite}
@@ -1065,113 +1104,280 @@ I8 & Proveedores de servicios: revisión mensual de límites & 3, 1 \\
 {\large\noindent La contingencia cubre los riesgos conocidos y la usa el Project Manager; la reserva de gestión cubre lo imprevisto y solo se libera con un cambio aprobado por el sponsor. De los S/ 12,829.82, solo S/ 2,507.44 salen del bolsillo del equipo; el resto valoriza el tiempo y los equipos.}
 \end{hojah}
 
-\begin{hojah}{Ingresos de la App: Modelo de Negocio}
-\begin{minipage}[c]{12.4cm}
+\begin{hojah}{Costo por Integrante}
+\begin{minipage}[c]{8.8cm}
 \begin{adjustbox}{width=\linewidth}
 \begin{tikzpicture}[font=\large]
-\foreach \v/\l in {0/0,2/2\,000,4/4\,000,6/6\,000,8/8\,000,10/10\,000} {\draw[gray!25] (0,\v*1000*0.00105) -- (13.5,\v*1000*0.00105); \node[anchor=east, font=\normalsize] at (-0.1,\v*1000*0.00105) {\l};}
-\draw[line width=1pt] (0,0) -- (13.5,0);
-\fill[Rama2] (1.00,0.0000) rectangle (3.40,1.2049);
-\fill[DoradoFIEI] (1.00,1.2049) rectangle (3.40,2.1499);
-\fill[RaciR] (1.00,2.1499) rectangle (3.40,2.4746);
-\fill[Rama4] (1.00,2.4746) rectangle (3.40,2.5525);
-\fill[Rama5] (1.00,2.5525) rectangle (3.40,2.5962);
-\node[font=\large\bfseries, text=white, below] at (2.20,2.5962) {2,472.61};
-\draw[RaciR, line width=2pt, dashed] (0.60,5.2845) -- (3.80,5.2845);
-\node[font=\normalsize\bfseries, text=RaciR, above left] at (3.80,5.2845) {costo 5,033};
-\node[font=\large\bfseries, below] at (2.20,-0.1) {Año 1 (2027)};
-\fill[Rama2] (5.30,0.0000) rectangle (7.70,2.4097);
-\fill[DoradoFIEI] (5.30,2.4097) rectangle (7.70,4.2997);
-\fill[RaciR] (5.30,4.2997) rectangle (7.70,4.9492);
-\fill[Rama4] (5.30,4.9492) rectangle (7.70,5.1050);
-\fill[Rama5] (5.30,5.1050) rectangle (7.70,5.1925);
-\node[font=\large\bfseries, text=white, below] at (6.50,5.1925) {4,945.22};
-\draw[RaciR, line width=2pt, dashed] (4.90,7.5214) -- (8.10,7.5214);
-\node[font=\normalsize\bfseries, text=RaciR, above left] at (8.10,7.5214) {costo 7,163};
-\node[font=\large\bfseries, below] at (6.50,-0.1) {Año 2 (2028)};
-\fill[Rama2] (9.60,0.0000) rectangle (12.00,4.8195);
-\fill[DoradoFIEI] (9.60,4.8195) rectangle (12.00,8.5995);
-\fill[RaciR] (9.60,8.5995) rectangle (12.00,9.8983);
-\fill[Rama4] (9.60,9.8983) rectangle (12.00,10.2100);
-\fill[Rama5] (9.60,10.2100) rectangle (12.00,10.3850);
-\node[font=\large\bfseries, text=white, below] at (10.80,10.3850) {9,890.43};
-\draw[RaciR, line width=2pt, dashed] (9.20,10.5062) -- (12.40,10.5062);
-\node[font=\normalsize\bfseries, text=RaciR, above left] at (12.40,10.5062) {costo 10,006};
-\node[font=\large\bfseries, below] at (10.80,-0.1) {Año 3 (2029)};
+\draw[gray!25] (0,0.000) -- (14,0.000); \node[anchor=east, font=\normalsize] at (-0.1,0.000) {0};
+\draw[gray!25] (0,4.200) -- (14,4.200); \node[anchor=east, font=\normalsize] at (-0.1,4.200) {1,000};
+\draw[gray!25] (0,8.400) -- (14,8.400); \node[anchor=east, font=\normalsize] at (-0.1,8.400) {2,000};
+\draw[gray!25] (0,12.600) -- (14,12.600); \node[anchor=east, font=\normalsize] at (-0.1,12.600) {3,000};
+\fill[Rama2] (0.60,0.000) rectangle (2.80,7.629);
+\fill[Rama3] (0.60,7.629) rectangle (2.80,9.488);
+\fill[Rama5] (0.60,9.488) rectangle (2.80,10.393);
+\fill[Rama4] (0.60,10.393) rectangle (2.80,13.025);
+\node[font=\large\bfseries, above] at (1.70,13.025) {3,101.30};
+\node[font=\normalsize\bfseries, below] at (1.70,-0.1) {Clyde};
+\fill[Rama2] (4.00,0.000) rectangle (6.20,6.102);
+\fill[Rama3] (4.00,6.102) rectangle (6.20,7.589);
+\fill[Rama5] (4.00,7.589) rectangle (6.20,8.494);
+\fill[Rama4] (4.00,8.494) rectangle (6.20,11.127);
+\node[font=\large\bfseries, above] at (5.10,11.127) {2,649.17};
+\node[font=\normalsize\bfseries, below] at (5.10,-0.1) {Ruth};
+\fill[Rama2] (7.40,0.000) rectangle (9.60,6.715);
+\fill[Rama3] (7.40,6.715) rectangle (9.60,8.351);
+\fill[Rama5] (7.40,8.351) rectangle (9.60,9.498);
+\fill[Rama4] (7.40,9.498) rectangle (9.60,12.131);
+\node[font=\large\bfseries, above] at (8.50,12.131) {2,888.34};
+\node[font=\normalsize\bfseries, below] at (8.50,-0.1) {Eliseo};
+\fill[Rama2] (10.80,0.000) rectangle (13.00,5.494);
+\fill[Rama3] (10.80,5.494) rectangle (13.00,6.833);
+\fill[Rama5] (10.80,6.833) rectangle (13.00,7.738);
+\fill[Rama4] (10.80,7.738) rectangle (13.00,10.371);
+\node[font=\large\bfseries, above] at (11.90,10.371) {2,469.26};
+\node[font=\normalsize\bfseries, below] at (11.90,-0.1) {Viviana};
 \end{tikzpicture}
 \end{adjustbox}
-{\small \textcolor{Rama2}{\rule{10pt}{10pt}}~Suscripción por cuarto \quad \textcolor{DoradoFIEI}{\rule{10pt}{10pt}}~Anunciantes locales \quad \textcolor{RaciR}{\rule{10pt}{10pt}}~Publicidad en internet\\ \textcolor{Rama4}{\rule{10pt}{10pt}}~Anuncios recompensados \quad \textcolor{Rama5}{\rule{10pt}{10pt}}~Versión Premium \quad \textcolor{RaciR}{\rule[2pt]{14pt}{1.5pt}}~Costo de operación}
+{\small \textcolor{Rama2}{\rule{9pt}{9pt}}~128 h regulares \quad \textcolor{Rama3}{\rule{9pt}{9pt}}~24 h extra\\ \textcolor{Rama5}{\rule{9pt}{9pt}}~Equipos \quad \textcolor{Rama4}{\rule{9pt}{9pt}}~Efectivo}
 \end{minipage}\hfill
-\begin{minipage}[c]{10.8cm}
-{\small
-\setlength{\tabcolsep}{3pt}
+\begin{minipage}[c]{14.4cm}
+{\footnotesize
+\setlength{\tabcolsep}{2.5pt}
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\linewidth}{@{}P{2.6cm} L Q{1.25cm}@{}}
+\noindent\begin{tabularx}{\linewidth}{@{}L P{2.3cm} Q{0.8cm} Q{1.4cm} Q{1.3cm} Q{1.2cm} Q{1.3cm} Q{1.5cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{Fuente} & \textbf{Supuesto} & \textbf{Año 1} \\
+\textbf{Integrante} & \textbf{Rol} & \textbf{S/ h} & \textbf{128 h} & \textbf{Extra} & \textbf{Equipos} & \textbf{Efectivo} & \textbf{Total} \\
 \midrule
-Suscripción por cuarto & S/ 5 al mes por cuarto; 270 cuartos-mes & 1,147.50 \\
-Anunciantes locales & 5 negocios de Puno $\times$ S/ 15 al mes & 900.00 \\
-\textbf{Publicidad en internet} & \textbf{Banners de una red de anuncios en la web y la app: 30 páginas por usuario al mes, US\$ 0.50 por 1,000 impresiones} & \textbf{309.24} \\
-Anuncios recompensados & 2 videos por usuario al mes; US\$ 1.8 por 1,000 & 74.22 \\
-Versión Premium & 2\,\% de usuarios $\times$ S/ 4.90 & 41.65 \\
+Clyde N. Paricahua Pari & Project Manager & 14.19 & 1,816.32 & 442.73 & 215.39 & 626.86 & \textbf{3,101.30} \\
+Ruth K. Apaza Solis & Analista de Planificación & 11.35 & 1,452.80 & 354.12 & 215.39 & 626.86 & \textbf{2,649.17} \\
+Eliseo Tarqui Ajahuana & Especialista Técnico & 12.49 & 1,598.72 & 389.69 & 273.07 & 626.86 & \textbf{2,888.34} \\
+Viviana M. Quisbert Quispe & Gestora de Comunicación & 10.22 & 1,308.16 & 318.86 & 215.38 & 626.86 & \textbf{2,469.26} \\
 \midrule
-\rowcolor{white}\textbf{Ingresos} & 500, 1,000 y 2,000 usuarios al mes & \textbf{2,472.61} \\
-\rowcolor{white}\textbf{Costos de operación} & Mantenimiento, moderación, base de datos y difusión & \textbf{5,032.83} \\
+\rowcolor{white}\textbf{Total} & 512 h & & \textbf{6,176.00} & \textbf{1,505.40} & \textbf{919.23} & \textbf{2,507.44} & \textbf{11,108.07} \\
 \bottomrule
 \end{tabularx}
 }
 
 \vspace{0.25cm}
-{\normalsize\noindent La publicidad en internet paga por impresiones y no cambia el ranking: los banners van en espacios fijos, separados de los cuartos. Aun así, en los tres primeros años los ingresos no cubren la operación, por eso el reto es mantener el producto sin gastar más de lo que genera mientras crecen los usuarios.}
+{\normalsize\noindent\textbf{Cómo se calcula.} Tarifa por hora $=$ sueldo de mercado $/$ 192 h $\times$ 1.09 (EsSalud). Cada integrante dedica 128 horas regulares y 24 horas extra en 6 jornadas nocturnas (sobretasa de 25\,\% y 35\,\%). Los equipos son la depreciación de su laptop al 25\,\% anual (y del celular de pruebas para el Especialista Técnico). Las horas y los equipos se \textbf{valorizan}: no se pagan, pero muestran cuánto cuesta realmente el proyecto. El \textbf{efectivo} sí sale del bolsillo: S/ 626.86 por integrante para alimentación, salud, servicios, transporte, licencia y piloto.}
 \end{minipage}
 \end{hojah}
 
-\begin{hojah}{Rentabilidad y Payback}
-\begin{minipage}[c]{13.6cm}
-\begin{adjustbox}{width=\linewidth}
-\begin{tikzpicture}[x=4.2cm, y=0.075cm, font=\large]
-\foreach \v in {-20,0,20,40,60,80} {\draw[gray!25] (0,\v) -- (3,\v); \node[anchor=east, font=\normalsize] at (-0.03,\v) {\v};}
-\draw[line width=1.2pt] (0,0) -- (3.05,0);
-\foreach \a in {0,1,2,3} {\node[font=\normalsize\bfseries] at (\a,-26) {Año \a};}
-\node[rotate=90, font=\normalsize\bfseries] at (-0.33,30) {Miles de soles acumulados};
-\draw[Rama4, line width=2.6pt] (0,-11.108) -- (1,0.906) -- (2,27.836) -- (3,86.016);
-\draw[AzulUNA, line width=2.6pt, dashed] (0,-11.108) -- (1,-0.186) -- (2,22.070) -- (3,65.782);
-\foreach \x/\y in {0/-11.108,1/0.906,2/27.836,3/86.016} {\fill[Rama4] (\x,\y) circle (3pt);}
-\foreach \x/\y in {1/-0.186,2/22.070,3/65.782} {\fill[AzulUNA] (\x,\y) circle (3pt);}
-\node[right, font=\normalsize\bfseries, text=Rama4] at (3.02,86.02) {86.02};
-\node[right, font=\normalsize\bfseries, text=AzulUNA] at (3.02,65.78) {65.78};
-\node[left, font=\normalsize\bfseries, text=Rama4] at (-0.02,-11.1) {$-$11.11};
-\fill[RaciR] (0.92,0) circle (4pt); \fill[RaciR] (1.01,0) circle (4pt);
-\draw[RaciR, line width=1.2pt, ->, >=Stealth] (0.62,22) node[above, font=\normalsize\bfseries, text=RaciR, align=center]{payback simple 0.92 años\\descontado 1.01 años} -- (0.92,1.5);
+\begin{hojah}{Ingresos de la App a 10 Años: Región Puno}
+\begin{grande}[10.6cm]
+\begin{tikzpicture}[font=\large]
+\draw[gray!25] (0,0.000) -- (22.4,0.000); \node[anchor=east, font=\normalsize] at (-0.1,0.000) {0};
+\draw[gray!25] (0,2.600) -- (22.4,2.600); \node[anchor=east, font=\normalsize] at (-0.1,2.600) {10,000};
+\draw[gray!25] (0,5.200) -- (22.4,5.200); \node[anchor=east, font=\normalsize] at (-0.1,5.200) {20,000};
+\draw[gray!25] (0,7.800) -- (22.4,7.800); \node[anchor=east, font=\normalsize] at (-0.1,7.800) {30,000};
+\draw[gray!25] (0,10.400) -- (22.4,10.400); \node[anchor=east, font=\normalsize] at (-0.1,10.400) {40,000};
+\fill[Rama2] (0.40,0.0000) rectangle (1.90,0.5850);
+\fill[RaciR] (0.40,0.5850) rectangle (1.90,0.6654);
+\fill[DoradoFIEI] (0.40,0.6654) rectangle (1.90,0.8994);
+\fill[Rama4] (0.40,0.8994) rectangle (1.90,0.9187);
+\fill[Rama5] (0.40,0.9187) rectangle (1.90,0.9295);
+\node[font=\large\bfseries, above] at (1.15,0.9295) {3,575};
+\node[font=\normalsize\bfseries, below] at (1.15,-0.05) {2027};
+\node[font=\normalsize, below] at (1.15,-0.5) {500 usu.};
+\fill[Rama2] (2.60,0.0000) rectangle (4.10,1.5666);
+\fill[RaciR] (2.60,1.5666) rectangle (4.10,1.7819);
+\fill[DoradoFIEI] (2.60,1.7819) rectangle (4.10,2.2640);
+\fill[Rama4] (2.60,2.2640) rectangle (4.10,2.3157);
+\fill[Rama5] (2.60,2.3157) rectangle (4.10,2.3447);
+\node[font=\large\bfseries, above] at (3.35,2.3447) {9,018};
+\node[font=\normalsize\bfseries, below] at (3.35,-0.05) {2028};
+\node[font=\normalsize, below] at (3.35,-0.5) {1,300 usu.};
+\fill[Rama2] (4.80,0.0000) rectangle (6.30,2.6066);
+\fill[RaciR] (4.80,2.6066) rectangle (6.30,2.9649);
+\fill[DoradoFIEI] (4.80,2.9649) rectangle (6.30,3.7096);
+\fill[Rama4] (4.80,3.7096) rectangle (6.30,3.7956);
+\fill[Rama5] (4.80,3.7956) rectangle (6.30,3.8439);
+\node[font=\large\bfseries, above] at (5.55,3.8439) {14,784};
+\node[font=\normalsize\bfseries, below] at (5.55,-0.05) {2029};
+\node[font=\normalsize, below] at (5.55,-0.5) {2,100 usu.};
+\fill[Rama2] (7.00,0.0000) rectangle (8.50,3.7076);
+\fill[RaciR] (7.00,3.7076) rectangle (8.50,4.2172);
+\fill[DoradoFIEI] (7.00,4.2172) rectangle (8.50,5.2400);
+\fill[Rama4] (7.00,5.2400) rectangle (8.50,5.3623);
+\fill[Rama5] (7.00,5.3623) rectangle (8.50,5.4309);
+\node[font=\large\bfseries, above] at (7.75,5.4309) {20,888};
+\node[font=\normalsize\bfseries, below] at (7.75,-0.05) {2030};
+\node[font=\normalsize, below] at (7.75,-0.5) {2,900 usu.};
+\fill[Rama2] (9.20,0.0000) rectangle (10.70,4.7406);
+\fill[RaciR] (9.20,4.7406) rectangle (10.70,5.3922);
+\fill[DoradoFIEI] (9.20,5.3922) rectangle (10.70,6.4457);
+\fill[Rama4] (9.20,6.4457) rectangle (10.70,6.6020);
+\fill[Rama5] (9.20,6.6020) rectangle (10.70,6.6898);
+\node[font=\large\bfseries, above] at (9.95,6.6898) {25,730};
+\node[font=\normalsize\bfseries, below] at (9.95,-0.05) {2031};
+\node[font=\normalsize, below] at (9.95,-0.5) {3,600 usu.};
+\fill[Rama2] (11.40,0.0000) rectangle (12.90,5.4254);
+\fill[RaciR] (11.40,5.4254) rectangle (12.90,6.1711);
+\fill[DoradoFIEI] (11.40,6.1711) rectangle (12.90,7.2562);
+\fill[Rama4] (11.40,7.2562) rectangle (12.90,7.4351);
+\fill[Rama5] (11.40,7.4351) rectangle (12.90,7.5355);
+\node[font=\large\bfseries, above] at (12.15,7.5355) {28,983};
+\node[font=\normalsize\bfseries, below] at (12.15,-0.05) {2032};
+\node[font=\normalsize, below] at (12.15,-0.5) {4,000 usu.};
+\fill[Rama2] (13.60,0.0000) rectangle (15.10,5.5882);
+\fill[RaciR] (13.60,5.5882) rectangle (15.10,6.3562);
+\fill[DoradoFIEI] (13.60,6.3562) rectangle (15.10,7.4738);
+\fill[Rama4] (13.60,7.4738) rectangle (15.10,7.6582);
+\fill[Rama5] (13.60,7.6582) rectangle (15.10,7.7616);
+\node[font=\large\bfseries, above] at (14.35,7.7616) {29,852};
+\node[font=\normalsize\bfseries, below] at (14.35,-0.05) {2033};
+\node[font=\normalsize, below] at (14.35,-0.5) {4,000 usu.};
+\fill[Rama2] (15.80,0.0000) rectangle (17.30,5.7558);
+\fill[RaciR] (15.80,5.7558) rectangle (17.30,6.5469);
+\fill[DoradoFIEI] (15.80,6.5469) rectangle (17.30,7.6981);
+\fill[Rama4] (15.80,7.6981) rectangle (17.30,7.8879);
+\fill[Rama5] (15.80,7.8879) rectangle (17.30,7.9945);
+\node[font=\large\bfseries, above] at (16.55,7.9945) {30,748};
+\node[font=\normalsize\bfseries, below] at (16.55,-0.05) {2034};
+\node[font=\normalsize, below] at (16.55,-0.5) {4,000 usu.};
+\fill[Rama2] (18.00,0.0000) rectangle (19.50,5.9285);
+\fill[RaciR] (18.00,5.9285) rectangle (19.50,6.7433);
+\fill[DoradoFIEI] (18.00,6.7433) rectangle (19.50,7.9290);
+\fill[Rama4] (18.00,7.9290) rectangle (19.50,8.1245);
+\fill[Rama5] (18.00,8.1245) rectangle (19.50,8.2343);
+\node[font=\large\bfseries, above] at (18.75,8.2343) {31,670};
+\node[font=\normalsize\bfseries, below] at (18.75,-0.05) {2035};
+\node[font=\normalsize, below] at (18.75,-0.5) {4,000 usu.};
+\fill[Rama2] (20.20,0.0000) rectangle (21.70,6.1063);
+\fill[RaciR] (20.20,6.1063) rectangle (21.70,6.9456);
+\fill[DoradoFIEI] (20.20,6.9456) rectangle (21.70,8.1669);
+\fill[Rama4] (20.20,8.1669) rectangle (21.70,8.3683);
+\fill[Rama5] (20.20,8.3683) rectangle (21.70,8.4813);
+\node[font=\large\bfseries, above] at (20.95,8.4813) {32,620};
+\node[font=\normalsize\bfseries, below] at (20.95,-0.05) {2036};
+\node[font=\normalsize, below] at (20.95,-0.5) {4,000 usu.};
+\draw[black, line width=2pt, dashed] (1.15,1.3085) -- (3.35,2.0747) -- (5.55,2.4898) -- (7.75,2.7971) -- (9.95,3.0206) -- (12.15,3.1359) -- (14.35,3.1359) -- (16.55,3.1359) -- (18.75,3.1359) -- (20.95,3.1359);
+\node[font=\large\bfseries, anchor=west] at (21.80,3.1359) {costo de operación};
 \end{tikzpicture}
-\end{adjustbox}
-{\normalsize \textcolor{Rama4}{\rule{18pt}{3pt}}~Flujo económico acumulado \quad \textcolor{AzulUNA}{\rule{18pt}{3pt}}~Acumulado descontado al 10\,\%}
-\end{minipage}\hfill
-\begin{minipage}[c]{9.3cm}
-{\normalsize
+\end{grande}
+{\small\noindent \textcolor{Rama2}{\rule{9pt}{9pt}}~Suscripción por cuarto publicado \quad \textcolor{RaciR}{\rule{9pt}{9pt}}~Publicidad general en internet \quad \textcolor{DoradoFIEI}{\rule{9pt}{9pt}}~Anunciantes locales \quad \textcolor{Rama4}{\rule{9pt}{9pt}}~Anuncios recompensados \quad \textcolor{Rama5}{\rule{9pt}{9pt}}~Versión Premium \quad \textcolor{black}{\rule[2pt]{14pt}{1.5pt}}~Costo de operación}
+
+\vspace{0.15cm}
+{\small
+\setlength{\tabcolsep}{3pt}
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\linewidth}{@{}L Q{2.9cm}@{}}
+\noindent\begin{tabularx}{\linewidth}{@{}P{4.4cm} L Q{1.7cm} Q{1.7cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{Indicador} & \textbf{Resultado} \\
+\textbf{Fuente de ingreso} & \textbf{Supuesto (precios suben 3\,\% al año)} & \textbf{Año 1} & \textbf{Año 10} \\
+\midrule
+Suscripción por cuarto publicado & 1 cuarto publicado por cada 10 usuarios activos; 75\,\% de los propietarios paga S/ 5 al mes & 2,250.00 & 23,485.92 \\
+Publicidad general en internet & Anuncios de marcas en la web y la app, como en cualquier página: 30 páginas por usuario al mes y US\$ 0.50 por 1,000 impresiones & 309.24 & 3,227.90 \\
+Anunciantes locales & 5 negocios por ciudad al inicio y 10 cuando la ciudad pasa de 1,000 usuarios; S/ 15 al mes & 900.00 & 4,697.18 \\
+Anuncios recompensados y Premium & 2 videos por usuario al mes (US\$ 1.8 por 1,000) y 2\,\% de usuarios paga S/ 4.90 & 115.87 & 1,209.45 \\
+\bottomrule
+\end{tabularx}
+}
+\end{hojah}
+
+\begin{hojah}{Rentabilidad a Tres Años}
+\begin{minipage}[c]{13.2cm}
+\begin{adjustbox}{width=\linewidth}
+\begin{tikzpicture}[x=4.2cm, y=0.06cm, font=\large]
+\foreach \v in {-20,0,20,40,60,80,100,120} {\draw[gray!25] (0,\v) -- (3,\v); \node[anchor=east, font=\normalsize] at (-0.03,\v) {\v};}
+\draw[line width=1.2pt] (0,0) -- (3.05,0);
+\foreach \a in {0,1,2,3} {\node[font=\normalsize\bfseries] at (\a,-28) {Año \a};}
+\node[rotate=90, font=\normalsize\bfseries] at (-0.36,50) {Miles de soles acumulados};
+\draw[Rama4, line width=2.6pt] (0,-11.108) -- (1,2.008) -- (2,40.939) -- (3,107.358);
+\draw[AzulUNA, line width=2.6pt, dashed] (0,-11.108) -- (1,0.816) -- (2,32.990) -- (3,82.891);
+\draw[RaciR, line width=2.6pt, dotted] (0,-11.108) -- (1,-12.566) -- (2,-11.528) -- (3,-6.320);
+\node[right, font=\normalsize\bfseries, text=Rama4] at (3.02,107.358) {107.4};
+\node[right, font=\normalsize\bfseries, text=AzulUNA] at (3.02,82.891) {82.9};
+\node[right, font=\normalsize\bfseries, text=RaciR] at (3.02,-6.320) {-6.3};
+\fill[RaciR] (0.85,0) circle (4pt);
+\draw[RaciR, line width=1.2pt, ->, >=Stealth] (0.55,30) node[above, font=\normalsize\bfseries, text=RaciR, align=center]{payback económico\\0.85 años} -- (0.85,2);
+\end{tikzpicture}
+\end{adjustbox}
+{\small \textcolor{Rama4}{\rule{16pt}{3pt}}~Económico acumulado \quad \textcolor{AzulUNA}{\rule{16pt}{3pt}}~Económico descontado (10\,\%)\\ \textcolor{RaciR}{\rule{16pt}{3pt}}~Financiero acumulado}
+\end{minipage}\hfill
+\begin{minipage}[c]{9.8cm}
+{\normalsize
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\linewidth}{@{}L Q{2.6cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Indicador (3 años)} & \textbf{Resultado} \\
 \midrule
 Inversión (año 0) & S/ 11,108.07 \\
-Flujo económico del año 1 & S/ 12,013.78 \\
-\textbf{Payback simple} & \textbf{0.92 años} \\
-Payback descontado & 1.01 años \\
-VAN económico (10\,\%) & S/ +65,781.59 \\
-TIR económica & 169.9\,\% \\
-Relación beneficio/costo & 6.92 \\
-ROI a 3 años & 774.4\,\% \\
-VAN financiero & S/ $-$15,355.40 \\
+Flujo económico del año 1 & S/ 13,116.28 \\
+\textbf{Payback económico} & \textbf{0.85 años} \\
+VAN económico (10\,\%) & S/ +82,891.36 \\
+TIR económica & 200.7\,\% \\
+Relación beneficio/costo & 8.46 \\
+VAN financiero a 3 años & S/ $-$7,662.35 \\
+Flujo financiero anual & desde el año 2 \\
 \bottomrule
 \end{tabularx}
 }
 
-\vspace{0.3cm}
-{\normalsize\noindent\textbf{Cómo se calcula:} payback = inversión / flujo del año 1 = 11,108.07 / 12,013.78 = \textbf{0.92 años}, unos 11 meses. El flujo económico suma al flujo de la app el beneficio para los arrendatarios: S/ 41.64 por persona al año (350, 700 y 1,400 personas). Sin ese beneficio el VAN es negativo: es un proyecto de valor social.}
+\vspace{0.25cm}
+{\normalsize\noindent\textbf{Conceptos.} El \textbf{VAN} trae a hoy los flujos futuros con una tasa de 10\,\% y les resta la inversión: si es positivo, el proyecto crea valor. La \textbf{TIR} es la tasa que hace cero el VAN. El \textbf{payback} es el tiempo para recuperar la inversión. El flujo \textbf{financiero} solo cuenta el dinero de la app; el \textbf{económico} suma el beneficio para los arrendatarios: S/ 41.64 al año por cada persona que encuentra cuarto (70\,\% de los usuarios activos). En 3 años la app aún no recupera la inversión con su propio dinero, aunque desde el año 2 ya gana más de lo que gasta.}
+\end{minipage}
+\end{hojah}
+
+\begin{hojah}{Ganancias contra Costos a 10 Años: Región Puno o Expansión}
+\begin{minipage}[c]{14.6cm}
+\begin{adjustbox}{width=\linewidth}
+\begin{tikzpicture}[font=\large]
+\draw[gray!25] (0,0.000) -- (20.6,0.000); \node[anchor=east, font=\Large] at (-0.1,0.000) {0};
+\draw[gray!25] (0,4.400) -- (20.6,4.400); \node[anchor=east, font=\Large] at (-0.1,4.400) {20,000};
+\draw[gray!25] (0,8.800) -- (20.6,8.800); \node[anchor=east, font=\Large] at (-0.1,8.800) {40,000};
+\draw[gray!25] (0,13.200) -- (20.6,13.200); \node[anchor=east, font=\Large] at (-0.1,13.200) {60,000};
+\draw[gray!25] (0,17.600) -- (20.6,17.600); \node[anchor=east, font=\Large] at (-0.1,17.600) {80,000};
+\draw[Rama4, line width=2.6pt] (0.50,0.787) -- (2.70,1.984) -- (4.90,3.253) -- (7.10,4.595) -- (9.30,5.661) -- (11.50,6.376) -- (13.70,6.568) -- (15.90,6.765) -- (18.10,6.967) -- (20.30,7.176);
+\draw[Rama4, line width=2.2pt, dashed] (0.50,1.107) -- (2.70,1.756) -- (4.90,2.107) -- (7.10,2.367) -- (9.30,2.556) -- (11.50,2.653) -- (13.70,2.653) -- (15.90,2.653) -- (18.10,2.653) -- (20.30,2.653);
+\draw[AzulUNA, line width=2.6pt] (0.50,0.787) -- (2.70,1.984) -- (4.90,3.253) -- (7.10,5.326) -- (9.30,7.696) -- (11.50,10.433) -- (13.70,12.528) -- (15.90,14.496) -- (18.10,16.226) -- (20.30,17.173);
+\draw[AzulUNA, line width=2.2pt, dashed] (0.50,1.107) -- (2.70,1.756) -- (4.90,2.107) -- (7.10,2.544) -- (9.30,2.964) -- (11.50,3.324) -- (13.70,3.517) -- (15.90,3.698) -- (18.10,3.807) -- (20.30,3.853);
+\node[font=\Large\bfseries, below] at (0.50,-0.05) {2027};
+\node[font=\Large\bfseries, below] at (2.70,-0.05) {2028};
+\node[font=\Large\bfseries, below] at (4.90,-0.05) {2029};
+\node[font=\Large\bfseries, below] at (7.10,-0.05) {2030};
+\node[font=\Large\bfseries, below] at (9.30,-0.05) {2031};
+\node[font=\Large\bfseries, below] at (11.50,-0.05) {2032};
+\node[font=\Large\bfseries, below] at (13.70,-0.05) {2033};
+\node[font=\Large\bfseries, below] at (15.90,-0.05) {2034};
+\node[font=\Large\bfseries, below] at (18.10,-0.05) {2035};
+\node[font=\Large\bfseries, below] at (20.30,-0.05) {2036};
+\node[font=\LARGE\bfseries, anchor=west, text=AzulUNA] at (20.50,17.173) {ingresos expansión 78,061};
+\node[font=\LARGE\bfseries, anchor=west, text=AzulUNA] at (20.50,4.103) {costos expansión 17,513};
+\node[font=\LARGE\bfseries, anchor=west, text=Rama4] at (20.50,7.176) {ingresos región Puno 32,620};
+\node[font=\LARGE\bfseries, anchor=west, text=Rama4] at (20.50,2.353) {costos región Puno 12,061};
+\draw[RaciR, line width=1.2pt, dashed] (2.70,0) -- (2.70,4.400) node[above, font=\LARGE\bfseries, text=RaciR, align=center]{la operación deja\\ganancia desde 2028};
+\end{tikzpicture}
+\end{adjustbox}
+{\small \textcolor{Rama4}{\rule{16pt}{3pt}}~Región Puno (Puno y Juliaca) \quad \textcolor{AzulUNA}{\rule{16pt}{3pt}}~Expansión (más Cusco, Arequipa y Tacna)\\ Línea llena: ingresos. Línea discontinua: costos de operación.}
+\end{minipage}\hfill
+\begin{minipage}[c]{8.6cm}
+{\small
+\setlength{\tabcolsep}{3pt}
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\linewidth}{@{}L Q{1.9cm} Q{1.9cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{A 10 años (2027--2036)} & \textbf{Región Puno} & \textbf{Expansión} \\
+\midrule
+Usuarios al mes (año 10) & 4,000 & 9,500 \\
+Ingresos del año 10 & 32,620 & 78,061 \\
+Costos del año 10 & 12,061 & 17,513 \\
+\textbf{VAN financiero} & \textbf{51,661} & \textbf{123,772} \\
+TIR financiera & 44.7\,\% & 59.1\,\% \\
+\textbf{Payback financiero} & \textbf{3.6 años} & \textbf{3.5 años} \\
+Payback descontado & 4.1 años & 3.9 años \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.2cm}
+{\small\noindent\textbf{Lectura.} Los dos escenarios son rentables en 10 años con el dinero de la app: la inversión del semestre se recupera en unos 3.5 años (4 años si se descuenta al 10\,\%). Quedarse en la región Puno es más seguro (los usuarios llegan al tope de 2,000 por ciudad en 2032); expandirse duplica el VAN, pero exige difusión y moderación en cada ciudad nueva. La decisión recomendada es consolidar Puno y Juliaca hasta 2029 y expandirse solo si se cumplen las metas de usuarios.}
+
+\vspace{0.1cm}
+{\footnotesize\noindent\textbf{Supuestos:} usuarios por ciudad crecen 400 al año hasta 2,000 (1,500 en Tacna), según la migración estudiantil a cada ciudad; precios +3\,\% al año; costos con las mismas tarifas del plan, crecen con los usuarios y con cada ciudad; tasa de 10\,\%.}
 \end{minipage}
 \end{hojah}
 
@@ -1268,24 +1474,27 @@ SC-03 & 13/11 & Bajar la meta de 15 a 12 cuartos para el piloto & Alcance (R01) 
 \section{Calidad del Producto}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}P{3.6cm} L C{2.4cm} C{2.2cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.4cm} L C{2.2cm} C{1.4cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{ISO/IEC 25010:2023} & \textbf{Métrica} & \textbf{Meta} & \textbf{Hoy} \\
+\textbf{ISO/IEC 25010:2023} & \textbf{Métrica} & \textbf{Meta} & \textbf{Hoy} & \textbf{Cumplido} \\
 \midrule
-Adecuación funcional & Requisitos aceptados y desglose correcto & 100\,\% & 6 de 9 \\
-Eficiencia de desempeño & Tiempo del ranking con 500 cuartos & $\le$ 250 ms & Cumple \\
-Capacidad de interacción & Tiempo para publicar sin ayuda; satisfacción & $\le$ 10 min; $\ge$ 80\,\% & Piloto \\
-Fiabilidad & Errores críticos abiertos al entregar & 0 & Piloto \\
-Seguridad & Accesos indebidos entre roles & 0 & Con RLS \\
-Mantenibilidad & Pruebas automáticas del motor & 7 de 7 & 12 de 12 \\
-Flexibilidad & Funciona en Android 10 y en uno reciente & 2 de 2 & Piloto \\
+Adecuación funcional & Requisitos aceptados y desglose correcto & 100\,\% & 6 de 9 & \marca \\
+Eficiencia de desempeño & Tiempo del ranking con 500 cuartos & $\le$ 250 ms & Cumple & \marca \\
+Capacidad de interacción & Tiempo para publicar sin ayuda; satisfacción & $\le$ 10 min; $\ge$ 80\,\% & Piloto & \marca \\
+Fiabilidad & Errores críticos abiertos al entregar & 0 & Piloto & \marca \\
+Seguridad & Accesos indebidos entre roles & 0 & Con RLS & \marca \\
+Mantenibilidad & Pruebas automáticas del motor & 7 de 7 & 12 de 12 & \marca \\
+Flexibilidad & Funciona en Android 10 y en uno reciente & 2 de 2 & Piloto & \marca \\
 \bottomrule
 \end{tabularx}
 }
 
 \vspace{0.1cm}
 {\small\noindent Hoy pasan 12 pruebas automáticas del motor CASA SCORE y del cálculo de distancia. Cada Pull Request lo revisa un integrante distinto al autor y la web se instala desde cero con \texttt{git clone}, \texttt{npm install} y \texttt{npm run dev}.}
+
+\vspace{0.1cm}
+{\small\noindent\textbf{Concepto.} La calidad se \textbf{planifica} (qué métricas y metas), se \textbf{asegura} (revisando el proceso: revisión de código y de documentos) y se \textbf{controla} (midiendo el producto: pruebas y encuesta). ISO/IEC 25010 es la norma internacional que define las características de calidad de un software; elegimos las siete que importan a CasaScore.}
 
 \Needspace{40\baselineskip}
 \section{Lista de Verificación de Entregables}
@@ -1294,51 +1503,51 @@ Flexibilidad & Funciona en Android 10 y en uno reciente & 2 de 2 & Piloto \\
 {\footnotesize
 \setlength{\tabcolsep}{3pt}
 \rowcolors{2}{white}{GrisFila}
-\begin{longtable}{@{}C{0.7cm} C{0.8cm} >{\raggedright\arraybackslash}p{6.2cm} P{2.6cm} C{1.5cm} P{3.4cm}@{}}
+\begin{longtable}{@{}C{0.8cm} >{\raggedright\arraybackslash}p{5.3cm} P{1.6cm} C{1.5cm} P{3.2cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-& \textbf{N.\textsuperscript{o}} & \textbf{Entregable} & \textbf{Responsable} & \textbf{Fecha} & \textbf{Evidencia en GitHub} \\
+\textbf{N.\textsuperscript{o}} & \textbf{Entregable} & \textbf{Responsable} & \textbf{Fecha} & \textbf{Evidencia en GitHub} & \textbf{Cumplido} \\
 \midrule
 \endfirsthead
 \toprule
 \rowcolor{AzulClaro}
-& \textbf{N.\textsuperscript{o}} & \textbf{Entregable} & \textbf{Responsable} & \textbf{Fecha} & \textbf{Evidencia en GitHub} \\
+\textbf{N.\textsuperscript{o}} & \textbf{Entregable} & \textbf{Responsable} & \textbf{Fecha} & \textbf{Evidencia en GitHub} & \textbf{Cumplido} \\
 \midrule
 \endhead
-\ok & C1 & Políticas y gobernanza del equipo & Viviana & 04/09 & PR \#10 \\
-\ok & C2 & Acta de conformación del equipo & Viviana & 01/09 & PR \#9 \\
-\ok & C6 & Acta de compromiso del equipo & Clyde & 09/09 & commit 3b78d13 \\
-\ok & 01 & Ficha técnica & Clyde & 02/09 & commit c20617f \\
-\ok & 02 & Especificación de requerimientos & Eliseo & 04/09 & PR \#14 \\
-\ok & 03 & Viabilidad y caso de negocio & Ruth & 10/09 & PR \#1 \\
-\ok & 04 & Acta de Constitución & Clyde & 11/09 & commit c20617f \\
-\ok & 05 & Registro de interesados & Clyde & 18/09 & commit c20617f \\
-\ok & 06 & EDT y diccionario & Ruth & 18/09 & PR \#2 \\
-\ok & 07 & Plan del equipo & Ruth & 18/09 & PR \#3 \\
-\ok & 08 & Cronograma & Ruth & 18/09 & PR \#4 \\
-\ok & 09 & Presupuesto & Ruth & 18/09 & PR \#5 \\
-\ok & 10 & Plan y registro de riesgos (versión 1.1) & Viviana & 22/09 y 06/11 & PR \#11 y commit fdbba86 \\
-\ok & 11 & Plan de calidad & Eliseo & 22/09 & PR \#15 \\
-\ok & 12 & Plan de comunicaciones & Viviana & 22/09 & PR \#12 \\
-\ok & 13 & Plan de contratos & Eliseo & 22/09 & PR \#16 \\
-\ok & 14 & Arquitectura técnica & Eliseo & 22/09 & PR \#17 \\
-\ok & 15 & Actas de los sprints 1 a 5 & Viviana & 16/10 & PR \#13 \\
-\ok & 16 & Control del proyecto & Ruth & 02/10 & PR \#7 \\
-\ok & 17 & Producto e informe de validación & Eliseo & 09/10 & PR \#18 y \#19 \\
-\ok & 18 & Sustentación de la Unidad I & Clyde & 16/10 & commit 2ea9619 \\
-\ok & 19 & Guía de marcos de referencia & Clyde & 20/10 & commit 2ea9619 \\
-\ok & 20 & Plan de Dirección y su resumen & Clyde & 26/10 & commit 2ea9619 \\
-\ok & 21 & Informe de desempeño & Ruth & 06/11 & PR \#8 \\
-\ok & -- & App web con ranking, mapa y publicación & Eliseo & 06/11 & PR \#20 \\
-\ok & 00 & Expediente del proyecto (resumen gráfico) & Clyde & 09/11 & carpeta 00\_expediente \\
-\ok & 29 & Bosquejo del cierre del proyecto & Clyde & 13/11 & carpeta 29\_bosquejo\_cierre \\
-\pend & 22 & Registro de adaptación & Clyde & 13/11 & -- \\
-\pend & 23 & Plan de cierre y lecciones aprendidas & Viviana & 13/11 & -- \\
-\pend & 24 & Informe de auditoría y calidad & Eliseo & 27/11 & -- \\
-\pend & 25 & Informe de integración de procesos & Clyde & 27/11 & -- \\
-\pend & 26 & Manuales y versión 1.0 del MVP & Eliseo & 04/12 & -- \\
-\pend & 27 & Informe final y exposición & Clyde & 14/12 & -- \\
-\pend & 28 & Acta de cierre & Clyde & 18/12 & -- \\
+C1 & Políticas y gobernanza del equipo & Viviana & 04/09 & PR \#10 & \marca \\
+C2 & Acta de conformación del equipo & Viviana & 01/09 & PR \#9 & \marca \\
+C6 & Acta de compromiso del equipo & Clyde & 09/09 & commit 3b78d13 & \marca \\
+01 & Ficha técnica & Clyde & 02/09 & commit c20617f & \marca \\
+02 & Especificación de requerimientos & Eliseo & 04/09 & PR \#14 & \marca \\
+03 & Viabilidad y caso de negocio & Ruth & 10/09 & PR \#1 & \marca \\
+04 & Acta de Constitución & Clyde & 11/09 & commit c20617f & \marca \\
+05 & Registro de interesados & Clyde & 18/09 & commit c20617f & \marca \\
+06 & EDT y diccionario & Ruth & 18/09 & PR \#2 & \marca \\
+07 & Plan del equipo & Ruth & 18/09 & PR \#3 & \marca \\
+08 & Cronograma & Ruth & 18/09 & PR \#4 & \marca \\
+09 & Presupuesto & Ruth & 18/09 & PR \#5 & \marca \\
+10 & Plan y registro de riesgos (versión 1.1) & Viviana & 22/09 y 06/11 & PR \#11 y commit fdbba86 & \marca \\
+11 & Plan de calidad & Eliseo & 22/09 & PR \#15 & \marca \\
+12 & Plan de comunicaciones & Viviana & 22/09 & PR \#12 & \marca \\
+13 & Plan de contratos & Eliseo & 22/09 & PR \#16 & \marca \\
+14 & Arquitectura técnica & Eliseo & 22/09 & PR \#17 & \marca \\
+15 & Actas de los sprints 1 a 5 & Viviana & 16/10 & PR \#13 & \marca \\
+16 & Control del proyecto & Ruth & 02/10 & PR \#7 & \marca \\
+17 & Producto e informe de validación & Eliseo & 09/10 & PR \#18 y \#19 & \marca \\
+18 & Sustentación de la Unidad I & Clyde & 16/10 & commit 2ea9619 & \marca \\
+19 & Guía de marcos de referencia & Clyde & 20/10 & commit 2ea9619 & \marca \\
+20 & Plan de Dirección y su resumen & Clyde & 26/10 & commit 2ea9619 & \marca \\
+21 & Informe de desempeño & Ruth & 06/11 & PR \#8 & \marca \\
+-- & App web con ranking, mapa y publicación & Eliseo & 06/11 & PR \#20 & \marca \\
+00 & Expediente del proyecto (resumen gráfico) & Clyde & 09/11 & carpeta 00\_expediente & \marca \\
+29 & Bosquejo del cierre del proyecto & Clyde & 13/11 & carpeta 29\_bosquejo\_cierre & \marca \\
+22 & Registro de adaptación & Clyde & 13/11 & -- & \marca \\
+23 & Plan de cierre y lecciones aprendidas & Viviana & 13/11 & -- & \marca \\
+24 & Informe de auditoría y calidad & Eliseo & 27/11 & -- & \marca \\
+25 & Informe de integración de procesos & Clyde & 27/11 & -- & \marca \\
+26 & Manuales y versión 1.0 del MVP & Eliseo & 04/12 & -- & \marca \\
+27 & Informe final y exposición & Clyde & 14/12 & -- & \marca \\
+28 & Acta de cierre & Clyde & 18/12 & -- & \marca \\
 \bottomrule
 \end{longtable}
 }
@@ -1347,19 +1556,22 @@ Flexibilidad & Funciona en Android 10 y en uno reciente & 2 de 2 & Piloto \\
 \section{Lista de Verificación de Gates}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.7cm} C{0.9cm} L C{1.8cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.9cm} L C{1.5cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-& \textbf{Gate} & \textbf{Condición para pasar} & \textbf{Fecha} \\
+\textbf{Gate} & \textbf{Condición para pasar} & \textbf{Fecha} & \textbf{Cumplido} \\
 \midrule
-\ok & G1 & Acta de Constitución aprobada con objetivos medibles y líneas base iniciales. & 11/09 \\
-\ok & G2 & MVP de la Unidad I con 5 cuartos en el orden esperado y 7 pruebas aprobadas. & 09/10 \\
-\pend & G3 & Registro en la nube funcionando y piloto realizado con 10 arrendatarios y 5 propietarios. & 27/11 \\
-\pend & G4 & RF-01 a RF-09 aceptados, 0 errores críticos y 14 casos de prueba aprobados. & 04/12 \\
-\pend & G5 & Informe final expuesto, lecciones aprendidas y acta de cierre firmada. & 18/12 \\
+G1 & Acta de Constitución aprobada con objetivos medibles y líneas base iniciales. & 11/09 & \marca \\
+G2 & MVP de la Unidad I con 5 cuartos en el orden esperado y 7 pruebas aprobadas. & 09/10 & \marca \\
+G3 & Registro en la nube funcionando y piloto realizado con 10 arrendatarios y 5 propietarios. & 27/11 & \marca \\
+G4 & RF-01 a RF-09 aceptados, 0 errores críticos y 14 casos de prueba aprobados. & 04/12 & \marca \\
+G5 & Informe final expuesto, lecciones aprendidas y acta de cierre firmada. & 18/12 & \marca \\
 \bottomrule
 \end{tabularx}
 }
+
+\vspace{0.15cm}
+{\small\noindent\textbf{Concepto.} Un \textbf{gate} es un punto de decisión al final de una fase: el sponsor revisa el entregable contra su condición y decide si el proyecto pasa a la siguiente fase, corrige o se detiene. Así se controla un proyecto por fases sin esperar al final para saber si va bien.}
 
 \vspace{0.15cm}
 {\small\noindent\textbf{Definición de terminado:} una tarea pasa a Hecho cuando cumple su criterio de aceptación, otro integrante la revisó, su evidencia (commit o Pull Request) está enlazada en la tarjeta y sus horas reales están registradas.}
@@ -1370,10 +1582,11 @@ El proyecto del semestre es la fase 1 de un producto pensado para tres años o m
 \begin{grande}[12.6cm]
 \begin{tikzpicture}[>=Stealth]
 \newcommand{\paso}[6]{
-\node[draw=#4, fill=#4!10, line width=1.3pt, rounded corners=6pt, minimum width=5.6cm, minimum height=4.4cm] (#1) at (#2) {};
+\node[draw=#4, fill=#4!10, line width=1.3pt, rounded corners=6pt, minimum width=5.6cm, minimum height=4.6cm] (#1) at (#2) {};
 \node[circle, fill=#4, text=white, font=\Large\bfseries, minimum size=0.9cm] at ($(#2)+(-2.25,1.7)$) {#3};
 \node[font=\large\bfseries, text=#4, anchor=west, text width=4.3cm] at ($(#2)+(-1.7,1.7)$) {#5};
-\node[font=\large, text width=5.1cm, align=left] at ($(#2)+(0,-0.4)$) {#6};}
+\node[font=\large, text width=5.1cm, align=left] at ($(#2)+(0,-0.3)$) {#6};
+\node[font=\normalsize, fill=white, inner sep=1.5pt] at ($(#2)+(0,-1.85)$) {\marca};}
 \paso{a}{0,0}{1}{AzulUNA}{Verificar\\entregables}{Cada entregable contra su criterio de aceptación. \textbf{Hoy:} 21 de 28 documentos y MVP en la nube.}
 \paso{b}{6.0,0}{2}{AzulUNA}{Aceptación formal}{Votación del sponsor en el gate G5 y acta de cierre firmada. \textbf{Fecha:} 18/12.}
 \paso{c}{12.0,0}{3}{AzulUNA}{Cerrar contratos}{Términos de los planes gratuitos revisados y cuenta de Google Play definida. \textbf{Fecha:} 11/12.}
@@ -1474,13 +1687,13 @@ R12 & No se define quién opera el producto en el año 1. & 2 & 3 & \etiqueta{Se
 \begin{grande}[12.4cm]
 \begin{tikzpicture}[>=Stealth]
 \draw[line width=3pt, AzulUNA, ->] (0,0) -- (24.2,0);
-\foreach \x/\t/\c/\s/\d in {0.3/2026-II: fase 1/RaciR/{Proyecto del semestre}/{MVP en la nube, piloto con compañeros y clientes, expediente y cierre}, 6.3/2027: año 1/Rama4/{Operación en Puno}/{500 usuarios al mes, app en Google Play, suscripción de S/ 5 por cuarto y publicidad local y en internet}, 12.3/2028: año 2/Rama2/{Crecimiento}/{1,000 usuarios al mes, Juliaca, calificaciones y reportes de publicaciones}, 18.3/2029: año 3/Rama5/{Expansión}/{2,000 usuarios al mes y llegada a Cusco y Arequipa}} {
+\foreach \x/\t/\c/\s/\d in {0.3/2026-II: fase 1/RaciR/{Proyecto del semestre}/{MVP en la nube, piloto con compañeros y clientes, expediente y cierre}, 6.3/2027: año 1/Rama4/{Operación en Puno}/{500 usuarios al mes, app en Google Play, suscripción de S/ 5 por cuarto y publicidad local y en internet}, 12.3/2028: año 2/Rama2/{Crecimiento}/{1,300 usuarios al mes, llegada a Juliaca, calificaciones y reportes de publicaciones}, 18.3/2029: año 3/Rama5/{Consolidación}/{2,100 usuarios al mes en la región Puno; desde 2030, Cusco, Arequipa y Tacna si se cumplen las metas}} {
   \node[circle, fill=\c, minimum size=0.6cm] at (\x+2.6,0) {};
   \node[fill=\c, text=white, font=\large\bfseries, minimum width=5.4cm, minimum height=0.9cm, anchor=south west] at (\x,0.6) {\t};
   \node[draw=\c, fill=\c!8, line width=1.2pt, text width=5.0cm, align=left, font=\normalsize, anchor=north west, minimum height=4.0cm] at (\x,-0.6) {\textbf{\s}\\[3pt]\d};}
 \node[font=\large\bfseries, text=RaciR, align=center] at (2.9,3.0) {Se cierra en diciembre};
 \draw[RaciR, line width=1.4pt, dashed] (5.95,-5.0) -- (5.95,3.3);
-\node[font=\normalsize, text width=23cm, align=left, anchor=north west] at (0,-5.3) {Beneficio esperado para los arrendatarios: S/ 14,574 (año 1), S/ 29,148 (año 2) y S/ 58,296 (año 3). VAN económico de S/ 65,781.59 y payback de 0.92 años desde el inicio de la operación.};
+\node[font=\normalsize, text width=23cm, align=left, anchor=north west] at (0,-5.3) {Beneficio esperado para los arrendatarios: S/ 14,574 (año 1), S/ 37,892 (año 2) y S/ 61,211 (año 3). VAN económico a 3 años de S/ 82,891; con su propio dinero la app recupera la inversión en 3.6 años y a 10 años tiene un VAN financiero de S/ 51,661.};
 \end{tikzpicture}
 \end{grande}
 \end{hojah}
