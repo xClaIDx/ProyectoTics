@@ -208,9 +208,9 @@
 \tile{4.25}{0}{AzulUNA}{ESFUERZO}{512 h}{5 ramas y 23 paquetes}
 \tile{8.5}{0}{AzulUNA}{REQUISITOS}{9 RF + 8 RNF}{RF-01 a RF-09 en el MVP}
 \tile{12.75}{0}{AzulUNA}{PLAZO}{16 semanas}{75\,\% de terminar a tiempo}
-\tile{0}{-2.3}{Rama4}{VAN ECONÓMICO}{S/ 64,059.98}{beneficio social a 3 años}
-\tile{4.25}{-2.3}{Rama4}{PAYBACK}{0.95 años}{descontado: 1.02 años}
-\tile{8.5}{-2.3}{Rama4}{TIR ECONÓMICA}{166.5\,\%}{relación B/C de 6.77}
+\tile{0}{-2.3}{Rama4}{VAN ECONÓMICO}{S/ 65,781.59}{beneficio social a 3 años}
+\tile{4.25}{-2.3}{Rama4}{PAYBACK}{0.92 años}{descontado: 1.01 años}
+\tile{8.5}{-2.3}{Rama4}{TIR ECONÓMICA}{169.9\,\%}{relación B/C de 6.92}
 \tile{12.75}{-2.3}{Rama4}{GASTO EN EFECTIVO}{S/ 2,507.44}{S/ 626.86 por integrante}
 \end{tikzpicture}
 \end{center}
@@ -1065,6 +1065,69 @@ I8 & Proveedores de servicios: revisión mensual de límites & 3, 1 \\
 {\large\noindent La contingencia cubre los riesgos conocidos y la usa el Project Manager; la reserva de gestión cubre lo imprevisto y solo se libera con un cambio aprobado por el sponsor. De los S/ 12,829.82, solo S/ 2,507.44 salen del bolsillo del equipo; el resto valoriza el tiempo y los equipos.}
 \end{hojah}
 
+\begin{hojah}{Ingresos de la App: Modelo de Negocio}
+\begin{minipage}[c]{12.4cm}
+\begin{adjustbox}{width=\linewidth}
+\begin{tikzpicture}[font=\large]
+\foreach \v/\l in {0/0,2/2\,000,4/4\,000,6/6\,000,8/8\,000,10/10\,000} {\draw[gray!25] (0,\v*1000*0.00105) -- (13.5,\v*1000*0.00105); \node[anchor=east, font=\normalsize] at (-0.1,\v*1000*0.00105) {\l};}
+\draw[line width=1pt] (0,0) -- (13.5,0);
+\fill[Rama2] (1.00,0.0000) rectangle (3.40,1.2049);
+\fill[DoradoFIEI] (1.00,1.2049) rectangle (3.40,2.1499);
+\fill[RaciR] (1.00,2.1499) rectangle (3.40,2.4746);
+\fill[Rama4] (1.00,2.4746) rectangle (3.40,2.5525);
+\fill[Rama5] (1.00,2.5525) rectangle (3.40,2.5962);
+\node[font=\large\bfseries, text=white, below] at (2.20,2.5962) {2,472.61};
+\draw[RaciR, line width=2pt, dashed] (0.60,5.2845) -- (3.80,5.2845);
+\node[font=\normalsize\bfseries, text=RaciR, above left] at (3.80,5.2845) {costo 5,033};
+\node[font=\large\bfseries, below] at (2.20,-0.1) {Año 1 (2027)};
+\fill[Rama2] (5.30,0.0000) rectangle (7.70,2.4097);
+\fill[DoradoFIEI] (5.30,2.4097) rectangle (7.70,4.2997);
+\fill[RaciR] (5.30,4.2997) rectangle (7.70,4.9492);
+\fill[Rama4] (5.30,4.9492) rectangle (7.70,5.1050);
+\fill[Rama5] (5.30,5.1050) rectangle (7.70,5.1925);
+\node[font=\large\bfseries, text=white, below] at (6.50,5.1925) {4,945.22};
+\draw[RaciR, line width=2pt, dashed] (4.90,7.5214) -- (8.10,7.5214);
+\node[font=\normalsize\bfseries, text=RaciR, above left] at (8.10,7.5214) {costo 7,163};
+\node[font=\large\bfseries, below] at (6.50,-0.1) {Año 2 (2028)};
+\fill[Rama2] (9.60,0.0000) rectangle (12.00,4.8195);
+\fill[DoradoFIEI] (9.60,4.8195) rectangle (12.00,8.5995);
+\fill[RaciR] (9.60,8.5995) rectangle (12.00,9.8983);
+\fill[Rama4] (9.60,9.8983) rectangle (12.00,10.2100);
+\fill[Rama5] (9.60,10.2100) rectangle (12.00,10.3850);
+\node[font=\large\bfseries, text=white, below] at (10.80,10.3850) {9,890.43};
+\draw[RaciR, line width=2pt, dashed] (9.20,10.5062) -- (12.40,10.5062);
+\node[font=\normalsize\bfseries, text=RaciR, above left] at (12.40,10.5062) {costo 10,006};
+\node[font=\large\bfseries, below] at (10.80,-0.1) {Año 3 (2029)};
+\end{tikzpicture}
+\end{adjustbox}
+{\small \textcolor{Rama2}{\rule{10pt}{10pt}}~Suscripción por cuarto \quad \textcolor{DoradoFIEI}{\rule{10pt}{10pt}}~Anunciantes locales \quad \textcolor{RaciR}{\rule{10pt}{10pt}}~Publicidad en internet\\ \textcolor{Rama4}{\rule{10pt}{10pt}}~Anuncios recompensados \quad \textcolor{Rama5}{\rule{10pt}{10pt}}~Versión Premium \quad \textcolor{RaciR}{\rule[2pt]{14pt}{1.5pt}}~Costo de operación}
+\end{minipage}\hfill
+\begin{minipage}[c]{10.8cm}
+{\small
+\setlength{\tabcolsep}{3pt}
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\linewidth}{@{}P{2.6cm} L Q{1.25cm}@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Fuente} & \textbf{Supuesto} & \textbf{Año 1} \\
+\midrule
+Suscripción por cuarto & S/ 5 al mes por cuarto; 270 cuartos-mes & 1,147.50 \\
+Anunciantes locales & 5 negocios de Puno $\times$ S/ 15 al mes & 900.00 \\
+\textbf{Publicidad en internet} & \textbf{Banners de una red de anuncios en la web y la app: 30 páginas por usuario al mes, US\$ 0.50 por 1,000 impresiones} & \textbf{309.24} \\
+Anuncios recompensados & 2 videos por usuario al mes; US\$ 1.8 por 1,000 & 74.22 \\
+Versión Premium & 2\,\% de usuarios $\times$ S/ 4.90 & 41.65 \\
+\midrule
+\rowcolor{white}\textbf{Ingresos} & 500, 1,000 y 2,000 usuarios al mes & \textbf{2,472.61} \\
+\rowcolor{white}\textbf{Costos de operación} & Mantenimiento, moderación, base de datos y difusión & \textbf{5,032.83} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{0.25cm}
+{\normalsize\noindent La publicidad en internet paga por impresiones y no cambia el ranking: los banners van en espacios fijos, separados de los cuartos. Aun así, en los tres primeros años los ingresos no cubren la operación, por eso el reto es mantener el producto sin gastar más de lo que genera mientras crecen los usuarios.}
+\end{minipage}
+\end{hojah}
+
 \begin{hojah}{Rentabilidad y Payback}
 \begin{minipage}[c]{13.6cm}
 \begin{adjustbox}{width=\linewidth}
@@ -1073,15 +1136,15 @@ I8 & Proveedores de servicios: revisión mensual de límites & 3, 1 \\
 \draw[line width=1.2pt] (0,0) -- (3.05,0);
 \foreach \a in {0,1,2,3} {\node[font=\normalsize\bfseries] at (\a,-26) {Año \a};}
 \node[rotate=90, font=\normalsize\bfseries] at (-0.33,30) {Miles de soles acumulados};
-\draw[Rama4, line width=2.6pt] (0,-11.108) -- (1,0.596) -- (2,26.908) -- (3,83.852);
-\draw[AzulUNA, line width=2.6pt, dashed] (0,-11.108) -- (1,-0.468) -- (2,21.277) -- (3,64.060);
-\foreach \x/\y in {0/-11.108,1/0.596,2/26.908,3/83.852} {\fill[Rama4] (\x,\y) circle (3pt);}
-\foreach \x/\y in {1/-0.468,2/21.277,3/64.060} {\fill[AzulUNA] (\x,\y) circle (3pt);}
-\node[right, font=\normalsize\bfseries, text=Rama4] at (3.02,83.85) {83.85};
-\node[right, font=\normalsize\bfseries, text=AzulUNA] at (3.02,64.06) {64.06};
+\draw[Rama4, line width=2.6pt] (0,-11.108) -- (1,0.906) -- (2,27.836) -- (3,86.016);
+\draw[AzulUNA, line width=2.6pt, dashed] (0,-11.108) -- (1,-0.186) -- (2,22.070) -- (3,65.782);
+\foreach \x/\y in {0/-11.108,1/0.906,2/27.836,3/86.016} {\fill[Rama4] (\x,\y) circle (3pt);}
+\foreach \x/\y in {1/-0.186,2/22.070,3/65.782} {\fill[AzulUNA] (\x,\y) circle (3pt);}
+\node[right, font=\normalsize\bfseries, text=Rama4] at (3.02,86.02) {86.02};
+\node[right, font=\normalsize\bfseries, text=AzulUNA] at (3.02,65.78) {65.78};
 \node[left, font=\normalsize\bfseries, text=Rama4] at (-0.02,-11.1) {$-$11.11};
-\fill[RaciR] (0.95,0) circle (4pt); \fill[RaciR] (1.02,0) circle (4pt);
-\draw[RaciR, line width=1.2pt, ->, >=Stealth] (0.62,22) node[above, font=\normalsize\bfseries, text=RaciR, align=center]{payback simple 0.95 años\\descontado 1.02 años} -- (0.95,1.5);
+\fill[RaciR] (0.92,0) circle (4pt); \fill[RaciR] (1.01,0) circle (4pt);
+\draw[RaciR, line width=1.2pt, ->, >=Stealth] (0.62,22) node[above, font=\normalsize\bfseries, text=RaciR, align=center]{payback simple 0.92 años\\descontado 1.01 años} -- (0.92,1.5);
 \end{tikzpicture}
 \end{adjustbox}
 {\normalsize \textcolor{Rama4}{\rule{18pt}{3pt}}~Flujo económico acumulado \quad \textcolor{AzulUNA}{\rule{18pt}{3pt}}~Acumulado descontado al 10\,\%}
@@ -1095,20 +1158,20 @@ I8 & Proveedores de servicios: revisión mensual de límites & 3, 1 \\
 \textbf{Indicador} & \textbf{Resultado} \\
 \midrule
 Inversión (año 0) & S/ 11,108.07 \\
-Flujo económico del año 1 & S/ 11,704.54 \\
-\textbf{Payback simple} & \textbf{0.95 años} \\
-Payback descontado & 1.02 años \\
-VAN económico (10\,\%) & S/ +64,059.98 \\
-TIR económica & 166.5\,\% \\
-Relación beneficio/costo & 6.77 \\
-ROI a 3 años & 754.9\,\% \\
-VAN financiero & S/ $-$17,077.02 \\
+Flujo económico del año 1 & S/ 12,013.78 \\
+\textbf{Payback simple} & \textbf{0.92 años} \\
+Payback descontado & 1.01 años \\
+VAN económico (10\,\%) & S/ +65,781.59 \\
+TIR económica & 169.9\,\% \\
+Relación beneficio/costo & 6.92 \\
+ROI a 3 años & 774.4\,\% \\
+VAN financiero & S/ $-$15,355.40 \\
 \bottomrule
 \end{tabularx}
 }
 
 \vspace{0.3cm}
-{\normalsize\noindent\textbf{Cómo se calcula:} payback = inversión / flujo del año 1 = 11,108.07 / 11,704.54 = \textbf{0.95 años}, unos 11 meses. El flujo económico suma al flujo de la app el beneficio para los arrendatarios: S/ 41.64 por persona al año (350, 700 y 1,400 personas). Sin ese beneficio el VAN es negativo: es un proyecto de valor social.}
+{\normalsize\noindent\textbf{Cómo se calcula:} payback = inversión / flujo del año 1 = 11,108.07 / 12,013.78 = \textbf{0.92 años}, unos 11 meses. El flujo económico suma al flujo de la app el beneficio para los arrendatarios: S/ 41.64 por persona al año (350, 700 y 1,400 personas). Sin ese beneficio el VAN es negativo: es un proyecto de valor social.}
 \end{minipage}
 \end{hojah}
 
@@ -1411,13 +1474,13 @@ R12 & No se define quién opera el producto en el año 1. & 2 & 3 & \etiqueta{Se
 \begin{grande}[12.4cm]
 \begin{tikzpicture}[>=Stealth]
 \draw[line width=3pt, AzulUNA, ->] (0,0) -- (24.2,0);
-\foreach \x/\t/\c/\s/\d in {0.3/2026-II: fase 1/RaciR/{Proyecto del semestre}/{MVP en la nube, piloto con compañeros y clientes, expediente y cierre}, 6.3/2027: año 1/Rama4/{Operación en Puno}/{500 usuarios al mes, app en Google Play, suscripción de S/ 5 por cuarto y anuncios}, 12.3/2028: año 2/Rama2/{Crecimiento}/{1,000 usuarios al mes, Juliaca, calificaciones y reportes de publicaciones}, 18.3/2029: año 3/Rama5/{Expansión}/{2,000 usuarios al mes y llegada a Cusco y Arequipa}} {
+\foreach \x/\t/\c/\s/\d in {0.3/2026-II: fase 1/RaciR/{Proyecto del semestre}/{MVP en la nube, piloto con compañeros y clientes, expediente y cierre}, 6.3/2027: año 1/Rama4/{Operación en Puno}/{500 usuarios al mes, app en Google Play, suscripción de S/ 5 por cuarto y publicidad local y en internet}, 12.3/2028: año 2/Rama2/{Crecimiento}/{1,000 usuarios al mes, Juliaca, calificaciones y reportes de publicaciones}, 18.3/2029: año 3/Rama5/{Expansión}/{2,000 usuarios al mes y llegada a Cusco y Arequipa}} {
   \node[circle, fill=\c, minimum size=0.6cm] at (\x+2.6,0) {};
   \node[fill=\c, text=white, font=\large\bfseries, minimum width=5.4cm, minimum height=0.9cm, anchor=south west] at (\x,0.6) {\t};
   \node[draw=\c, fill=\c!8, line width=1.2pt, text width=5.0cm, align=left, font=\normalsize, anchor=north west, minimum height=4.0cm] at (\x,-0.6) {\textbf{\s}\\[3pt]\d};}
 \node[font=\large\bfseries, text=RaciR, align=center] at (2.9,3.0) {Se cierra en diciembre};
 \draw[RaciR, line width=1.4pt, dashed] (5.95,-5.0) -- (5.95,3.3);
-\node[font=\normalsize, text width=23cm, align=left, anchor=north west] at (0,-5.3) {Beneficio esperado para los arrendatarios: S/ 14,574 (año 1), S/ 29,148 (año 2) y S/ 58,296 (año 3). VAN económico de S/ 64,059.98 y payback de 0.95 años desde el inicio de la operación.};
+\node[font=\normalsize, text width=23cm, align=left, anchor=north west] at (0,-5.3) {Beneficio esperado para los arrendatarios: S/ 14,574 (año 1), S/ 29,148 (año 2) y S/ 58,296 (año 3). VAN económico de S/ 65,781.59 y payback de 0.92 años desde el inicio de la operación.};
 \end{tikzpicture}
 \end{grande}
 \end{hojah}

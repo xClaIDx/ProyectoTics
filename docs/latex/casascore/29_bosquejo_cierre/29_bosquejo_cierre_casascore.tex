@@ -109,6 +109,7 @@
  etq/.style={font=\small\bfseries, text=GrisOscuro, fill=white, inner sep=1.5pt},
  actor/.style={draw=#1, fill=#1!10, line width=1.2pt, rounded corners=6pt, align=center, font=\large},
 }
+\newcommand{\marca}{{\Large$\square$}\,{\scriptsize Sí}\ \ {\Large$\square$}\,{\scriptsize No}}
 \newcommand{\caja}[3]{\node[draw=#1, fill=#1!10, line width=1pt, rounded corners=4pt, align=center, inner sep=5pt] #2 {#3};}
 
 
@@ -182,7 +183,7 @@
 \begin{center}
     {\Large \textbf{\textcolor{AzulUNA}{BOSQUEJO DEL CIERRE DEL PROYECTO}}}\\[3pt]
     {\normalsize \textbf{CasaScore (AlquilaPuno)}}\\[4pt]
-    \footnotesize \textbf{Fecha:} viernes 13/11/2026 (semana 12) \quad \textbar\quad \textbf{Versión:} 0.1 (primer bosquejo) \quad \textbar\quad \textbf{Fase:} Cierre
+    \footnotesize \textbf{Fecha:} viernes 13/11/2026 (semana 12) \quad \textbar\quad \textbf{Versión:} 0.2 (primer bosquejo completo) \quad \textbar\quad \textbf{Fase:} Cierre
 \end{center}
 
 \vspace{0.1cm}
@@ -212,7 +213,7 @@ CasaScore es un producto pensado para tres años o más (2027 a 2029). En diciem
 \rowcolor{AzulClaro}
 & \textbf{Se cierra en la fase 1 (2026)} & \textbf{Continúa después del semestre} \\
 \midrule
-Alcance & MVP con RF-01 a RF-09, piloto con clientes y expediente de gestión. & Mapa de cuartos, confirmación de alquiler, calificaciones, reportes, monetización (RF-10 a RF-17), nuevas ciudades. \\
+Alcance & MVP con las 9 funciones básicas (registro, publicación, punto de referencia, prioridades, puntaje, ranking, explicación, perfil y nube), piloto con clientes y expediente de gestión. & Mapa de cuartos, confirmación de alquiler, calificaciones, reportes, cobros dentro de la app y nuevas ciudades. \\
 Producto & MVP publicado en la nube y probado con cuartos reales de compañeros. & Operación continua, mejoras por versión y app en Google Play. \\
 Equipo & Se liberan las 8 horas semanales del semestre. & Equipo de operación con horas acordadas por fase. \\
 Costo & Línea base de S/ 11,663.47 y gasto en efectivo de S/ 2,507.44. & Costos de operación del año 1: S/ 5,032.83. \\
@@ -230,7 +231,7 @@ Beneficio & Satisfacción medida en el piloto. & Beneficio de S/ 41.64 por arren
 \node[font=\large\bfseries, text=#4, anchor=west, text width=4.3cm] at ($(#2)+(-1.7,1.7)$) {#5};
 \node[font=\large, text width=5.1cm, align=left] at ($(#2)+(0,-0.4)$) {#6};}
 \paso{a}{0,0}{1}{AzulUNA}{Verificar\\entregables}{Cada entregable contra su criterio de aceptación. \textbf{Hoy:} 21 de 28 documentos y MVP en la nube.}
-\paso{b}{6.0,0}{2}{AzulUNA}{Aceptación formal}{Votación del sponsor en el gate G5 y acta de cierre firmada. \textbf{Fecha:} 18/12.}
+\paso{b}{6.0,0}{2}{AzulUNA}{Aceptación formal}{Votación final del sponsor y acta de cierre firmada. \textbf{Fecha:} 18/12.}
 \paso{c}{12.0,0}{3}{AzulUNA}{Cerrar contratos}{Términos de los planes gratuitos revisados y cuenta de Google Play definida. \textbf{Fecha:} 11/12.}
 \paso{d}{18.0,0}{4}{AzulUNA}{Liberar recursos}{Horas del semestre, celular de pruebas y accesos de cada integrante. \textbf{Fecha:} 18/12.}
 \paso{e}{18.0,-5.2}{5}{Rama4}{Archivar}{Líneas base, cambios, actas e informes en el repositorio con su versión final. \textbf{Fecha:} 16/12.}
@@ -250,22 +251,22 @@ Beneficio & Satisfacción medida en el piloto. & Beneficio de S/ 41.64 por arren
 \newcommand{\pend}{\textcolor{GrisOscuro}{\large$\square$}}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.6cm} L P{3.0cm} C{1.6cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}L P{3.0cm} C{1.4cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-& \textbf{Condición} & \textbf{Responsable} & \textbf{Fecha} \\
+\textbf{Condición} & \textbf{Responsable} & \textbf{Fecha} & \textbf{Cumplido} \\
 \midrule
-\ok & MVP de la Unidad I entregado y sustentado. & Eliseo Tarqui Ajahuana & 09/10 \\
-\ok & Plan de Dirección aprobado y documentos de planificación en el repositorio. & Clyde N. Paricahua Pari & 26/10 \\
-\ok & MVP publicado en la nube y probado con cuartos de compañeros. & Eliseo Tarqui Ajahuana & 13/11 \\
-\pend & Registro e inicio de sesión en la nube funcionando con seguridad por fila. & Eliseo Tarqui Ajahuana & 18/11 \\
-\pend & Piloto con 10 arrendatarios y 5 propietarios, con encuesta de satisfacción. & Clyde N. Paricahua Pari & 27/11 \\
-\pend & 0 errores críticos abiertos y 14 casos de prueba aprobados. & Eliseo Tarqui Ajahuana & 04/12 \\
-\pend & Manuales de usuario y técnico, y versión 1.0 etiquetada. & Eliseo Tarqui Ajahuana & 04/12 \\
-\pend & Último corte de valor ganado y costo final. & Ruth K. Apaza Solis & 11/12 \\
-\pend & Lecciones aprendidas de todos los roles completas. & Viviana M. Quisbert Quispe & 11/12 \\
-\pend & Informe final expuesto. & Clyde N. Paricahua Pari & 14/12 \\
-\pend & Acta de cierre firmada y repositorio archivado. & Clyde N. Paricahua Pari & 18/12 \\
+MVP de la Unidad I entregado y sustentado. & Eliseo Tarqui Ajahuana & 09/10 & \marca \\
+Plan de Dirección aprobado y documentos de planificación en el repositorio. & Clyde N. Paricahua Pari & 26/10 & \marca \\
+MVP publicado en la nube y probado con cuartos de compañeros. & Eliseo Tarqui Ajahuana & 13/11 & \marca \\
+Registro e inicio de sesión en la nube funcionando, y cada usuario ve solo sus datos. & Eliseo Tarqui Ajahuana & 18/11 & \marca \\
+Piloto con 10 arrendatarios y 5 propietarios, con encuesta de satisfacción. & Clyde N. Paricahua Pari & 27/11 & \marca \\
+0 errores críticos abiertos y 14 casos de prueba aprobados. & Eliseo Tarqui Ajahuana & 04/12 & \marca \\
+Manuales de usuario y técnico, y versión 1.0 etiquetada. & Eliseo Tarqui Ajahuana & 04/12 & \marca \\
+Último corte de valor ganado y costo final. & Ruth K. Apaza Solis & 11/12 & \marca \\
+Lecciones aprendidas de todos los roles completas. & Viviana M. Quisbert Quispe & 11/12 & \marca \\
+Informe final expuesto. & Clyde N. Paricahua Pari & 14/12 & \marca \\
+Acta de cierre firmada y repositorio archivado. & Clyde N. Paricahua Pari & 18/12 & \marca \\
 \bottomrule
 \end{tabularx}
 }
@@ -274,22 +275,22 @@ Beneficio & Satisfacción medida en el piloto. & Beneficio de S/ 41.64 por arren
 \section{Entregables y Criterios de Aceptación}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.8cm} P{3.2cm} L C{2.0cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}C{0.6cm} P{3.0cm} L C{1.6cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{N.\textsuperscript{o}} & \textbf{Entregable} & \textbf{Criterio de aceptación} & \textbf{Estado} \\
+\textbf{N.\textsuperscript{o}} & \textbf{Entregable} & \textbf{Criterio de aceptación} & \textbf{Estado} & \textbf{Cumplido} \\
 \midrule
-E1 & Expediente de gestión & Documentos de la ruta revisados, con cifras coherentes y en el repositorio. & \etiqueta{SevMedia}{21 de 28} \\
-E2 & Prototipo de la Unidad I & Ranking explicado de 5 cuartos en el orden esperado. & \etiqueta{Rama4}{Aceptado} \\
-E3 & MVP final & RF-01 a RF-09 aceptados y 0 errores críticos. & \etiqueta{SevMedia}{En curso} \\
-E4 & Piloto con clientes & 10 arrendatarios y 5 propietarios; 80\,\% o más satisfecho. & \etiqueta{GrisOscuro}{27/11} \\
-E5 & Cierre & Informe final, lecciones aprendidas y acta de cierre firmada. & \etiqueta{GrisOscuro}{18/12} \\
+1 & Expediente de gestión & Documentos de la ruta revisados, con cifras coherentes y en el repositorio. & \etiqueta{SevMedia}{21 de 28} & \marca \\
+2 & Prototipo de la Unidad I & Ranking explicado de 5 cuartos en el orden esperado. & \etiqueta{Rama4}{Aceptado} & \marca \\
+3 & MVP final & Las 9 funciones básicas aceptadas y 0 errores graves. & \etiqueta{SevMedia}{En curso} & \marca \\
+4 & Piloto con clientes & 10 arrendatarios y 5 propietarios; 80\,\% o más satisfecho. & \etiqueta{GrisOscuro}{27/11} & \marca \\
+5 & Cierre & Informe final, lecciones aprendidas y acta de cierre firmada. & \etiqueta{GrisOscuro}{18/12} & \marca \\
 \bottomrule
 \end{tabularx}
 }
 
 \vspace{0.1cm}
-{\small\noindent\textbf{Pasa a la fase 2 (no es incumplimiento):} RF-10 a RF-19, publicación en Google Play y funciones de monetización. Quedan en el backlog del producto con su prioridad y se registran como exclusiones en el acta de cierre.}
+{\small\noindent\textbf{Pasa a la fase 2 (no es incumplimiento):} las funciones nuevas (mapa de cuartos, calificaciones, reportes, cobros y nuevas ciudades) y la publicación en Google Play. Quedan en la lista de pendientes del producto con su prioridad y se registran como exclusiones en el acta de cierre.}
 
 \begin{hojah}{Ciclo de Vida del Software: Despliegue y Pruebas Continuas en Producción}
 \begin{grande}[11.8cm]
@@ -301,26 +302,26 @@ E5 & Cierre & Informe final, lecciones aprendidas y acta de cierre firmada. & \e
 \et{p}{12.6,0}{GrisOscuro}{black}{10}
 \et{dep}{16.8,0}{RaciR}{RaciR}{12}
 \et{pc}{21.0,0}{RaciR}{RaciR}{12}
-\foreach \n/\t/\s in {r/Requisitos/RF-01 a RF-09, d/Diseño/{arquitectura\\y pantallas}, c/Construcción/sprints semanales, p/Pruebas/{12 automáticas\\y 14 casos}, dep/Despliegue/MVP en la nube, pc/{Pruebas\\continuas}/en producción} {
+\foreach \n/\t/\s in {r/Requisitos/9 funciones básicas, d/Diseño/{arquitectura\\y pantallas}, c/Construcción/sprints semanales, p/Pruebas/{12 automáticas\\y 14 casos}, dep/Despliegue/MVP en la nube, pc/{Pruebas\\continuas}/en producción} {
   \node[font=\large\bfseries, align=center] at ($(\n)+(0,0.5)$) {\t};
   \node[font=\normalsize, align=center] at ($(\n)+(0,-0.6)$) {\s};}
 \foreach \a/\b in {r/d,d/c,c/p,p/dep,dep/pc} {\draw[->, line width=2pt, AzulUNA] (\a) -- (\b);}
-\draw[->, line width=2pt, Rama4, dashed] (pc.south) -- ++(0,-0.9) -| node[pos=0.25, below, font=\large\bfseries, text=Rama4]{retroalimentación de los usuarios al backlog} (c.south);
+\draw[->, line width=2pt, Rama4, dashed] (pc.south) -- ++(0,-0.9) -| node[pos=0.25, below, font=\large\bfseries, text=Rama4]{opinión de los usuarios a la lista de pendientes} (c.south);
 \node[font=\Large\bfseries, text=RaciR] at (18.9,1.75) {Etapas de esta fase};
 \draw[RaciR, line width=1.2pt, dashed, rounded corners=8pt] (14.8,-1.4) rectangle (23.0,2.15);
 % detalle despliegue
 \node[draw=RaciR, fill=white, line width=1.1pt, rounded corners=5pt, text width=10.6cm, align=left, font=\large, anchor=north west] at (0,-3.3) {\textbf{\textcolor{RaciR}{Despliegue}}\\[2pt]
-1. Pull Request revisado por otro integrante y unido a \texttt{main}.\\
-2. Pasan las 12 pruebas automáticas y la compilación sin errores.\\
-3. Se publica la versión en la nube y se etiqueta (v0.x hasta la v1.0).\\
-4. Prueba de humo: ingresar, ver el ranking, abrir un detalle y publicar.\\
+1. Cada cambio del código lo revisa otro integrante antes de juntarlo con la versión principal.\\
+2. Pasan las 12 pruebas automáticas y el programa se arma sin errores.\\
+3. Se publica la nueva versión en la nube con su número (hasta la versión 1.0).\\
+4. Prueba rápida: ingresar, ver el ranking, abrir un cuarto y publicar.\\
 5. Si algo falla, se vuelve a la versión anterior en el mismo día.};
 \node[draw=RaciR, fill=white, line width=1.1pt, rounded corners=5pt, text width=11.4cm, align=left, font=\large, anchor=north west] at (11.4,-3.3) {\textbf{\textcolor{RaciR}{Pruebas continuas en producción}}\\[2pt]
 1. Cuartos reales de compañeros publicados y revisados cada semana.\\
 2. Ranking desde distintos puntos de Puno: orden y desglose correctos.\\
 3. Tiempo de respuesta del ranking menor a 250 ms.\\
-4. Uso de los planes gratuitos menor al 70\,\% de sus límites.\\
-5. Cada defecto se registra como tarjeta \textit{Defecto} en el tablero.};
+4. Uso de los servicios gratuitos por debajo del 70\,\% de lo permitido.\\
+5. Cada error encontrado se anota como tarjeta en el tablero.};
 \end{tikzpicture}
 \end{grande}
 \end{hojah}
@@ -331,23 +332,23 @@ El cierre técnico asegura que el MVP quede operable y mantenible para las fases
 \vspace{0.1cm}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.6cm} P{3.4cm} L C{1.7cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.2cm} L C{1.6cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-& \textbf{Evidencia técnica} & \textbf{Qué debe existir antes de firmar el cierre} & \textbf{Estado} \\
+\textbf{Evidencia técnica} & \textbf{Qué debe existir antes de firmar el cierre} & \textbf{Estado} & \textbf{Cumplido} \\
 \midrule
-\ok & Documentación técnica & Arquitectura, modelo de datos de 8 tablas, rutas de la API y README de instalación en el repositorio. & Hecho \\
-\pend & Manual de operación & Cómo publicar una versión, volver a la anterior, restablecer datos y revisar los límites de los servicios. & 04/12 \\
-\pend & Transición a operaciones & Responsables del año 1 definidos y accesos a la nube transferidos a la cuenta del equipo. & 18/12 \\
-\pend & Seguridad y cumplimiento & Seguridad por fila probada entre roles, contraseñas cifradas, respaldo semanal de la base y consentimiento según la Ley N.\textsuperscript{o} 29733. & 04/12 \\
-\pend & Deuda técnica priorizada & Lista de mejoras no implementadas con su prioridad en el backlog de la fase 2. & 11/12 \\
-\pend & Métricas de sostenibilidad & Costo mensual, tiempo de respuesta y disponibilidad del MVP medidos después del cierre. & Desde 18/12 \\
+Documentación técnica & Cómo está hecho el sistema, sus 8 tablas de datos y la guía de instalación, todo en el repositorio. & Hecho & \marca \\
+Manual de operación & Cómo publicar una versión, volver a la anterior, restablecer datos y revisar los límites de los servicios. & 04/12 & \marca \\
+Transición a operaciones & Responsables del año 1 definidos y accesos a la nube transferidos a la cuenta del equipo. & 18/12 & \marca \\
+Seguridad y cumplimiento & Cada usuario ve solo sus datos, contraseñas protegidas, copia de seguridad semanal y consentimiento según la Ley de Protección de Datos Personales. & 04/12 & \marca \\
+Pendientes técnicos ordenados & Lista de mejoras no hechas, con su prioridad, para la fase 2. & 11/12 & \marca \\
+Métricas de sostenibilidad & Costo mensual, tiempo de respuesta y disponibilidad del MVP medidos después del cierre. & Desde 18/12 & \marca \\
 \bottomrule
 \end{tabularx}
 }
 
 \Needspace{14\baselineskip}
-\subsection{Deuda técnica conocida}
+\subsection{Pendientes técnicos conocidos}
 {\small
 \rowcolors{2}{white}{GrisFila}
 \noindent\begin{tabularx}{\textwidth}{@{}L C{1.6cm} P{3.2cm}@{}}
@@ -357,9 +358,9 @@ El cierre técnico asegura que el MVP quede operable y mantenible para las fases
 \midrule
 El puntaje llega al tope de 100 en el mejor cuarto de todos los perfiles; revisar el margen de las bonificaciones. & \etiqueta{SevAlta}{Alta} & Antes de la v1.0 \\
 La app Android aún usa la base local; falta conectarla a la misma nube que la web. & \etiqueta{SevAlta}{Alta} & Fase 2 \\
-Mapa con todos los cuartos, confirmación de alquiler y calificaciones (RF-10 a RF-12). & \etiqueta{SevMedia}{Media} & Fase 2 \\
-Reportes de publicaciones falsas y panel de administración (RF-13). & \etiqueta{SevMedia}{Media} & Fase 2 \\
-Pruebas automáticas de la API y de las pantallas, además de las del motor. & \etiqueta{SevMedia}{Media} & Fase 2 \\
+Mapa con todos los cuartos, confirmación de alquiler y calificaciones. & \etiqueta{SevMedia}{Media} & Fase 2 \\
+Reportes de publicaciones falsas y panel de administración. & \etiqueta{SevMedia}{Media} & Fase 2 \\
+Pruebas automáticas del servidor y de las pantallas, además de las del puntaje. & \etiqueta{SevMedia}{Media} & Fase 2 \\
 \bottomrule
 \end{tabularx}
 }
@@ -381,16 +382,16 @@ Desde la semana 12 el registro de riesgos se revisa a fondo cada dos semanas, ad
 
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}C{0.9cm} L C{0.6cm} C{0.6cm} C{0.9cm} P{3.6cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}L C{0.6cm} C{0.6cm} C{0.9cm} P{4.2cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{ID} & \textbf{Riesgo del cierre} & \textbf{P} & \textbf{I} & \textbf{Sev.} & \textbf{Respuesta} \\
+\textbf{Riesgo del cierre} & \textbf{P} & \textbf{I} & \textbf{Sev.} & \textbf{Respuesta} \\
 \midrule
-R02 & El registro en la nube no queda listo para el piloto. & 3 & 3 & \etiqueta{SevAlta}{\,9\,} & Apoyo de Ruth y piloto en la semana 14. \\
-R09 & Los clientes del piloto no aceptan el MVP como útil. & 2 & 3 & \etiqueta{SevAlta}{\,6\,} & Guion de prueba y encuesta con criterios claros. \\
-R10 & El MVP en la nube se cae o supera los límites gratuitos. & 2 & 2 & \etiqueta{SevMedia}{\,4\,} & Monitoreo semanal y vuelta a la versión anterior. \\
-R11 & Las lecciones aprendidas quedan incompletas por los exámenes. & 2 & 2 & \etiqueta{SevMedia}{\,4\,} & Plantilla por rol entregada el 13/11. \\
-R12 & No se define quién opera el producto en el año 1. & 2 & 3 & \etiqueta{SevAlta}{\,6\,} & Acuerdo de continuidad en el acta de cierre. \\
+El registro en la nube no queda listo para el piloto. & 3 & 3 & \etiqueta{SevAlta}{\,9\,} & Ruth apoya a Eliseo y el piloto pasa a la semana 14. \\
+Los clientes del piloto no aceptan el MVP como útil. & 2 & 3 & \etiqueta{SevAlta}{\,6\,} & Guion de prueba y encuesta con criterios claros. \\
+El MVP en la nube se cae o supera los límites gratuitos. & 2 & 2 & \etiqueta{SevMedia}{\,4\,} & Monitoreo semanal y vuelta a la versión anterior. \\
+Las lecciones aprendidas quedan incompletas por los exámenes. & 2 & 2 & \etiqueta{SevMedia}{\,4\,} & Plantilla por rol entregada el 13/11. \\
+No se define quién opera el producto en el año 1. & 2 & 3 & \etiqueta{SevAlta}{\,6\,} & Acuerdo de continuidad en el acta de cierre. \\
 \bottomrule
 \end{tabularx}
 }
@@ -422,15 +423,15 @@ Realización de beneficios & real / plan $\times$ 100 & -- & Se mide desde 2027 
 \subsection{Criterios para declarar el resultado}
 {\small
 \rowcolors{2}{white}{GrisFila}
-\noindent\begin{tabularx}{\textwidth}{@{}P{2.4cm} L C{2.4cm}@{}}
+\noindent\begin{tabularx}{\textwidth}{@{}P{2.0cm} L C{2.2cm} C{2.0cm}@{}}
 \toprule
 \rowcolor{AzulClaro}
-\textbf{Criterio} & \textbf{Se considera cumplido si} & \textbf{Tendencia hoy} \\
+\textbf{Criterio} & \textbf{Se considera cumplido si} & \textbf{Tendencia hoy} & \textbf{Cumplido} \\
 \midrule
-Alcance & RF-01 a RF-09 aceptados y lo diferido a la fase 2 está formalizado. & \etiqueta{SevMedia}{6 de 9} \\
-Tiempo & El acta de cierre se firma dentro de la semana 17. & \etiqueta{Rama4}{En plazo} \\
-Costo & CPI final de 0.95 o más y gasto en efectivo de S/ 2,507.44 o menos. & \etiqueta{Rama4}{CPI 0.95} \\
-Valor & 80\,\% o más de satisfacción en el piloto y MVP operando en la nube. & \etiqueta{SevMedia}{Por medir} \\
+Alcance & Las 9 funciones básicas aceptadas y lo que pasa a la fase 2 queda escrito en el acta. & \etiqueta{SevMedia}{6 de 9} & \marca \\
+Tiempo & El acta de cierre se firma dentro de la semana 17. & \etiqueta{Rama4}{En plazo} & \marca \\
+Costo & CPI final de 0.95 o más y gasto en efectivo de S/ 2,507.44 o menos. & \etiqueta{Rama4}{CPI 0.95} & \marca \\
+Valor & 80\,\% o más de satisfacción en el piloto y MVP operando en la nube. & \etiqueta{SevMedia}{Por medir} & \marca \\
 \bottomrule
 \end{tabularx}
 }
@@ -456,11 +457,11 @@ L1 & Construcción (sem. 4 a 8) & El motor se separó de las pantallas y se prob
 L2 & Seguimiento (todo el proyecto) & Tablero compartido con evidencia obligatoria para pasar a Hecho. & Control claro de quién hizo qué. & Mantener la regla en la operación. \\
 L3 & Revisión del sprint (viernes) & Demostración semanal del incremento al equipo como sponsor. & Defectos detectados en días, no en semanas. & Invitar a clientes reales a una demostración por mes. \\
 \multicolumn{5}{@{}l}{\cellcolor{SevAlta!12}\textbf{Lo que debemos mejorar}} \\
-L4 & Planificación (sem. 4 a 10) & Los documentos de planificación se firmaron con dos semanas de retraso. & SPI de 0.56 en la semana 6. & Planificación mínima firmada antes de construir. \\
-L5 & Nube (sem. 10 y 11) & No se hizo una prueba de concepto de la seguridad por fila antes de planificar. & R02 activado; registro con 6 días de atraso. & Prueba técnica corta en la primera iteración de cada tecnología nueva. \\
+L4 & Planificación (sem. 4 a 10) & Los documentos de planificación se firmaron con dos semanas de retraso. & En la semana 6 se había avanzado solo el 56\,\% de lo planeado. & Planificación mínima firmada antes de construir. \\
+L5 & Nube (sem. 10 y 11) & No se probó antes cómo dar permisos por usuario en la nube. & El registro se atrasó 6 días. & Probar cada herramienta nueva en la primera semana de uso. \\
 L6 & Campo (sem. 6 a 12) & La meta de 15 cuartos se fijó sin medir el ritmo de las visitas. & Meta reducida a 12 con un cambio. & Estimar metas de campo con una semana de prueba. \\
-L7 & Equipo (todo el proyecto) & El trabajo técnico se concentró en una sola persona. & Riesgo de cuello de botella. & Rotar tareas sencillas de código entre todos. \\
-L8 & Riesgos (todo el proyecto) & Se revisaban solo los disparadores cada martes. & El riesgo de la nube se vio tarde. & Revisión completa del registro cada dos semanas. \\
+L7 & Equipo (todo el proyecto) & La programación recayó casi toda en una sola persona. & Si él se detenía, todo se detenía. & Rotar tareas sencillas de código entre todos. \\
+L8 & Riesgos (todo el proyecto) & Cada martes se revisaban solo las señales de alerta de los riesgos. & El problema de la nube se vio tarde. & Revisión completa del registro cada dos semanas. \\
 \bottomrule
 \end{tabularx}
 }
@@ -487,13 +488,34 @@ Qué haría distinto & \espacio \\ \hline
 }
 \vspace{0.15cm}}
 
-\section{Perspectivas del Cierre por Rol}
-Cada participante completa su cuadro con hechos concretos (fechas, cifras o ejemplos). Las respuestas alimentan el informe final y las lecciones aprendidas definitivas.
+\newcommand{\perspectivallena}[6]{%
+\Needspace{16\baselineskip}
+\subsection{#1}
+{\small\noindent\textbf{Responde:} #2}
 
-\perspectiva{Líder del proyecto}{Clyde Neil Paricahua Pari, Project Manager}{cómo se tomaron las decisiones, cómo se manejó el atraso, qué tan útil fue el tablero y la comunicación con el sponsor}{Perspectiva para los próximos 3 años}
-\perspectiva{Programador}{Eliseo Tarqui Ajahuana, Especialista Técnico}{qué tecnología ayudó o estorbó, calidad del código, despliegue en la nube, defectos encontrados en producción}{Perspectiva técnica del producto}
-\perspectiva{Analista de planificación}{Ruth Karina Apaza Solis}{qué tan reales fueron las estimaciones, utilidad del valor ganado, apoyo en la seguridad por fila}{Perspectiva de costos y plazos}
-\perspectiva{Gestora de comunicación, riesgos y documentación}{Viviana Mary Quisbert Quispe}{funcionamiento de las actas, riesgos que se vieron tarde, convocatoria al piloto}{Perspectiva de riesgos para la operación}
+\vspace{0.1cm}
+{\small
+\rowcolors{2}{white}{GrisFila}
+\noindent\begin{tabularx}{\textwidth}{@{}P{3.0cm} L@{}}
+\toprule
+\rowcolor{AzulClaro}
+\textbf{Aspecto} & \textbf{Respuesta} \\
+\midrule
+Lo que salió bien & #3 \\
+Lo que salió mal & #4 \\
+Qué haría distinto & #5 \\
+Mirando adelante & #6 \\
+\bottomrule
+\end{tabularx}
+}
+\vspace{0.15cm}}
+\section{Perspectivas del Cierre por Rol}
+Cada integrante respondió con hechos concretos. Los cuadros de los clientes, del sponsor y del asesor se completan después del piloto. Estas respuestas alimentan el informe final y las lecciones aprendidas definitivas.
+
+\perspectivallena{Líder del proyecto}{Clyde Neil Paricahua Pari, Project Manager}{Lo que más me sirvió fue trabajar por semanas, con una revisión cada viernes y un tablero en GitHub donde ninguna tarea se daba por terminada sin su evidencia. Así siempre supe quién hizo qué y qué faltaba. También creo que acerté al dejar Horus Sentinel el 22/09: fue la decisión más difícil, porque ya llevábamos 4 semanas en él, pero los números mostraban que iba atrasado y que daba mucho menos beneficio que CasaScore. Dejarlo nos permitió enfocarnos en un solo proyecto.}{Nos demoramos en planificar: los documentos se firmaron con dos semanas de retraso y en la semana 6 solo habíamos avanzado el 56\,\% de lo previsto. Al inicio no sabíamos cuánto debía durar realmente el proyecto; solo que debía llegar a ser rentable. La programación recayó en Eliseo, y la meta de 15 cuartos la fijé sin medir cuántos podíamos visitar, así que la bajamos a 12. Además, no todos participaban igual en las reuniones y muchas veces tuve que insistir o asumir tareas.}{Planificaría antes de construir y fijaría desde el primer día cuánto dura cada fase y qué incluye, con un tiempo exacto para cada tarea. Revisaría todos los riesgos cada dos semanas desde el inicio. Buscaría que nos organicemos mejor como grupo, que lleguemos sabiendo más de las herramientas y delegaría más desde el comienzo.}{En los primeros 3 años la app no recupera lo invertido con su propio dinero, así que el reto es mantenerla sin gastar más de lo que genera. Según el análisis a 10 años, quedándonos en la región Puno la inversión se recupera en unos 3.6 años. Hay que definir quién la mantiene después del semestre y postular a concursos y fondos. En lo personal, aprendí a decidir con datos y no por intuición, a delegar y a usar Git y GitHub.}
+\perspectivallena{Programador}{Eliseo Tarqui Ajahuana, Especialista Técnico}{Separar desde la semana 7 la parte que calcula el puntaje de las pantallas nos salvó: la probamos con pruebas automáticas y el primer prototipo salió 3 días antes. La forma de publicar también funcionó: cada cambio revisado por otro compañero, las 12 pruebas pasando y la app quedó en la nube el 13/11, probada con cuartos reales de compañeros.}{No probamos a tiempo cómo dar permisos por usuario en la nube, y por eso el registro se atrasó 6 días. Casi toda la programación cayó en mí, así que cualquier problema me frenaba solo a mí. Además, la app del celular sigue guardando los datos en el propio teléfono y aún no se conecta a la nube; eso queda como tarea importante para la fase 2.}{Haría una prueba corta de los permisos en la nube en la primera semana, no después. Repartiría tareas sencillas de programación entre todos para no ser el único que avanza. Y dejaría listas desde antes las pruebas automáticas del servidor y de las pantallas, no para el final.}{La app quedó lista para seguir usándose y mejorándose: está documentado cómo está hecha, sus 8 tablas de datos y cómo instalarla. Para la fase 2 priorizaría conectar la app del celular a la nube, revisar por qué el mejor cuarto siempre llega a 100 puntos y agregar más pruebas automáticas, para que el año 1 empiece sin problemas graves.}
+\perspectivallena{Analista de planificación}{Ruth Karina Apaza Solis}{El seguimiento con valor ganado mostró el atraso con números y a tiempo: pasamos de avanzar el 56\,\% de lo planeado en la semana 6 al 87\,\% al 06/11. El costo se mantuvo controlado: por cada sol gastado obtuvimos 95 céntimos de trabajo, y el costo final previsto (S/ 11,700.40) solo supera el plan en S/ 36.93, que cubre el dinero reservado para riesgos. Las tarifas por hora del equipo se respetaron.}{La parte de la nube se estimó sin probarla antes, y cuando falló tuve que apoyar a Eliseo para sacarla adelante. Los primeros cortes se hicieron sin un plan aprobado, así que esos números sirvieron más como alerta que como medida exacta.}{Haría el corte de avance cada viernes con los datos del tablero, y no después de varias semanas. Antes de estimar una herramienta nueva, haría una prueba corta. Y probaría una semana antes de fijar metas de campo, como la de los cuartos.}{Propongo comparar cada trimestre desde 2027 el beneficio real con el previsto para el año 1 (S/ 14,574.00), y revisar cada mes que el uso de los servicios gratuitos en la nube no pase del 70\,\% de lo permitido. Las funciones de la fase 2 deben estimarse con la velocidad real que tuvimos en esta fase.}
+\perspectivallena{Gestora de comunicación, riesgos y documentación}{Viviana Mary Quisbert Quispe}{Las 5 actas de las semanas 4 a 8 registraron el avance, los acuerdos y los compromisos con su responsable, y sus cifras coinciden con los informes de control. La señal de alerta del riesgo de la nube detectó a tiempo que el inicio de sesión no funcionaba. La convocatoria al piloto logró 14 inscritos para una meta de 10, y así bajó el riesgo de no tener participantes.}{Mis documentos (políticas, riesgos, comunicaciones y actas) llegaron al repositorio recién el 06/11, aunque la regla del equipo pedía subir cada acta en 24 horas. Como solo revisaba las señales de alerta y no todos los riesgos, el problema de la nube se vio tarde: el registro se atrasó 6 días y el piloto pasó a la semana 14.}{Escribiría el acta durante la reunión y la subiría ese mismo día. Pondría cada riesgo como tarjeta en el tablero desde el primer día, para que todo el equipo lo vea. Y para lo técnico nuevo pondría alertas más tempranas, por ejemplo probar la nube en la semana 8 y no en la 10.}{Para el año 1 los riesgos principales serán que la app se caiga o supere lo que permiten los servicios gratuitos, que nadie quede a cargo de mantenerla, las publicaciones falsas y la protección de datos personales. Propongo revisar los riesgos cada mes, hacer una copia de seguridad semanal y usar mis 2 horas semanales de moderación para revisar los reportes.}
 \perspectiva{Cliente arrendatario}{Participantes del piloto (encuesta y entrevista)}{facilidad para encontrar cuarto, si el puntaje se entiende y si confían en el ranking}{Si recomendaría la app y por qué}
 \perspectiva{Cliente propietario}{Propietarios del piloto (entrevista)}{tiempo para publicar, fotos obligatorias, interés recibido de inquilinos}{Si pagaría S/ 5 al mes por cuarto publicado}
 \perspectiva{Sponsor}{Team Sobrevivientes en votación}{si se obtuvo el valor esperado, si se respetó el presupuesto, decisión en cada gate}{Decisión sobre continuar con la fase 2}
@@ -511,7 +533,7 @@ Cada participante completa su cuadro con hechos concretos (fechas, cifras o ejem
 1 & Resumen ejecutivo & Qué se logró, resultado del piloto y decisión de éxito. & Clyde \\
 2 & Objetivos y resultados & O1 a O5 con su meta y su valor final. & Clyde \\
 3 & Producto entregado & MVP en la nube, requisitos aceptados y exclusiones a la fase 2. & Eliseo \\
-4 & Desempeño & SPI, CPI, EAC, curva S final y variación de hitos. & Ruth \\
+4 & Desempeño & Avance contra el plan, costo final, curva de avance y fechas cumplidas. & Ruth \\
 5 & Cambios y riesgos & Solicitudes de cambio y riesgos materializados con su respuesta. & Viviana \\
 6 & Perspectivas por rol & Resumen de los cuadros de cada participante. & Todos \\
 7 & Lecciones aprendidas & Lecciones definitivas con su acción para el futuro. & Viviana \\
@@ -527,8 +549,8 @@ Cada participante completa su cuadro con hechos concretos (fechas, cifras o ejem
 \toprule
 \textbf{Proyecto y fase:} & CasaScore (AlquilaPuno), fase 1: proyecto del semestre 2026-II. \\
 \textbf{Entregables aceptados:} & Expediente de gestión, prototipo de la Unidad I, MVP final en la nube, piloto con clientes e informe final. \\
-\textbf{Exclusiones:} & RF-10 a RF-19, publicación en Google Play y monetización, que pasan a la fase 2 del backlog. \\
-\textbf{Resultados:} & SPI, CPI, costo final, satisfacción del piloto y decisión de éxito (se completan el 18/12). \\
+\textbf{Exclusiones:} & Mapa de cuartos, calificaciones, reportes, cobros dentro de la app, nuevas ciudades y Google Play, que pasan a la fase 2. \\
+\textbf{Resultados:} & Avance final, costo final, satisfacción del piloto y decisión de éxito (se completan el 18/12). \\
 \textbf{Continuidad:} & Responsables de la operación del año 1 y fecha de inicio de la fase 2. \\
 \textbf{Firmas:} & Los cuatro integrantes como sponsor y equipo del proyecto. \\
 \bottomrule
@@ -539,13 +561,13 @@ Cada participante completa su cuadro con hechos concretos (fechas, cifras o ejem
 \begin{grande}[12.4cm]
 \begin{tikzpicture}[>=Stealth]
 \draw[line width=3pt, AzulUNA, ->] (0,0) -- (24.2,0);
-\foreach \x/\t/\c/\s/\d in {0.3/2026-II: fase 1/RaciR/{Proyecto del semestre}/{MVP en la nube, piloto con compañeros y clientes, expediente y cierre}, 6.3/2027: año 1/Rama4/{Operación en Puno}/{500 usuarios al mes, app en Google Play, suscripción de S/ 5 por cuarto y anuncios}, 12.3/2028: año 2/Rama2/{Crecimiento}/{1,000 usuarios al mes, Juliaca, calificaciones y reportes de publicaciones}, 18.3/2029: año 3/Rama5/{Expansión}/{2,000 usuarios al mes y llegada a Cusco y Arequipa}} {
+\foreach \x/\t/\c/\s/\d in {0.3/2026-II: fase 1/RaciR/{Proyecto del semestre}/{MVP en la nube, piloto con compañeros y clientes, expediente y cierre}, 6.3/2027: año 1/Rama4/{Operación en Puno}/{500 usuarios al mes, app en Google Play, suscripción de S/ 5 por cuarto y anuncios}, 12.3/2028: año 2/Rama2/{Crecimiento}/{1,300 usuarios al mes, llegada a Juliaca, calificaciones y reportes de publicaciones}, 18.3/2029: año 3/Rama5/{Expansión}/{2,100 usuarios al mes en la región Puno; desde 2030, otras ciudades si se cumplen las metas}} {
   \node[circle, fill=\c, minimum size=0.6cm] at (\x+2.6,0) {};
   \node[fill=\c, text=white, font=\large\bfseries, minimum width=5.4cm, minimum height=0.9cm, anchor=south west] at (\x,0.6) {\t};
   \node[draw=\c, fill=\c!8, line width=1.2pt, text width=5.0cm, align=left, font=\normalsize, anchor=north west, minimum height=4.0cm] at (\x,-0.6) {\textbf{\s}\\[3pt]\d};}
 \node[font=\large\bfseries, text=RaciR, align=center] at (2.9,3.0) {Se cierra en diciembre};
 \draw[RaciR, line width=1.4pt, dashed] (5.95,-5.0) -- (5.95,3.3);
-\node[font=\normalsize, text width=23cm, align=left, anchor=north west] at (0,-5.3) {Beneficio esperado para los arrendatarios: S/ 14,574 (año 1), S/ 29,148 (año 2) y S/ 58,296 (año 3). VAN económico de S/ 64,059.98 y payback de 0.95 años desde el inicio de la operación.};
+\node[font=\normalsize, text width=23cm, align=left, anchor=north west] at (0,-5.3) {Beneficio esperado para los arrendatarios: S/ 14,574 (año 1), S/ 37,892 (año 2) y S/ 61,211 (año 3). Con su propio dinero, la app recupera la inversión en unos 3.6 años si se queda en la región Puno.};
 \end{tikzpicture}
 \end{grande}
 \end{hojah}
